@@ -18,7 +18,7 @@ public class User {
     private String password;
     private int[] winLossDraw;
     private static int userCount = 0; //counter to track the number of users
-    //private ArrayList<Player> favPlayers = new ArrayList();;
+    private ArrayList<Player> favPlayers;
     
 
     public User (String userName, String first, String last){
@@ -30,12 +30,6 @@ public class User {
        	
     	userCount++; //adds one to the user count each time the constructor is called
     }
-    
-//    public void generateID() {
-//    	if (PlayerID == null) {
-//    		PlayerID = UUID.randomUUID();
-//    	}
-//      }
     
     //Setters
     public void setUserName(String UserName) {
@@ -53,12 +47,15 @@ public class User {
     
     //sets the password
     public void setPassword(String password) {
+    	
     	this.password = password;
     	
     }
        
-    public void setprofilePicture(Image profilePicture) {
-    	this.profilePicture = profilePicture;
+    public void setprofilePicture() {
+    	FileOpener fileOpener = new FileOpener();
+    	FileOpener.main(null);
+    	this.profilePicture = fileOpener.getprofilePic();
     }
     
     public void setwinLossDraw(int[] winLossDraw) {
