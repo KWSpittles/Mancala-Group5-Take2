@@ -20,10 +20,10 @@ public class Board  {
     Hole Player2Store = new Hole();
 
     public Board() {
-        Player1Side = new Side(1);
-        Player2Side = new Side(2);
-        Hole Player1Store = new Hole();
-        Hole Player2Store = new Hole();
+        Player1Side = new Side(1,4);
+        Player2Side = new Side(2,4);
+        Hole Player1Store = new Hole(0);
+        Hole Player2Store = new Hole(0);
     }
 
     public Board(int stones) {

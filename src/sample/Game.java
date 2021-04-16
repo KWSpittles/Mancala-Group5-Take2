@@ -39,26 +39,26 @@ public class Game implements Initializable {
         playerNumber2 = 2;
     }
 
-    public void initialiseBoard(int value) {
-
-        gameBoard.getPlayer1Side().getHole(0).setPitValue(value);
-        gameBoard.getPlayer1Side().getHole(1).setPitValue(value);
-        gameBoard.getPlayer1Side().getHole(2).setPitValue(value);
-        gameBoard.getPlayer1Side().getHole(3).setPitValue(value);
-        gameBoard.getPlayer1Side().getHole(4).setPitValue(value);
-        gameBoard.getPlayer1Side().getHole(5).setPitValue(value);
-        gameBoard.getPlayer1Store().setPitValue(0);
-        gameBoard.getPlayer2Side().getHole(0).setPitValue(value);
-        gameBoard.getPlayer2Side().getHole(1).setPitValue(value);
-        gameBoard.getPlayer2Side().getHole(2).setPitValue(value);
-        gameBoard.getPlayer2Side().getHole(3).setPitValue(value);
-        gameBoard.getPlayer2Side().getHole(4).setPitValue(value);
-        gameBoard.getPlayer2Side().getHole(5).setPitValue(value);
-        gameBoard.getPlayer2Store().setPitValue(0);
-
-        System.out.println("You have displayed a new Board");
-
-    }
+//    public void initialiseBoard(int value) {
+//
+//        gameBoard.getPlayer1Side().getHole(0).setPitValue(value);
+//        gameBoard.getPlayer1Side().getHole(1).setPitValue(value);
+//        gameBoard.getPlayer1Side().getHole(2).setPitValue(value);
+//        gameBoard.getPlayer1Side().getHole(3).setPitValue(value);
+//        gameBoard.getPlayer1Side().getHole(4).setPitValue(value);
+//        gameBoard.getPlayer1Side().getHole(5).setPitValue(value);
+//        gameBoard.getPlayer1Store().setPitValue(0);
+//        gameBoard.getPlayer2Side().getHole(0).setPitValue(value);
+//        gameBoard.getPlayer2Side().getHole(1).setPitValue(value);
+//        gameBoard.getPlayer2Side().getHole(2).setPitValue(value);
+//        gameBoard.getPlayer2Side().getHole(3).setPitValue(value);
+//        gameBoard.getPlayer2Side().getHole(4).setPitValue(value);
+//        gameBoard.getPlayer2Side().getHole(5).setPitValue(value);
+//        gameBoard.getPlayer2Store().setPitValue(0);
+//
+//        System.out.println("You have displayed a new Board");
+//
+//    }
 
     public void resetBoard(ActionEvent event) {
 
@@ -133,7 +133,7 @@ public class Game implements Initializable {
 
         int[] playerBoard = new int[14];
         playerBoard[6] = gameBoard.getPlayer1Store().getPitValue();
-        playerBoard[13] = gameBoard.getPlayer1Store().getPitValue();
+        playerBoard[13] = gameBoard.getPlayer2Store().getPitValue();
         for (int i = 0; i <= 5; i++) {
             playerBoard[i] = gameBoard.getPlayer1Side().getHole(i).getPitValue();
         }
@@ -173,36 +173,24 @@ public class Game implements Initializable {
         }
     }
 
-    public void playerMove(ActionEvent event) {
+    public int playerMove(ActionEvent event) {
 
         String button = ((Button) event.getSource()).getText();
-
         int buttonPressed = Integer.parseInt(button);
         System.out.println("You pressed button " + buttonPressed);
 
-        int currentPlayer = playerNumber1;  //player1 goes first
+        return buttonPressed;
 
-        if (currentPlayer == 1) {
-            if (validMove(currentPlayer, buttonPressed)) {
-                int[] playerBoard = getplayerBoard();
-                makeMove(buttonPressed, playerBoard);
-                updateBoard(playerBoard, gameBoard);
-                printBoard(playerBoard);
-                displayBoard();
-                return;
-            }
         }
-        currentPlayer = 2;
-        if (currentPlayer == 2) {
-            if (validMove(currentPlayer, buttonPressed)) {
-                int[] playerBoard = getplayerBoard();
-                makeMove(buttonPressed, playerBoard);
-                updateBoard(playerBoard, gameBoard);
-                printBoard(playerBoard);
-                displayBoard();
-                currentPlayer = 1;
-                return;
-            }
+
+    public void gameLoop(ActionEvent event) {
+
+        int currentPlayer = 1;
+        int buttonPressed = playerMove(event);
+        int[] board = getplayerBoard();
+        if (validMove(currentPlayer, buttonPressed)) {
+            makeMove(buttonPressed, board);
+            currentPlayer = 2;
         }
     }
 
@@ -230,6 +218,7 @@ public class Game implements Initializable {
         ActionEvent event = new ActionEvent();
         resetBoard(event);
         displayBoard();
+        gameLoop(event);
     }
 
 
