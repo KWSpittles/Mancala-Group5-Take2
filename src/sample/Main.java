@@ -24,7 +24,7 @@ public class Main extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("LoginPageController.fxml"));
             Scene scene = new Scene(root);
-            String css = this.getClass().getResource("sample.css").toExternalForm();
+            String css = this.getClass().getResource("main.css").toExternalForm();
             stage.setTitle("Mancala");
             scene.getStylesheets().add(css);
             stage.getIcons().add(new Image("https://cdn.asp.events/CLIENT_CL_Gamin_A45C4908_5056_B725_6B2249A7AD85625A/sites/iGB-Live-2020/media/libraries/exhibitors/3315D8BD-C9E8-F899-A2A622859897DC57-logo.jpg.png"));
