@@ -173,9 +173,12 @@ public class Game implements Initializable {
         }
     }
 
+
     public int playerMove(ActionEvent event) {
 
-        String button = ((Button) event.getSource()).getText();
+        Button button1 = ((Button)event.getSource());
+        String button = button1.getText();
+//        String button = "1";
         int buttonPressed = Integer.parseInt(button);
         System.out.println("You pressed button " + buttonPressed);
 
@@ -224,7 +227,7 @@ public class Game implements Initializable {
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setWidth(720);
         stage.setHeight(720);
