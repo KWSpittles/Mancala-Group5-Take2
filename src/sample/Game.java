@@ -173,18 +173,79 @@ public class Game implements Initializable {
         }
     }
 
+    @FXML
+    public Button button1, button2, button3, button4, button5, button6, button7, button8,button9,button10,button11,button12,button13,button14;
+
+
 
     public int playerMove(ActionEvent event) {
 
-        Button button1 = ((Button)event.getSource());
-        String button = button1.getText();
-//        String button = "1";
-        int buttonPressed = Integer.parseInt(button);
-        System.out.println("You pressed button " + buttonPressed);
-
-        return buttonPressed;
-
+        if (event.getSource() == button1){
+            System.out.println("You pressed button " + 1);
+            return 1;
         }
+        else if (event.getSource() == button2){
+            System.out.println("You pressed button " + 2);
+            return 2;
+        }
+        else if (event.getSource() == button3){
+            System.out.println("You pressed button " + 3);
+            return 3;
+        }
+        else if (event.getSource() == button4){
+            System.out.println("You pressed button " + 4);
+            return 4;
+        }
+        else if (event.getSource() == button5){
+            System.out.println("You pressed button " + 5);
+            return 5;
+        }
+        else if (event.getSource() == button6){
+            System.out.println("You pressed button " + 6);
+            return 6;
+        }
+        else if (event.getSource() == button7){
+            System.out.println("You pressed button " + 7);
+            return 7;
+        }
+        else if (event.getSource() == button8){
+            System.out.println("You pressed button " + 8);
+            return 8;
+        }
+        else if (event.getSource() == button9){
+            System.out.println("You pressed button " + 9);
+            return 9;
+        }
+        else if (event.getSource() == button10){
+            System.out.println("You pressed button " + 10);
+            return 10;
+        }
+        else if (event.getSource() == button11){
+            System.out.println("You pressed button " + 11);
+            return 11;
+        }
+        else if (event.getSource() == button12){
+            System.out.println("You pressed button " + 12);
+            return 12;
+        }
+        else if (event.getSource() == button13){
+            System.out.println("You pressed button " + 13);
+            return 13;
+        }
+        else {
+            System.out.println("You pressed button " + 14);
+            return 14;
+        }
+
+    }
+
+//    buttonPressed = ;
+//    String button1 = button.getText();
+//    //        String button = "1";
+//    int buttonPressed = Integer.parseInt(button1);
+//        System.out.println("You pressed button " + buttonPressed);
+//
+//        return buttonPressed;
 
     public void gameLoop(ActionEvent event) {
 
