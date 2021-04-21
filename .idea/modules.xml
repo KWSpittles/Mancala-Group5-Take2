@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Mancala-Group5.iml" filepath="$PROJECT_DIR$/Mancala-Group5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mancala.Group.iml" filepath="$PROJECT_DIR$/Mancala.Group.iml" />
     </modules>
   </component>
 </project>

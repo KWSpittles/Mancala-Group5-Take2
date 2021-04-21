@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -15,7 +15,7 @@
                     <children>
                         <Pane layoutX="25.0" layoutY="125.0" prefHeight="251.0" prefWidth="200.0">
                             <children>
-                                <Label layoutX="5.0" layoutY="93.0" prefHeight="66.0" prefWidth="190.0" text="Label" textFill="WHITE">
+                                <Label layoutX="48.0" layoutY="93.0" prefHeight="66.0" prefWidth="104.0" text="Label">
                                     <font>
                                         <Font name="Segoe UI Bold" size="30.0" />
                                     </font>
@@ -26,7 +26,14 @@
                 </Pane>
             </left>
             <center>
-                <Pane prefHeight="500.0" prefWidth="650.0" BorderPane.alignment="CENTER" />
+                <Pane prefHeight="500.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="284.0" layoutY="429.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" styleClass="linear-grad" text="Back">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Button>
+               </children></Pane>
             </center>
         </BorderPane>
     </children>
