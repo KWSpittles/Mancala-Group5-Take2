@@ -10,7 +10,6 @@
 //
 //    private final UUID PlayerID;
 //    private Date firstDate;
-//
 //    private String UserName;
 //    private String firstName;
 //    private String lastName;
@@ -20,6 +19,8 @@
 //    private static int userCount = 0; //counter to track the number of users
 //    private ArrayList<Player> favPlayers;
 //
+//
+//    public User (){}
 //
 //    public User (String userName, String first, String last){
 //    	UserName = userName;

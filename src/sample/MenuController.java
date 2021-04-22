@@ -29,7 +29,6 @@ public class MenuController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        //Game game = new Game(4);
         System.out.println("You are now playing a game of Mancala! Enjoy");
     }
 

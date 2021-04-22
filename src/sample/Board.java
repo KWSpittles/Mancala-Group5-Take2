@@ -33,6 +33,75 @@ public class Board  {
         Hole Player2Store = new Hole();
     }
 
+    public int getPitValue(boolean currentPlayer1, int pitNumber){
+        if(currentPlayer1){
+            if (pitNumber<=6) {
+                return Player1Side.getHole(pitNumber - 1).getPitValue();
+            }
+            else return Player1Store.getPitValue();
+        }
+        else{
+             if (pitNumber <= 6) {
+                 return Player2Side.getHole(pitNumber-1).getPitValue();
+             }
+             else return Player2Store.getPitValue();
+            }
+    }
+
+    public void setPitValue(boolean currentPlayer1, int pitNumber, int value){
+        if(currentPlayer1){
+            if (pitNumber<7) {
+                Player1Side.getHole(pitNumber - 1).setPitValue(value);
+            }
+            else Player1Store.setPitValue(value);
+        }
+        else{
+            if (pitNumber<7) {
+                Player2Side.getHole(pitNumber - 1).setPitValue(value);
+            }
+            else Player2Store.setPitValue(value);
+        }
+    }
+
+    public void incrementPitValue(boolean currentPlayer1, int pitNumber){
+        if(currentPlayer1){
+            if (pitNumber<7) {
+                Player1Side.getHole(pitNumber - 1).incrementPitValue();
+            }
+            else Player1Store.incrementPitValue();
+        }
+        else{
+            if (pitNumber<7) {
+                Player2Side.getHole(pitNumber - 1).incrementPitValue();
+            }
+            else Player2Store.incrementPitValue();
+        }
+    }
+
+    public boolean player1win(){
+
+        boolean flag = true;
+
+        for (int i = 0; i < 6 ; i++) {
+            if(getPlayer1Side().getHole(i).getPitValue() != 0){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    public boolean player2win(){
+
+        boolean flag = true;
+
+        for (int i = 0; i < 6 ; i++) {
+            if(getPlayer2Side().getHole(i).getPitValue() != 0){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
     public Side getPlayer1Side() {
         return Player1Side;
     }
