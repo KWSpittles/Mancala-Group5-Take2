@@ -46,12 +46,12 @@
                   </Pane>
                   <Pane layoutX="314.0" layoutY="260.0" prefHeight="130.0" prefWidth="159.0">
                      <children>
-                        <Button fx:id="btnTraditional" layoutX="30.0" layoutY="15.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Traditional" textFill="WHITE">
+                        <Button fx:id="btnTraditional" layoutX="30.0" layoutY="15.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Traditional" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="13.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnArcade" layoutX="30.0" layoutY="74.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Arcade" textFill="WHITE">
+                        <Button fx:id="btnArcade" layoutX="30.0" layoutY="74.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Arcade" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="13.0" />
                            </font>

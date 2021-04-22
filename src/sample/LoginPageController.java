@@ -14,13 +14,10 @@ import java.io.IOException;
 public class LoginPageController {
 
     @FXML
-    TextField usernameField;
-
-    @FXML
-    PasswordField passwordField;
-
-    @FXML
     Label loginmessage;
+    TextField tfEmail;
+    PasswordField pfPassword;
+
 
     private Stage stage;
     private Scene scene;
@@ -30,7 +27,7 @@ public class LoginPageController {
     public void Login(ActionEvent event)
     {
 
-        if(usernameField.getText().equals("test") && passwordField.getText().equals("123"))
+        if(tfEmail.getText().equals("test") && pfPassword.getText().equals("123"))
         {
             try
             {
@@ -43,7 +40,7 @@ public class LoginPageController {
                 stage.setHeight(720);
                 stage.setScene(scene);
                 stage.centerOnScreen();
-                System.out.println("You are logged in as:  " + usernameField.getText());
+                System.out.println("You are logged in as:  " + tfEmail.getText());
             }
 
             catch(Exception e)

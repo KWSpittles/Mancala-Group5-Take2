@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -25,42 +26,27 @@ public class Game implements Initializable {
     private Board gameBoard;
     private int playerNumber1;
     private int playerNumber2;
+    public boolean currentPlayer1;
+    private boolean running;
+
 
 
     public Game() {
         gameBoard = new Board();
         playerNumber1 = 1;
         playerNumber2 = 2;
+        running = true;
     }
 
     public Game(int stones) {
         gameBoard = new Board(stones);
         playerNumber1 = 1;
         playerNumber2 = 2;
+        running = true;
+
     }
 
-//    public void initialiseBoard(int value) {
-//
-//        gameBoard.getPlayer1Side().getHole(0).setPitValue(value);
-//        gameBoard.getPlayer1Side().getHole(1).setPitValue(value);
-//        gameBoard.getPlayer1Side().getHole(2).setPitValue(value);
-//        gameBoard.getPlayer1Side().getHole(3).setPitValue(value);
-//        gameBoard.getPlayer1Side().getHole(4).setPitValue(value);
-//        gameBoard.getPlayer1Side().getHole(5).setPitValue(value);
-//        gameBoard.getPlayer1Store().setPitValue(0);
-//        gameBoard.getPlayer2Side().getHole(0).setPitValue(value);
-//        gameBoard.getPlayer2Side().getHole(1).setPitValue(value);
-//        gameBoard.getPlayer2Side().getHole(2).setPitValue(value);
-//        gameBoard.getPlayer2Side().getHole(3).setPitValue(value);
-//        gameBoard.getPlayer2Side().getHole(4).setPitValue(value);
-//        gameBoard.getPlayer2Side().getHole(5).setPitValue(value);
-//        gameBoard.getPlayer2Store().setPitValue(0);
-//
-//        System.out.println("You have displayed a new Board");
-//
-//    }
-
-    public void resetBoard(ActionEvent event) {
+    public void resetBoard() {
 
         gameBoard.getPlayer1Side().getHole(0).setPitValue(4);
         gameBoard.getPlayer1Side().getHole(1).setPitValue(4);
@@ -104,185 +90,219 @@ public class Game implements Initializable {
         System.out.println("You have displayed a new Board");
     }
 
-    public boolean validMove(int playerNumber, int buttonPressed) {
+//    public boolean validMove(boolean currentPlayer1, int buttonPressed) {
+//
+//        if (currentPlayer1) {
+//            if (buttonPressed <= 6) {
+//                System.out.println("You chose pit number " + buttonPressed);
+//                return true;
+//            } else {
+//                System.out.println("Pit Number " + buttonPressed + " is invalid. Please choose a pit on your side.");
+//                return false;
+//            }
+//
+//        } else {
+//            if (buttonPressed <= 13 && buttonPressed > 6) {
+//                System.out.println("You chose pit number " + buttonPressed);
+//                return true;
+//            } else {
+//                System.out.println("Pit Number " + buttonPressed + " is invalid. Please choose a pit on your side.");
+//                return false;
+//            }
+//
+//        }
+//    }
 
-        if (playerNumber == 1) {
-            if (buttonPressed <= 6) {
-                System.out.println("You chose pit number " + buttonPressed);
-                return true;
-            } else {
-                System.out.println("Pit Number " + buttonPressed + " is invalid. Please choose a pit on your side.");
-                return false;
-            }
 
-        } else if (playerNumber == 2) {
-            if (buttonPressed <= 13 && buttonPressed > 6) {
-                System.out.println("You chose pit number " + buttonPressed);
-                return true;
-            } else {
-                System.out.println("Pit Number " + buttonPressed + " is invalid. Please choose a pit on your side.");
-                return false;
-            }
-
-        }
-        return false;
-    }
-
-
-    public int[] getplayerBoard(){
-
-        int[] playerBoard = new int[14];
-        playerBoard[6] = gameBoard.getPlayer1Store().getPitValue();
-        playerBoard[13] = gameBoard.getPlayer2Store().getPitValue();
-        for (int i = 0; i <= 5; i++) {
-            playerBoard[i] = gameBoard.getPlayer1Side().getHole(i).getPitValue();
-        }
-
-        for (int i = 7; i <= 12; i++) {
-            playerBoard[i] = gameBoard.getPlayer2Side().getHole(i - 7).getPitValue();
-        }
-
-        return playerBoard;
-    }
-
-    public void printBoard(int[] playerBoard) {
-        System.out.println("Array 1:  ");
-        for (int i = 0; i <= 13; i++) {
-            System.out.print((i + 1) + ":   ");
-        }
-        System.out.println();
-        for (int i = 0; i <= 9; i++) {
-            System.out.print(playerBoard[i] + "    ");
-        }
-        for (int i =10; i <= 13; i++) {
-            System.out.print(playerBoard[i] + "      ");
-        }
-    }
-
-    public void updateBoard(int[] playerBoard, Board gameBoard) {
-
-        gameBoard.getPlayer1Store().setPitValue(playerBoard[6]);
-        gameBoard.getPlayer2Store().setPitValue(playerBoard[13]);
-
-        for (int i = 0; i <= 5; i++) {
-            gameBoard.getPlayer1Side().getHole(i).setPitValue(playerBoard[i]);
-        }
-
-        for (int i = 7; i <= 12; i++) {
-            gameBoard.getPlayer2Side().getHole(i - 7).setPitValue(playerBoard[i]);
-        }
-    }
 
     @FXML
     public Button button1, button2, button3, button4, button5, button6, button7, button8,button9,button10,button11,button12,button13,button14;
 
+    public void button1() {
+        validMove(gameBoard, currentPlayer1, 1);
+    }
+    public void button2() {
+        validMove(gameBoard, currentPlayer1, 2);
+    }
+    public void button3() {
+        validMove(gameBoard, currentPlayer1, 3);
+    }
+    public void button4() {
+        validMove(gameBoard, currentPlayer1, 4);
+    }
+    public void button5() {
+        validMove(gameBoard, currentPlayer1, 5);
+    }
+    public void button6() {
+        validMove(gameBoard, currentPlayer1, 6);
+    }
+    public void button7() {
+        validMove(gameBoard, currentPlayer1, 7);
+    }
+    public void button8() {
+        validMove(gameBoard, currentPlayer1, 8);
+    }
+    public void button9() {
+        validMove(gameBoard, currentPlayer1, 9);
+    }
+    public void button10() {
+        validMove(gameBoard, currentPlayer1, 10);
+    }
+    public void button11() {
+        validMove(gameBoard, currentPlayer1, 11);
+    }
+    public void button12() {
+        validMove(gameBoard, currentPlayer1, 12);
+    }
+    public void button13() {
+        validMove(gameBoard, currentPlayer1, 13);
+    }
+    public void button14() {
+        validMove(gameBoard, currentPlayer1, 14);
+    }
 
+    public void validMove(Board gameBoard, Boolean currentPlayer1, int buttonPressed) {
 
-    public int playerMove(ActionEvent event) {
-
-        if (event.getSource() == button1){
-            System.out.println("You pressed button " + 1);
-            return 1;
-        }
-        else if (event.getSource() == button2){
-            System.out.println("You pressed button " + 2);
-            return 2;
-        }
-        else if (event.getSource() == button3){
-            System.out.println("You pressed button " + 3);
-            return 3;
-        }
-        else if (event.getSource() == button4){
-            System.out.println("You pressed button " + 4);
-            return 4;
-        }
-        else if (event.getSource() == button5){
-            System.out.println("You pressed button " + 5);
-            return 5;
-        }
-        else if (event.getSource() == button6){
-            System.out.println("You pressed button " + 6);
-            return 6;
-        }
-        else if (event.getSource() == button7){
-            System.out.println("You pressed button " + 7);
-            return 7;
-        }
-        else if (event.getSource() == button8){
-            System.out.println("You pressed button " + 8);
-            return 8;
-        }
-        else if (event.getSource() == button9){
-            System.out.println("You pressed button " + 9);
-            return 9;
-        }
-        else if (event.getSource() == button10){
-            System.out.println("You pressed button " + 10);
-            return 10;
-        }
-        else if (event.getSource() == button11){
-            System.out.println("You pressed button " + 11);
-            return 11;
-        }
-        else if (event.getSource() == button12){
-            System.out.println("You pressed button " + 12);
-            return 12;
-        }
-        else if (event.getSource() == button13){
-            System.out.println("You pressed button " + 13);
-            return 13;
+        if (currentPlayer1) {
+            if (buttonPressed <= 6) {
+                makeMove(gameBoard,currentPlayer1,buttonPressed);
+            } else {
+                System.out.println("Pit is invalid. Please choose a pit on your side.");
+            }
         }
         else {
-            System.out.println("You pressed button " + 14);
-            return 14;
-        }
-
-    }
-
-//    buttonPressed = ;
-//    String button1 = button.getText();
-//    //        String button = "1";
-//    int buttonPressed = Integer.parseInt(button1);
-//        System.out.println("You pressed button " + buttonPressed);
-//
-//        return buttonPressed;
-
-    public void gameLoop(ActionEvent event) {
-
-        int currentPlayer = 1;
-        int buttonPressed = playerMove(event);
-        int[] board = getplayerBoard();
-        if (validMove(currentPlayer, buttonPressed)) {
-            makeMove(buttonPressed, board);
-            currentPlayer = 2;
-        }
-    }
-
-    public void makeMove(int buttonPressed, int[] playerBoard) {
-        {
-            int currentPit = buttonPressed - 1;
-            int stones = playerBoard[currentPit];
-            playerBoard[currentPit] = 0;
-
-
-
-            for (int i = stones; i > 0; i--) {
-                if ((currentPit+i) < 14){
-                    playerBoard[currentPit + (i)] = (playerBoard[currentPit + (i)] + 1);
-                }
-                if ((currentPit+i) > 14){
-                    playerBoard[currentPit + (i-14)] = (playerBoard[currentPit + (i-14)] + 1);
-                }
+            if (buttonPressed > 7 && buttonPressed <=13) {
+                makeMove(gameBoard, currentPlayer1,buttonPressed);
+            } else {
+                System.out.println("Pit is invalid. Please choose a pit on your side.");
             }
         }
     }
 
+    public void checkGameOver(Board gameBoard){
+
+        if (gameBoard.player1win()){
+            System.out.println("Player 1 Wins");
+        }
+        if (gameBoard.player2win()){
+            System.out.println("Player 2 Wins");
+        }
+        else return;
+    }
+
+
+
+    @FXML
+    Label turnMessage;
+
+    public void makeMove(Board gameBoard, boolean currentPlayer, int buttonPressed) {
+
+        if(currentPlayer) {
+
+            int stones = gameBoard.getPitValue(currentPlayer, buttonPressed);
+            gameBoard.setPitValue(currentPlayer, buttonPressed, 0);
+            System.out.println("Amount of stones = " + stones);
+
+            if (stones > 0) {
+
+                for (int i = buttonPressed + 1; i <= 6; i++) {
+                    gameBoard.incrementPitValue(currentPlayer, i);
+                    stones--;
+                    if (stones == 0) {
+                        stones = gameBoard.getPitValue(currentPlayer, i-1);
+                        gameBoard.setPitValue(currentPlayer, i-1, 0);
+                        if (stones == 0) {break;}
+                    }
+                }
+                if (stones > 0) {
+                    gameBoard.getPlayer1Store().incrementPitValue();
+                    stones--;
+                    if (stones == 0) {
+                        checkGameOver(gameBoard);
+                        displayBoard();
+                        return;
+                    }
+                }
+                if (stones > 0) {
+                    for (int i = 0; i <= 6; i++) {
+                        gameBoard.incrementPitValue(!currentPlayer, i+1);
+                        stones--;
+                        if (stones == 0) {
+                            stones = gameBoard.getPitValue(!currentPlayer, i+1);
+                            gameBoard.setPitValue(!currentPlayer, i+1, 0);
+
+                            if (stones == 0) {break;}
+                        }
+                    }
+                }
+            }
+
+        }
+        else{
+
+            int stones = gameBoard.getPitValue(!currentPlayer, buttonPressed-7);
+            gameBoard.setPitValue(!currentPlayer, buttonPressed-7, 0);
+            System.out.println("Amount of stones = " + stones);
+
+            if (stones > 0) {
+                for (int i = buttonPressed - 7; i <= 6; i++) {
+                    gameBoard.incrementPitValue(!currentPlayer, i);
+                    stones--;
+                    if (stones == 0) {
+                        stones = gameBoard.getPitValue(!currentPlayer, i-1);
+                        gameBoard.setPitValue(!currentPlayer, i-1, 0);
+
+                        if (stones == 0) {break;}
+                    }
+                }
+                if (stones > 0) {
+                    gameBoard.getPlayer2Store().incrementPitValue();
+                    stones--;
+                    if (stones == 0) {
+                        checkGameOver(gameBoard);
+                        displayBoard();
+                        return;
+                    }
+                }
+
+                if (stones > 0) {
+                    for (int i = 0; i <= 6; i++) {
+                        gameBoard.incrementPitValue(currentPlayer, i+1);
+                        stones--;
+                        if (stones == 0) {
+                            stones = gameBoard.getPitValue(currentPlayer, i+1);
+                            gameBoard.setPitValue(currentPlayer, i+1, 0);
+                            if (stones == 0) {break;}
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+        currentPlayer1 = !currentPlayer1;
+        checkGameOver(gameBoard);
+        System.out.println(currentPlayer1);
+        displayBoard();
+
+
+
+        if(currentPlayer1){
+            turnMessage.setText("It is player 1s turn");
+        }
+        else{
+            turnMessage.setText("It is player 2s turn");
+        }
+        return;
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ActionEvent event = new ActionEvent();
-        resetBoard(event);
+        resetBoard();
         displayBoard();
-        gameLoop(event);
+        Game game = new Game(4);
     }
 
 
