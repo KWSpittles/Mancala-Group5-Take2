@@ -68,7 +68,7 @@ public class LoginControllerT2 {
 		subtitle.setText("meow~~you login as Guest");
 	}
 	
-	public void readIdPassWord (ActionEvent e) {
+	public void readIdPassWord (ActionEvent e) throws IOException {
 		String epw = String.valueOf(pwField.getText());
 		String eid = String.valueOf(idField.getText());
 		
@@ -87,6 +87,10 @@ public class LoginControllerT2 {
 			else if (userLoginInfo.get(eid).equals(epw)) {
 				System.out.println("yeaaaaa boi login success");
 				subtitle.setText("yeaaaaa boi login success");
+
+				switchToPlayerMenu(e);
+
+
 			}
 			else if (userLoginInfo.get(eid).equals(epw)==false){
 				System.out.println("please enter correct password");
@@ -126,6 +130,17 @@ public class LoginControllerT2 {
 
 	public void switchToSignUpPage(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.centerOnScreen();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+		//Game game = new Game(4);
+		System.out.println("You are now playing a game of Mancala! Enjoy");
+	}
+
+	public void switchToPlayerMenu(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.centerOnScreen();
 		scene = new Scene(root);
