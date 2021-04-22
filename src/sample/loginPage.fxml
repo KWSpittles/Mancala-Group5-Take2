@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginControllerT2">
    <BorderPane layoutX="-4.0" layoutY="-4.0" prefHeight="518.0" prefWidth="909.0" style="-fx-background-color: #fff;" stylesheets="@main.css">
       <left>
          <Pane prefHeight="518.0" prefWidth="542.0" styleClass="linear-grad" BorderPane.alignment="CENTER">
@@ -27,17 +27,17 @@
       </left>
       <center>
          <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <TextField fx:id="tfEmail" layoutX="59.0" layoutY="147.0" prefHeight="40.0" prefWidth="250.0" promptText="Email">
+            <TextField fx:id="idField" layoutX="59.0" layoutY="147.0" prefHeight="40.0" prefWidth="250.0" promptText="Email">
                <font>
                   <Font size="13.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="pfPassword" layoutX="59.0" layoutY="203.0" prefHeight="40.0" prefWidth="250.0" promptText="Password">
+            <PasswordField fx:id="pwField" layoutX="59.0" layoutY="203.0" prefHeight="40.0" prefWidth="250.0" promptText="Password">
                <font>
                   <Font size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="btnSignIn" layoutX="184.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToPlayerMenu" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
+            <Button fx:id="btnSignIn" layoutX="184.0" layoutY="286.0" mnemonicParsing="false" onAction="#readIdPassWord" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
                </font>
