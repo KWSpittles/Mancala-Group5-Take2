@@ -28,6 +28,10 @@ public class MenuController {
         stage.centerOnScreen();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setWidth(1920);
+        stage.setHeight(1080);
+        stage.centerOnScreen();
+        stage.setResizable(false);
         stage.show();
         System.out.println("You are now playing a game of Mancala! Enjoy");
     }

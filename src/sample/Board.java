@@ -33,46 +33,46 @@ public class Board  {
         Hole Player2Store = new Hole();
     }
 
-    public int getPitValue(boolean currentPlayer1, int pitNumber){
-        if(currentPlayer1){
-            if (pitNumber<=6) {
-                return Player1Side.getHole(pitNumber - 1).getPitValue();
+    public int getPitValue(boolean Player1, int pitNumber){
+        if(Player1){
+            if (pitNumber<=5) {
+                return Player1Side.getPit(pitNumber).getPitValue();
             }
             else return Player1Store.getPitValue();
         }
         else{
-             if (pitNumber <= 6) {
-                 return Player2Side.getHole(pitNumber-1).getPitValue();
+             if (pitNumber <= 7) {
+                 return Player2Side.getPit(pitNumber).getPitValue();
              }
              else return Player2Store.getPitValue();
             }
     }
 
-    public void setPitValue(boolean currentPlayer1, int pitNumber, int value){
-        if(currentPlayer1){
-            if (pitNumber<7) {
-                Player1Side.getHole(pitNumber - 1).setPitValue(value);
+    public void setPitValue(boolean Player1, int pitNumber, int value){
+        if(Player1){
+            if (pitNumber<= 5) {
+                Player1Side.getPit(pitNumber).setPitValue(value);
             }
             else Player1Store.setPitValue(value);
         }
         else{
-            if (pitNumber<7) {
-                Player2Side.getHole(pitNumber - 1).setPitValue(value);
+            if (pitNumber<=12) {
+                Player2Side.getPit(pitNumber).setPitValue(value);
             }
             else Player2Store.setPitValue(value);
         }
     }
 
-    public void incrementPitValue(boolean currentPlayer1, int pitNumber){
-        if(currentPlayer1){
-            if (pitNumber<7) {
-                Player1Side.getHole(pitNumber - 1).incrementPitValue();
+    public void incrementPitValue(boolean Player1, int pitNumber){
+        if(Player1){
+            if (pitNumber<=5) {
+                Player1Side.getPit(pitNumber).incrementPitValue();
             }
             else Player1Store.incrementPitValue();
         }
         else{
-            if (pitNumber<7) {
-                Player2Side.getHole(pitNumber - 1).incrementPitValue();
+            if (pitNumber<=5) {
+                Player2Side.getPit(pitNumber).incrementPitValue();
             }
             else Player2Store.incrementPitValue();
         }
@@ -82,8 +82,8 @@ public class Board  {
 
         boolean flag = true;
 
-        for (int i = 0; i < 6 ; i++) {
-            if(getPlayer1Side().getHole(i).getPitValue() != 0){
+        for (int i = 0; i <= 5 ; i++) {
+            if(getPlayer1Side().getPit(i).getPitValue() != 0){
                 flag = false;
             }
         }
@@ -94,8 +94,8 @@ public class Board  {
 
         boolean flag = true;
 
-        for (int i = 0; i < 6 ; i++) {
-            if(getPlayer2Side().getHole(i).getPitValue() != 0){
+        for (int i = 0; i <= 5 ; i++) {
+            if(getPlayer2Side().getPit(i).getPitValue() != 0){
                 flag = false;
             }
         }
