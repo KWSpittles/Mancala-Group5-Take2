@@ -56,6 +56,26 @@ public class MenuController {
         }
     }
 
+
+    public void switchToTutorial(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Tutorial.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        scene = new Scene(root);
+        stage.setWidth(1220);
+        stage.setHeight(1080);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.setScene(scene);
+        Tutorial tutorial = new Tutorial();
+        stage.show();
+        System.out.println("You are now in Tutorial mode! Enjoy");
+    }
+
+
+
+
+
     public void switchToSignInPage(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logging out");
