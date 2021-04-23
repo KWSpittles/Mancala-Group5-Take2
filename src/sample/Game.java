@@ -90,31 +90,6 @@ public class Game implements Initializable {
         System.out.println("You have displayed a new Board");
     }
 
-//    public boolean validMove(boolean currentPlayer1, int buttonPressed) {
-//
-//        if (currentPlayer1) {
-//            if (buttonPressed <= 6) {
-//                System.out.println("You chose pit number " + buttonPressed);
-//                return true;
-//            } else {
-//                System.out.println("Pit Number " + buttonPressed + " is invalid. Please choose a pit on your side.");
-//                return false;
-//            }
-//
-//        } else {
-//            if (buttonPressed <= 13 && buttonPressed > 6) {
-//                System.out.println("You chose pit number " + buttonPressed);
-//                return true;
-//            } else {
-//                System.out.println("Pit Number " + buttonPressed + " is invalid. Please choose a pit on your side.");
-//                return false;
-//            }
-//
-//        }
-//    }
-
-
-
     @FXML
     public Button button1, button2, button3, button4, button5, button6, button7, button8,button9,button10,button11,button12,button13,button14;
 
@@ -240,8 +215,8 @@ public class Game implements Initializable {
         }
         else{
 
-            int stones = gameBoard.getPitValue(!currentPlayer, buttonPressed-7);
-            gameBoard.setPitValue(!currentPlayer, buttonPressed-7, 0);
+            int stones = gameBoard.getPitValue(!currentPlayer, buttonPressed-8);
+            gameBoard.setPitValue(!currentPlayer, buttonPressed-8, 0);
             System.out.println("Amount of stones = " + stones);
 
             if (stones > 0) {

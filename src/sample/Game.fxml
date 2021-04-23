@@ -25,15 +25,11 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.rowIndex="1">
+      <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.rowIndex="1">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="311.0" prefWidth="238.0">
                <children>
-                  <Button fx:id="button14" layoutX="32.0" layoutY="26.0" mnemonicParsing="false" onAction="#button14" prefHeight="124.0" prefWidth="186.0" text="14" />
-               </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <Label fx:id="pit14" layoutX="105.0" layoutY="80.0" text="Label" />
+                  <Label fx:id="pit14" layoutX="97.0" layoutY="156.0" text="Label" />
                </children>
             </AnchorPane>
         </items>
@@ -135,16 +131,11 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
+      <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Button fx:id="button7" layoutX="6.0" layoutY="23.0" mnemonicParsing="false" onAction="#button7" prefHeight="111.0" prefWidth="171.0" text="7" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-               <children>
-                  <Label fx:id="pit7" layoutX="105.0" layoutY="80.0" text="Label" />
+                  <Label fx:id="pit7" layoutX="104.0" layoutY="171.0" text="Label" />
                </children>
             </AnchorPane>
         </items>
