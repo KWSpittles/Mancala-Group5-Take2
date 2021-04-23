@@ -33,6 +33,75 @@ public class Board  {
         Hole Player2Store = new Hole();
     }
 
+    public int getPitValue(boolean Player1, int pitNumber){
+        if(Player1){
+            if (pitNumber<=5) {
+                return Player1Side.getPit(pitNumber).getPitValue();
+            }
+            else return Player1Store.getPitValue();
+        }
+        else{
+             if (pitNumber <= 7) {
+                 return Player2Side.getPit(pitNumber).getPitValue();
+             }
+             else return Player2Store.getPitValue();
+            }
+    }
+
+    public void setPitValue(boolean Player1, int pitNumber, int value){
+        if(Player1){
+            if (pitNumber<= 5) {
+                Player1Side.getPit(pitNumber).setPitValue(value);
+            }
+            else Player1Store.setPitValue(value);
+        }
+        else{
+            if (pitNumber<=12) {
+                Player2Side.getPit(pitNumber).setPitValue(value);
+            }
+            else Player2Store.setPitValue(value);
+        }
+    }
+
+    public void incrementPitValue(boolean Player1, int pitNumber){
+        if(Player1){
+            if (pitNumber<=5) {
+                Player1Side.getPit(pitNumber).incrementPitValue();
+            }
+            else Player1Store.incrementPitValue();
+        }
+        else{
+            if (pitNumber<=5) {
+                Player2Side.getPit(pitNumber).incrementPitValue();
+            }
+            else Player2Store.incrementPitValue();
+        }
+    }
+
+    public boolean player1win(){
+
+        boolean flag = true;
+
+        for (int i = 0; i <= 5 ; i++) {
+            if(getPlayer1Side().getPit(i).getPitValue() != 0){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    public boolean player2win(){
+
+        boolean flag = true;
+
+        for (int i = 0; i <= 5 ; i++) {
+            if(getPlayer2Side().getPit(i).getPitValue() != 0){
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
     public Side getPlayer1Side() {
         return Player1Side;
     }
