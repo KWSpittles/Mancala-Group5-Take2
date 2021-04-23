@@ -10,7 +10,9 @@ public class Player extends User {
     private boolean isCurrentTurn = false;
     private int currentScore;
     private int playerNumber;
-    
+    private int playerID,TotalWins,totalLost,totalDraw;
+    private String userID,password,firstName,LastName,Favourite;
+    private boolean Admin;
     //no argument constructor
     public Player() {
 		
@@ -25,5 +27,9 @@ public class Player extends User {
     public int getCurrentScore () {
     	return currentScore;
     }
+
+
+    //playerID,userID,password,firstName,LastName,TotalWins,totalLost,totalDraw,Admin,Favourite
+
 }
 

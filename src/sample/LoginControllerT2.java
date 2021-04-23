@@ -21,6 +21,7 @@ public class LoginControllerT2 {
 	public String inputId;
 
 	public static HashMap<String, String> userLoginInfo = new HashMap<String, String>();
+	public static String userInfo = "";
 	
 	@FXML 
 	PasswordField pwField = new PasswordField();
@@ -68,7 +69,7 @@ public class LoginControllerT2 {
 		subtitle.setText("meow~~you login as Guest");
 	}
 	
-	public void readIdPassWord (ActionEvent e) {
+	public boolean readIdPassWord (ActionEvent e) {
 		String epw = String.valueOf(pwField.getText());
 		String eid = String.valueOf(idField.getText());
 		
@@ -79,7 +80,8 @@ public class LoginControllerT2 {
 			subtitle.setText("please enter userId");
 		}
 		else if (userLoginInfo.containsKey(eid)) {
-			System.out.println("yeaaaaa ID correct");
+			userInfo = eid;
+			System.out.println("yeaaaaa ID correct "+"as "+userInfo);
 			if(pwField.getText().isBlank()) {
 				System.out.println("please enter password");
 				subtitle.setText("please enter password");
@@ -87,22 +89,23 @@ public class LoginControllerT2 {
 			else if (userLoginInfo.get(eid).equals(epw)) {
 				System.out.println("yeaaaaa boi login success");
 				subtitle.setText("yeaaaaa boi login success");
+				return true;
 			}
 			else if (userLoginInfo.get(eid).equals(epw)==false){
 				System.out.println("please enter correct password");
 				subtitle.setText("please enter correct password");
 			}
 		}
-		else if (idField.getText().equals(eid)==false){
+		else if (userLoginInfo.containsKey(eid)==false){
 			System.out.println("please enter correct userId");
 			subtitle.setText("");
 		}
 		else {
 			System.out.println("you are shitty code mockey");
 		}
-		
+		return false;
 	}
-	
+
 	public void createAccount(ActionEvent e) {
 		String epw = String.valueOf(pwFieldc.getText());
 		String eid = String.valueOf(idFieldc.getText());
@@ -121,6 +124,19 @@ public class LoginControllerT2 {
 		}
 		catch(Exception Error2) {
 			
+		}
+	}
+	public void switchToPlayerMenu(ActionEvent event) throws IOException {
+		System.out.println(readIdPassWord(event));
+		if(readIdPassWord(event)){
+			root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.centerOnScreen();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			//Game game = new Game(4);
+			System.out.println("You are now playing a game of Mancala! Enjoy");
 		}
 	}
 
