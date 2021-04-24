@@ -45,12 +45,12 @@
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="idFieldc" prefHeight="40.0" prefWidth="250.0" promptText="Username">
+                  <TextField fx:id="userName" prefHeight="40.0" prefWidth="250.0" promptText="Username">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="pwFieldC" prefHeight="40.0" prefWidth="250.0" promptText="Password">
+                  <PasswordField fx:id="password" prefHeight="40.0" prefWidth="250.0" promptText="Password">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
