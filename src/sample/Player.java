@@ -1,10 +1,5 @@
 package sample;
 
-import javafx.scene.image.Image;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.UUID;
-
 public class Player extends User {
 	//boolean to check if its player's turn
     public boolean isCurrentTurn;
