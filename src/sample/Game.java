@@ -28,7 +28,7 @@ public class Game implements Initializable {
     public boolean firstRound;
     public int stones;
     
-    //Declaration of variables
+    //Declaration of player variables
     private Player player1;
     private Player player2;
 
@@ -38,8 +38,8 @@ public class Game implements Initializable {
 //        playerNumber2 = 2;
         
         //Initializing Player Objects
-        player1 = new Player("Player 1");
-        player2 = new Player("Player 2");
+        player1 = new Player();
+        player2 = new Player();
     }
 
     public Game(int stones) {
@@ -48,8 +48,8 @@ public class Game implements Initializable {
 //        playerNumber2 = 2;
         
       //Initializing Player Objects
-        player1 = new Player("Player 1");
-        player2 = new Player("Player 2");
+        player1 = new Player();
+        player2 = new Player();
     }
 
     public void resetBoard() {

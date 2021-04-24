@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class LoginControllerT2 {
 	public String inputPassword;
@@ -22,6 +23,8 @@ public class LoginControllerT2 {
 
 	public static HashMap<String, String> userLoginInfo = new HashMap<String, String>();
 	public static String userInfo = "";
+	private User newUser;
+	private ArrayList<User> userList;
 	
 	@FXML 
 	PasswordField pwField = new PasswordField();
@@ -31,6 +34,10 @@ public class LoginControllerT2 {
 	PasswordField pwFieldc = new PasswordField();
 	@FXML
 	TextField idFieldc = new TextField();
+	@FXML
+	TextField firstName = new TextField();
+	@FXML
+	TextField lastName = new TextField();
 	@FXML
 	Label passwordLabel = new Label();
 	@FXML
@@ -106,11 +113,23 @@ public class LoginControllerT2 {
 		return false;
 	}
 
-	public void createAccount(ActionEvent e) {
-		String epw = String.valueOf(pwFieldc.getText());
-		String eid = String.valueOf(idFieldc.getText());
+	public void createAccount(ActionEvent e) throws IOException {
+		//Initializing User object
+		newUser = new User();
+		
+		//Setting the user fields
+		newUser.setUserName(idFieldc.getText());
+		newUser.setPassword(pwFieldc.getText());
+		newUser.setfirstName(firstName.getText());
+		newUser.setlastName(lastName.getText());
+		
+		String eid = newUser.getUserName();		
+		String epw = newUser.getPassword();
+		
+//		String epw = String.valueOf(pwFieldc.getText());
+//		String eid = String.valueOf(idFieldc.getText());
 		try {
-			loadLoginInfo (e);
+			//loadLoginInfo (e);
 			String file = "src\\loginInfo.csv";
 			FileWriter fw = new FileWriter(file,true);
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -121,11 +140,16 @@ public class LoginControllerT2 {
 			pwr.close();
 			System.out.println(epw+","+eid);
 			System.out.println(userLoginInfo);
+			switchToLoginPage(e);
 		}
 		catch(Exception Error2) {
 			
 		}
+		
+		
 	}
+	
+	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
 		System.out.println(readIdPassWord(event));
 		if(readIdPassWord(event)){
@@ -139,9 +163,22 @@ public class LoginControllerT2 {
 			System.out.println("You are now playing a game of Mancala! Enjoy");
 		}
 	}
-
+	
+	//Action event to switch to sign up page
 	public void switchToSignUpPage(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.centerOnScreen();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+		//Game game = new Game(4);
+		System.out.println("You are now playing a game of Mancala! Enjoy");
+	}
+	
+	//Action event to switch to login page
+	public void switchToLoginPage(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.centerOnScreen();
 		scene = new Scene(root);

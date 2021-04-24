@@ -70,14 +70,14 @@ public class LeaderBoardController {
         return scanner;
     }
 
-    public static Player setPlayer(String uid){
+    public static User setPlayer(String uid){
         ArrayList tem = searchUser(LoginControllerT2.userInfo);
-        Player t = new Player();
-        t.setUserName((String) tem.get(1));
-        t.setPassword((String) tem.get(2));
-        t.setfirstName((String) tem.get(4));
-        t.setlastName((String) tem.get(5));
-        return t;
+        User newUser = new User();
+        newUser.setUserName((String) tem.get(1));
+        newUser.setPassword((String) tem.get(2));
+        newUser.setfirstName((String) tem.get(4));
+        newUser.setlastName((String) tem.get(5));
+        return newUser;
     }
 }
 

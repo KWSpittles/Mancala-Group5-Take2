@@ -12,7 +12,7 @@ public class Player extends User {
     private int playerNumber;
     
     //no argument constructor
-    public Player(String player) {
+    public Player() {
 	}
     
     //Sets whether if player is Player 1 or Player 2
