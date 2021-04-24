@@ -1,17 +1,5 @@
 package sample;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
-import java.awt.*;
-import java.io.IOException;
-
 public class Board  {
 
     private Side Player1Side;
@@ -78,7 +66,7 @@ public class Board  {
         }
     }
 
-    public boolean player1win(){
+    public boolean player1sideEmpty(){
 
         boolean flag = true;
 
@@ -90,7 +78,7 @@ public class Board  {
         return flag;
     }
 
-    public boolean player2win(){
+    public boolean player2sideEmpty(){
 
         boolean flag = true;
 

@@ -36,3 +36,6 @@ text-input
 {
     -fx-background-color: linear-gradient(to bottom left, #e2a08c, #ed4715);
 }
+.tutorialBackground{
+    -fx-background-color: #ffffff;
+}

@@ -38,8 +38,8 @@ public class Game implements Initializable {
 //        playerNumber2 = 2;
         
         //Initializing Player Objects
-        player1 = new Player("Player 1");
-        player2 = new Player("Player 2");
+        player1 = new Player();
+        player2 = new Player();
     }
 
     public Game(int stones) {
@@ -48,8 +48,8 @@ public class Game implements Initializable {
 //        playerNumber2 = 2;
         
       //Initializing Player Objects
-        player1 = new Player("Player 1");
-        player2 = new Player("Player 2");
+        player1 = new Player();
+        player2 = new Player();
     }
 
     public void resetBoard() {
@@ -138,13 +138,21 @@ public class Game implements Initializable {
 
     public void checkGameOver(Board gameBoard){
 
-        if (gameBoard.player1win()){
-            System.out.println("Player 1 Wins");
+        if (gameBoard.player1sideEmpty() | gameBoard.player2sideEmpty()){
+            System.out.println("Game Over");
+            for (int i = 0; i <= 5 ; i++) {
+                int store1 = gameBoard.Player1Store.getPitValue();
+                int store2 = gameBoard.Player2Store.getPitValue();
+                int value1 = gameBoard.getPitValue(true, i);
+                int value2 = gameBoard.getPitValue(false, i);
+
+                gameBoard.setPitValue(true, i, 0);
+                gameBoard.setPitValue(false, i, 0);
+                gameBoard.Player1Store.setPitValue(store1 + value1);
+                gameBoard.Player2Store.setPitValue(store2 + value2);
+
+            }
         }
-        if (gameBoard.player2win()){
-            System.out.println("Player 2 Wins");
-        }
-        else return;
     }
 
 
