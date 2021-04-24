@@ -7,23 +7,23 @@ import java.util.UUID;
 
 public class Player extends User {
 	//boolean to check if its player's turn
-    private boolean isCurrentTurn = false;
+    public boolean isCurrentTurn;
     private int currentScore;
     private int playerNumber;
     
     //no argument constructor
-    public Player() {
-		
+    public Player(String player) {
 	}
     
     //Sets whether if player is Player 1 or Player 2
-    public int getPlayerNumber() {
-    	return playerNumber;
+    public void setPlayerNumber(int playerNumber) {
+    	this.playerNumber = playerNumber;
     }
     
     //gets current score of player
     public int getCurrentScore () {
     	return currentScore;
     }
+    
 }
 

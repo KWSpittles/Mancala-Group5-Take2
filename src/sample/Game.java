@@ -22,23 +22,34 @@ public class Game implements Initializable {
     private Parent root;
 
     private Board gameBoard;
-    private int playerNumber1;
-    private int playerNumber2;
-    public boolean player1Turn;
+//    private int playerNumber1;
+//    private int playerNumber2;
+//    public boolean player1Turn;
     public boolean firstRound;
     public int stones;
+    
+    //Declaration of variables
+    private Player player1;
+    private Player player2;
 
     public Game() {
         gameBoard = new Board();
-        playerNumber1 = 1;
-        playerNumber2 = 2;
+//        playerNumber1 = 1;
+//        playerNumber2 = 2;
+        
+        //Initializing Player Objects
+        player1 = new Player("Player 1");
+        player2 = new Player("Player 2");
     }
 
     public Game(int stones) {
         gameBoard = new Board(stones);
-        playerNumber1 = 1;
-        playerNumber2 = 2;
-
+//        playerNumber1 = 1;
+//        playerNumber2 = 2;
+        
+      //Initializing Player Objects
+        player1 = new Player("Player 1");
+        player2 = new Player("Player 2");
     }
 
     public void resetBoard() {
@@ -143,7 +154,7 @@ public class Game implements Initializable {
 
     public void validMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
-        if (player1Turn) {
+        if (player1.isCurrentTurn) {
             if (player1Side && pitPressed <= 5) {
                 makeMove(gameBoard, true, pitPressed);
             }
@@ -151,7 +162,7 @@ public class Game implements Initializable {
                 System.out.println("Pit is invalid. Please choose a pit on your side.");
             }
         }
-        else if (!player1Turn){
+        else if (!player1.isCurrentTurn){
             if (!player1Side && pitPressed <= 5) {
                 makeMove(gameBoard, false, pitPressed);
             } else {
@@ -162,11 +173,11 @@ public class Game implements Initializable {
 
     public void firstPlayer(){
         if(Math.random()>0.5){
-            player1Turn = true;
+        	player1.isCurrentTurn = true;
             turnMessage.setText("It is player 1s turn");
         }
         else{
-            player1Turn = false;
+            player1.isCurrentTurn = false;
             turnMessage.setText("It is player 2s turn");
 
         }
@@ -202,7 +213,7 @@ public class Game implements Initializable {
             }
 
 
-            else if (player1Turn && firstRound && stones>0) {
+            else if (player1.isCurrentTurn && firstRound && stones>0) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     System.out.println(i);
@@ -224,7 +235,7 @@ public class Game implements Initializable {
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && player1Turn) {
+            if (stones > 0 && player1.isCurrentTurn) {
                 gameBoard.getPlayer1Store().incrementPitValue();
                 stones--;
                 if (stones == 0) {
@@ -253,7 +264,7 @@ public class Game implements Initializable {
                 }
             }
 
-            else if (!player1Turn && firstRound && stones>0) {
+            else if (!player1.isCurrentTurn && firstRound && stones>0) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
@@ -272,7 +283,7 @@ public class Game implements Initializable {
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && !player1Turn) {
+            if (stones > 0 && !player1.isCurrentTurn) {
                 gameBoard.getPlayer2Store().incrementPitValue();
                 stones--;
                 if (stones == 0) {
@@ -285,13 +296,13 @@ public class Game implements Initializable {
         }
 
         System.out.println("Flag K");
-        player1Turn = !player1Turn;
+        player1.isCurrentTurn = !player1.isCurrentTurn;
         checkGameOver(gameBoard);
         System.out.println(player1Side);
         displayBoard();
 
 
-        if(player1Turn){
+        if(player1.isCurrentTurn){
             turnMessage.setText("It is player 1s turn");
         }
         else{
