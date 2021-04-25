@@ -319,10 +319,6 @@ public class Game implements Initializable {
         return;
     }
 
-
-    
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -331,7 +327,6 @@ public class Game implements Initializable {
         displayBoard();
         firstPlayer();
     }
-
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
