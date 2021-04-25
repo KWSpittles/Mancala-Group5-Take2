@@ -31,9 +31,9 @@ public class LoginControllerT2 {
 	@FXML 
 	TextField idField = new TextField();
 	@FXML
-	PasswordField pwFieldc = new PasswordField();
+	TextField password = new TextField();
 	@FXML
-	TextField idFieldc = new TextField();
+	TextField userName = new TextField();
 	@FXML
 	TextField firstName = new TextField();
 	@FXML
@@ -117,29 +117,46 @@ public class LoginControllerT2 {
 		//Initializing User object
 		newUser = new User();
 		
-		//Setting the user fields
-		newUser.setUserName(idFieldc.getText());
-		newUser.setPassword(pwFieldc.getText());
+		//Setting the user fields 
+		newUser.setUserName(userName.getText());
+		newUser.setPassword(password.getText());
 		newUser.setfirstName(firstName.getText());
 		newUser.setlastName(lastName.getText());
 		
+		//Applying getter methods to store variables
+		String firstname = newUser.getfirstName();
+		String lastname = newUser.getlastName();
 		String eid = newUser.getUserName();		
 		String epw = newUser.getPassword();
+		
 		
 //		String epw = String.valueOf(pwFieldc.getText());
 //		String eid = String.valueOf(idFieldc.getText());
 		try {
 			//loadLoginInfo (e);
-			String file = "src\\loginInfo.csv";
-			FileWriter fw = new FileWriter(file,true);
+			String loginFile = "src\\loginInfo.csv";
+			String userFile = "src\\UserInfo.csv";
+			
+			//Writer for login information
+			FileWriter fw = new FileWriter(loginFile,true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter pwr = new PrintWriter(bw);
-
-			pwr.println(eid+","+epw);
+			
+			//Writer for user information
+			FileWriter fw1 = new FileWriter(userFile,true);
+			BufferedWriter bw1 = new BufferedWriter(fw1);
+			PrintWriter pwr1 = new PrintWriter(bw1);
+			
+			//Writing to csv
+			pwr.println(eid + "," + epw);
 			pwr.flush();
 			pwr.close();
-			System.out.println(epw+","+eid);
-			System.out.println(userLoginInfo);
+			
+			pwr1.println(firstname + "," + lastname + "," + eid + "," + epw);
+			pwr1.flush();
+			pwr1.close();
+			//System.out.println(eid+","+epw);
+			//System.out.println(userLoginInfo);
 			switchToLoginPage(e);
 		}
 		catch(Exception Error2) {
