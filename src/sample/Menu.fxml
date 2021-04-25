@@ -100,7 +100,7 @@
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnLeaderboardMenu1" layoutX="344.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchToTutorial" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Tutorial" textFill="WHITE">
+                  <Button fx:id="btnTutorial" layoutX="344.0" layoutY="419.0" mnemonicParsing="false" onAction="#switchToTutorial" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Tutorial" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
