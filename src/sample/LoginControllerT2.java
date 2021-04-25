@@ -177,7 +177,7 @@ public class LoginControllerT2 {
 					lastName + "," +
 					username + "," +
 					password + "," +
-					profilePic + "\n";
+					profilePic.toString() + "\n";
 
 			buffer.write(data);
 			buffer.close();
