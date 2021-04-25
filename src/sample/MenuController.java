@@ -6,14 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MenuController {
+
+    public Label subtitle;
+    public TextField usernameField;
+    public PasswordField passwordField;
 
     private Stage stage;
     private Scene scene;
@@ -105,10 +108,15 @@ public class MenuController {
     }
 
     public void player2SignInSubmit(ActionEvent event) throws IOException {
-        
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        boolean loggedIn = LoginControllerT2.loginAttempt(username, password, subtitle);
+        if(loggedIn) {
+            setUpMultiplayerGame(event);
+        }
     }
 
     public void switchToSignUpPage(ActionEvent event) throws IOException {
-        (new LoginControllerT2()).switchToSignUpPage(event);
+        new LoginControllerT2().switchToSignUpPage(event);
     }
 }

@@ -75,6 +75,15 @@ public class LoginControllerT2 {
 			return false;
 		}
 
+		// Check if they're already signed in
+		for(User user : loggedInUsers) {
+			if(user.getUserName().equals(username)) {
+				System.err.println("Login attempt failed: this user is already signed in");
+				errorLabel.setText("This account is already signed in");
+				return false;
+			}
+		}
+
 		// Otherwise, login successful
 		System.out.println("User " + username + " logged in");
 		userInfo = username; // TODO what is this for?

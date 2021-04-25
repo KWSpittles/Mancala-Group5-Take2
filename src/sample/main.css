@@ -32,6 +32,20 @@ text-input
 -fx-background-color : #ED4816;
 }
 
+.button3
+{
+-fx-background-color: #AAAAAA;
+-fx-background-radius:  5;
+}
+.button3:hover
+{
+-fx-background-color: #CCCCCC;
+}
+.button3:pressed
+{
+-fx-background-color: #202020;
+}
+
 .linear-grad
 {
     -fx-background-color: linear-gradient(to bottom left, #e2a08c, #ed4715);

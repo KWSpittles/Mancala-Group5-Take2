@@ -62,7 +62,7 @@
                   <Font name="Segoe UI" size="16.5" />
                </font>
             </Label>
-            <Button layoutX="50.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchToLoginPage" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Cancel" textFill="WHITE">
+            <Button layoutX="50.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchToLoginPage" prefHeight="40.0" prefWidth="124.0" styleClass="button3" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
                </font>
