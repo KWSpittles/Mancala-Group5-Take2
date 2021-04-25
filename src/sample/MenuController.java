@@ -39,7 +39,7 @@ public class MenuController {
 
     public void setUpMultiplayerGame(ActionEvent event) throws IOException {
         // Prompt player 2 to log in
-        
+
 
         // Then start multiplayer game
 
@@ -91,6 +91,8 @@ public class MenuController {
         alert.setTitle("Logging out");
         alert.setHeaderText("You are logging out!");
         alert.setContentText("You'll be taken to Sign In window, are you sure?");
+
+        LoginControllerT2.signOutAllUsers();
 
         if (alert.showAndWait().get() == ButtonType.OK) {
             root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));

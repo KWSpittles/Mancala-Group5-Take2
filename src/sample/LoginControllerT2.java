@@ -29,8 +29,10 @@ public class LoginControllerT2 {
 	public static HashMap<String, String> userLoginInfo = new HashMap<String, String>();
 	public static String userInfo = "";
 	private User newUser;
-	private ArrayList<User> loggedInUsers;
-	
+
+	private static ArrayList<User> registeredUsers;
+	private static ArrayList<User> loggedInUsers = new ArrayList<>();
+
 	@FXML 
 	PasswordField pwField = new PasswordField();
 	@FXML 
@@ -100,12 +102,18 @@ public class LoginControllerT2 {
 			else if (userLoginInfo.get(eid).equals(epw)) {
 				System.out.println("User " + eid + " logged in");
 				subtitle.setText("Logged in");
-				// Add user to logged in users ArrayList
+
 				userInfo = eid;
-				//User loggedInUser = LeaderBoardController.loadUser(eid);
-				loadUserInfoFromCsv();
-				//loggedInUsers.add(loggedInUser);
-				//System.out.println("There are " + loggedInUsers.size() + " user(s) logged in.");
+
+				// Add user to logged in users ArrayList
+				User loggedInUser = getUserByUsername(eid);
+				addToLoggedInUsersList(loggedInUser);
+
+				System.out.println("There are " + loggedInUsers.size() + " user(s) logged in.");
+
+				for(User user : loggedInUsers) {
+					System.out.println("**" + user);
+				}
 				return true;
 			}
 		}
@@ -130,10 +138,7 @@ public class LoginControllerT2 {
 		String lastname = newUser.getLastName();
 		String eid = newUser.getUserName();		
 		String epw = newUser.getPassword();
-		
-		
-//		String epw = String.valueOf(pwFieldc.getText());
-//		String eid = String.valueOf(idFieldc.getText());
+
 		try {
 			//loadLoginInfo (e);
 			String loginFile = "src\\loginInfo.csv";
@@ -204,7 +209,7 @@ public class LoginControllerT2 {
 	}
 
 	public static void loadUserInfoFromCsv() {
-		ArrayList<User> userData = new ArrayList<>();
+		registeredUsers = new ArrayList<>();
 		BufferedReader reader;
 		String file = "src\\UserInfo.csv";
 		String line;
@@ -218,18 +223,40 @@ public class LoginControllerT2 {
 				user.setlastName(data.get(1));
 				user.setUserName(data.get(2));
 				user.setPassword(data.get(3));
-				userData.add(user);
-			}
-			System.out.println("loaded userInfo");
-			for(User user : userData) {
-				System.out.println(user);
+				registeredUsers.add(user);
 			}
 		} catch(Exception error) {
 			System.err.println(error.getMessage());
 		}
 	}
 
-	//public static User
+	public static void addToLoggedInUsersList(User user) {
+		// If already in logged in users list, do nothing
+		for(User x : loggedInUsers) {
+			if(x.getUserName().equals(user.getUserName())) {
+				return;
+			}
+		}
+
+		// Add to logged in users list
+		loggedInUsers.add(user);
+	}
+
+	public static void signOutAllUsers() {
+		loggedInUsers.clear();
+	}
+
+	public static User getUserByUsername(String username) {
+		loadUserInfoFromCsv();
+
+		for(User user : registeredUsers) {
+			if(user.getUserName().equals(username)) {
+				return user;
+			}
+		}
+
+		return null;
+	}
 
 	public User getLoggedInPlayer(int playerNumber) {
 		if(loggedInUsers.size() >= playerNumber) {
