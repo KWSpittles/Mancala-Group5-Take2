@@ -86,12 +86,12 @@ public class User {
     }
 
     //get first name
-    public String getFirstName() {
+    public String getfirstName() {
     	return firstName;
     }
 
     //get last name
-    public String getLastName() {
+    public String getlastName() {
     	return lastName;
     }
 
@@ -106,7 +106,7 @@ public class User {
     }
 
     //gets the number of current users
-    public static int getUserCount() {
+    public static int getuserCount() {
     	return userCount;
 
     }

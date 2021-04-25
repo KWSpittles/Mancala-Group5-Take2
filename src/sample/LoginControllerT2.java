@@ -9,17 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-
 import java.io.*;
-import java.util.HashMap;
-
-import javax.imageio.ImageIO;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LoginControllerT2 {
 	public String inputPassword;
@@ -120,8 +114,8 @@ public class LoginControllerT2 {
 		//newUser.setprofilePicture();
 
 		//Applying getter methods to store variables
-		String firstname = newUser.getFirstName();
-		String lastname = newUser.getLastName();
+		String firstname = newUser.getfirstName();
+		String lastname = newUser.getlastName();
 		String eid = newUser.getUserName();		
 		String epw = newUser.getPassword();
 		

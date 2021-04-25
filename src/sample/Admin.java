@@ -31,7 +31,7 @@ public class Admin extends User {
 	}
 
 	public String toString() {
-		return ("Number of current users :" + getUserCount());
+		return ("Number of current users :" + getuserCount());
 	}
 
 }
