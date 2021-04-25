@@ -30,6 +30,15 @@ public class User {
 
     	userCount++; //adds one to the user count each time the constructor is called
     }
+    //hei correct me if wrong shouldnt it be something like this?
+//    public User(int id, String userName, String password, String firstName, String lastName, boolean admin) {
+//        this.id = id;
+//        this.userName = userName;
+//        this.password = password;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.admin = admin;
+//    }
     
     //method to add favourite player to an ArrayList
   	public void addfavUser(User user) {

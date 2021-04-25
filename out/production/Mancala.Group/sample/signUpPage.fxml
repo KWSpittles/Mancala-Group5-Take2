@@ -35,32 +35,22 @@
             </Label>
             <VBox layoutX="45.0" layoutY="93.0" prefHeight="347.0" prefWidth="279.0" spacing="10.0">
                <children>
-                  <TextField fx:id="fnFieldC" prefHeight="40.0" prefWidth="250.0" promptText="First Name">
+                  <TextField fx:id="firstName" prefHeight="40.0" prefWidth="250.0" promptText="First Name">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="lnFieldC" prefHeight="40.0" prefWidth="250.0" promptText="Last Name">
+                  <TextField fx:id="lastName" prefHeight="40.0" prefWidth="250.0" promptText="Last Name">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="unFieldC" prefHeight="40.0" prefWidth="250.0" promptText="Username">
+                  <TextField fx:id="userName" prefHeight="40.0" prefWidth="250.0" promptText="Username">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="idFieldC" prefHeight="40.0" prefWidth="250.0" promptText="Email">
-                     <font>
-                        <Font name="Segoe UI" size="13.0" />
-                     </font>
-                  </TextField>
-                  <PasswordField fx:id="pwFieldC" prefHeight="40.0" prefWidth="250.0" promptText="Password">
-                     <font>
-                        <Font name="Segoe UI" size="13.0" />
-                     </font>
-                  </PasswordField>
-                  <PasswordField fx:id="pwAgainFieldC" layoutX="10.0" layoutY="231.0" prefHeight="40.0" prefWidth="250.0" promptText="Enter password again">
+                  <PasswordField fx:id="password" prefHeight="40.0" prefWidth="250.0" promptText="Password">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
