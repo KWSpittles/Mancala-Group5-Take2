@@ -18,6 +18,7 @@ import java.util.*;
 
 public class Game implements Initializable {
 
+    //field
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -29,6 +30,7 @@ public class Game implements Initializable {
     private boolean running;
     public boolean firstRound;
 
+    //constructor
     public Game() {
         gameBoard = new Board();
         playerNumber1 = 1;
@@ -66,6 +68,8 @@ public class Game implements Initializable {
         System.out.println("You have displayed a new Board");
 
     }
+
+    //assets
 
     @FXML
     public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13;
@@ -128,23 +132,17 @@ public class Game implements Initializable {
         validMove(gameBoard, false, 5);
     }
 
-    public void checkGameOver(Board gameBoard){
-
-        if (gameBoard.player1win()){
-            System.out.println("Player 1 Wins");
-        }
-        if (gameBoard.player2win()){
-            System.out.println("Player 2 Wins");
-        }
-        else return;
-    }
-
-
 
     @FXML
     Label turnMessage;
 
-    public void validMove(Board gameBoard, Boolean player1Side, int pitPressed) {
+
+
+
+    //methods
+
+
+    public void validMove(Board gameBoard, boolean player1Side, int pitPressed) {
 
         if (player1Turn) {
             if (player1Side && pitPressed <= 5) {
@@ -163,6 +161,7 @@ public class Game implements Initializable {
         }
     }
 
+
     public void firstPlayer(){
         if(Math.random()>0.5){
             player1Turn = true;
@@ -177,16 +176,16 @@ public class Game implements Initializable {
 
     }
 
-    public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
+    public void makeMove(Board gameBoard, boolean player1Side, int pitPressed) {
 
-        int stones = gameBoard.getPitValue(player1Side, pitPressed);
-        gameBoard.setPitValue(player1Side, pitPressed, 0);
+        int stones = gameBoard.getPitValue(player1Side, pitPressed);    //get
+
+        gameBoard.setPitValue(player1Side, pitPressed, 0);        //set
+
         firstRound = true;
 
-        while(stones>0) {
-
-            if (!firstRound & stones>0) {
-
+        while(stones > 0) {
+            if (!firstRound && stones > 0) {                                    //... , player1SidePits-auto
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(true, i);
                     stones--;
@@ -194,33 +193,32 @@ public class Game implements Initializable {
                         if (gameBoard.getPlayer1Side().getPit(i).getPitValue() == 0) {
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(true, i);
-                            gameBoard.setPitValue(player1Side, i, 0);
+                            stones = gameBoard.getPitValue(true, i);           //get pit value
+                            gameBoard.setPitValue(player1Side, i, 0);           //reset the pit to 0
                         }
                     }
                 }
             }
 
-            else if (player1Turn && firstRound && stones>0) {
-
+            else if (player1Turn && firstRound && stones > 0) {               //..., pitPressed
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     gameBoard.incrementPitValue(true, i);
                     stones--;
                     if (stones == 0) {
-                        if (gameBoard.getPitValue(true, i) == 0) {
+                        if (gameBoard.getPitValue(true, i) == 0) {              //next round
                             break;
                         } else {
                             stones = gameBoard.getPitValue(true, i);
-                            gameBoard.setPitValue(true, i, 0);
+                            gameBoard.setPitValue(true, i, 0);           // auto-continue
                         }
                     }
                 }
-                firstRound = !firstRound;
+                firstRound = !firstRound;                                     //->start second round
             }
 
-            if (stones > 0 && player1Turn) {
+            if (stones > 0 && player1Turn) {                                  // stone -> P1 store
                 gameBoard.getPlayer1Store().incrementPitValue();
-                if (stones == 1) {
+                if (stones == 1) {                                                     //last 1 stone-> store
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("You get another go! XXXX");
@@ -232,10 +230,10 @@ public class Game implements Initializable {
                     }
                     return;
                 }
-                    stones--;
+                    stones--;                                                   //stone -1 to store, continue...
             }
 
-            if (!firstRound & stones>0) {
+            if (!firstRound & stones > 0) {                                           //...player2SidePit-auto
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
@@ -251,7 +249,7 @@ public class Game implements Initializable {
                 }
             }
 
-            else if (!player1Turn && firstRound & stones>0) {
+            else if (!player1Turn && firstRound & stones > 0) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
@@ -301,9 +299,19 @@ public class Game implements Initializable {
         return;
     }
 
+    public void checkGameOver(Board gameBoard){
+
+        if (gameBoard.player1win()){
+            System.out.println("Player 1 Wins");
+        }
+        if (gameBoard.player2win()){
+            System.out.println("Player 2 Wins");
+        }
+        else return;
+    }
 
     
-
+    //assets
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

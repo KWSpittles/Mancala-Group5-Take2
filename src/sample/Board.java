@@ -14,11 +14,13 @@ import java.io.IOException;
 
 public class Board  {
 
+    //field
     private Side Player1Side;
     private Side Player2Side;
     Hole Player1Store = new Hole();
     Hole Player2Store = new Hole();
 
+    //constructor
     public Board() {
         Player1Side = new Side(1,4);
         Player2Side = new Side(2,4);
@@ -33,6 +35,23 @@ public class Board  {
         Hole Player2Store = new Hole();
     }
 
+    //methods
+    public Side getPlayer1Side() {
+        return Player1Side;
+    }
+
+    public Side getPlayer2Side() {
+        return Player2Side;
+    }
+
+    public Hole getPlayer1Store() {
+        return Player1Store;
+    }
+
+    public Hole getPlayer2Store() {
+        return Player2Store;
+    }
+
     public int getPitValue(boolean Player1, int pitNumber){
         if(Player1){
             if (pitNumber<=5) {
@@ -41,7 +60,7 @@ public class Board  {
             else return Player1Store.getPitValue();
         }
         else{
-             if (pitNumber <= 7) {
+             if (pitNumber <= 12) {
                  return Player2Side.getPit(pitNumber).getPitValue();
              }
              else return Player2Store.getPitValue();
@@ -102,19 +121,5 @@ public class Board  {
         return flag;
     }
 
-    public Side getPlayer1Side() {
-        return Player1Side;
-    }
 
-    public Side getPlayer2Side() {
-        return Player2Side;
-    }
-
-    public Hole getPlayer1Store() {
-        return Player1Store;
-    }
-
-    public Hole getPlayer2Store() {
-        return Player2Store;
-    }
 }
