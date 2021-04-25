@@ -6,14 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MenuController {
+
+    public Label subtitle;
+    public TextField usernameField;
+    public PasswordField passwordField;
 
     private Stage stage;
     private Scene scene;
@@ -37,6 +40,21 @@ public class MenuController {
         System.out.println("You are now playing a game of Mancala! Enjoy");
     }
 
+    public void setUpMultiplayerGame(ActionEvent event) throws IOException {
+        // Check if there is already a player 2 logged in
+        User player2 = LoginControllerT2.getLoggedInPlayer(2);
+
+        if(player2 == null) {
+            // Prompt player 2 to log in. On successful login, run
+            // this method again and player2 won't be null anymore
+            // and the game will start.
+            player2SignInPage(event);
+        } else {
+            // Player 2 is already logged in, start the game
+            switchToGame(event);
+        }
+    }
+
     public void switchToLeaderboard(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -46,21 +64,6 @@ public class MenuController {
         stage.setScene(scene);
         stage.show();
     }
-
-    public void logout(ActionEvent event) {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("You are logging out");
-        alert.setContentText("Are you sure you want to exit?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            stage = (Stage) scenePane.getScene().getWindow();
-            stage.close();
-            System.out.println("You have logged out successfully");
-        }
-    }
-
 
     public void switchToTutorial(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Tutorial.fxml"));
@@ -77,10 +80,6 @@ public class MenuController {
         System.out.println("You are now in Tutorial mode! Enjoy");
     }
 
-
-
-
-
     public void switchToSignInPage(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logging out");
@@ -88,6 +87,8 @@ public class MenuController {
         alert.setContentText("You'll be taken to Sign In window, are you sure?");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
+            LoginControllerT2.signOutAllUsers();
+
             root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.centerOnScreen();
@@ -95,5 +96,27 @@ public class MenuController {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    public void player2SignInPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("player2SignInPage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void player2SignInSubmit(ActionEvent event) throws IOException {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        boolean loggedIn = LoginControllerT2.loginAttempt(username, password, subtitle);
+        if(loggedIn) {
+            setUpMultiplayerGame(event);
+        }
+    }
+
+    public void switchToSignUpPage(ActionEvent event) throws IOException {
+        new LoginControllerT2().switchToSignUpPage(event);
     }
 }

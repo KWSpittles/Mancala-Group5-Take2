@@ -22,15 +22,15 @@ public class Game implements Initializable {
     private Parent root;
 
     private Board gameBoard;
-//    private int playerNumber1;
-//    private int playerNumber2;
-//    public boolean player1Turn;
+
     public boolean firstRound;
     public int stones;
     
     //Declaration of player variables
-    private Player player1;
-    private Player player2;
+    private User player1;
+    private User player2;
+
+
 
     public Game() {
         gameBoard = new Board();
@@ -38,8 +38,8 @@ public class Game implements Initializable {
 //        playerNumber2 = 2;
         
         //Initializing Player Objects
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new User();
+        player2 = new User();
     }
 
     public Game(int stones) {
@@ -48,8 +48,14 @@ public class Game implements Initializable {
 //        playerNumber2 = 2;
         
       //Initializing Player Objects
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new User();
+        player2 = new User();
+    }
+
+    public Game(int stones, User player1) {
+        gameBoard = new Board(stones);
+        this.player1 = player1;
+        player2 = new User();
     }
 
     public void resetBoard() {
@@ -72,6 +78,8 @@ public class Game implements Initializable {
         displayBoard();
 
         System.out.println("You have Reset the Board");
+        System.out.println(player1);
+
 
     }
 
@@ -98,6 +106,7 @@ public class Game implements Initializable {
 
     @FXML
     public Button buttonpit0, buttonpit1,buttonpit2,buttonpit3,buttonpit4,buttonpit5,buttonpit7,buttonpit8,buttonpit9,buttonpit10,buttonpit11,buttonpit12;
+    public Label store;
 
     public void buttonpit0() {
         validMove(gameBoard, true, 0);
@@ -159,22 +168,40 @@ public class Game implements Initializable {
 
     @FXML
     Label turnMessage;
+    @FXML
+    Label invalidTurnMessage;
 
     public void validMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
         if (player1.isCurrentTurn) {
             if (player1Side && pitPressed <= 5) {
-                makeMove(gameBoard, true, pitPressed);
+                if(gameBoard.getPitValue(true,pitPressed) == 0) {
+                    invalidTurnMessage.setText("Please pick a pit with stones in!");
+                }
+                else{
+                    makeMove(gameBoard, true, pitPressed);
+                    invalidTurnMessage.setText("");
+                }
             }
             else {
                 System.out.println("Pit is invalid. Please choose a pit on your side.");
+                invalidTurnMessage.setText("Pit is invalid. Please choose a pit on your side.");
             }
         }
-        else if (!player1.isCurrentTurn){
-            if (!player1Side && pitPressed <= 5) {
-                makeMove(gameBoard, false, pitPressed);
-            } else {
+        else{
+            if ((!player1Side) && pitPressed <= 5) {
+                if(gameBoard.getPitValue(false,pitPressed) == 0) {
+                    invalidTurnMessage.setText("Please pick a pit with stones in!");
+                }
+                else{
+                    makeMove(gameBoard, false, pitPressed);
+                    invalidTurnMessage.setText("");
+                }
+            }
+            else {
                 System.out.println("Pit is invalid. Please choose a pit on your side.");
+                invalidTurnMessage.setText("Pit is invalid. Please choose a pit on your side.");
+
             }
         }
     }
@@ -183,10 +210,38 @@ public class Game implements Initializable {
         if(Math.random()>0.5){
         	player1.isCurrentTurn = true;
             turnMessage.setText("It is player 1s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
         }
         else{
             player1.isCurrentTurn = false;
             turnMessage.setText("It is player 2s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
 
         }
 
@@ -219,7 +274,6 @@ public class Game implements Initializable {
                     }
                 }
             }
-
 
             else if (player1.isCurrentTurn && firstRound) {
 
@@ -312,20 +366,52 @@ public class Game implements Initializable {
 
         if(player1.isCurrentTurn){
             turnMessage.setText("It is player 1s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
         }
-        else{
+        else {
             turnMessage.setText("It is player 2s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
         }
         return;
     }
 
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Game game = new Game(4);
+        Game game = new Game(4, LoginControllerT2.getLoggedInPlayer(1));
         resetBoard();
         displayBoard();
         firstPlayer();
+        invalidTurnMessage.setText("");
     }
 
     public void switchToMenu(ActionEvent event) throws IOException {

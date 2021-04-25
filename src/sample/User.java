@@ -19,9 +19,13 @@ public class User {
     private int[] winLossDraw;
     private static int userCount = 0; //counter to track the number of users
     private ArrayList<User> favUsers;
+    public boolean isCurrentTurn;
+    private int currentScore;
+    private int playerNumber;
 
 
-  
+
+
     //default no argument constructor
     public User () {userCount++;}
     
@@ -109,7 +113,6 @@ public class User {
     //gets the number of current users
     public static int getUserCount() {
     	return userCount;
-
     }
     
     public URL getprofilePicture() {

@@ -10,129 +10,125 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+
+
 import javafx.stage.Stage;
 
+
 import java.awt.image.BufferedImage;
+
+
 import java.io.*;
+
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import java.util.ArrayList;
-
 public class LoginControllerT2 {
+
 	public String inputPassword;
 	public String inputId;
 	private BufferedImage profilePic;
 	private URL imageURL;
 
+	public static final String USERS_CSV_FILE = "src" + File.separator + "UserInfo.csv";
+
+
 	public static HashMap<String, String> userLoginInfo = new HashMap<String, String>();
-	public static String userInfo = "";
-	private User newUser;
-	private ArrayList<User> userList;
-	
+	public static String userInfo = ""; // TODO what is this for?
+
+	private static final ArrayList<User> loggedInUsers = new ArrayList<>();
+	private static ArrayList<User> registeredUsers;
+
 	@FXML 
 	PasswordField pwField = new PasswordField();
 	@FXML 
 	TextField idField = new TextField();
 	@FXML
-	TextField password = new TextField();
+	TextField passwordField = new TextField();
 	@FXML
-	TextField userName = new TextField();
+	TextField userNameField = new TextField();
 	@FXML
-	TextField firstName = new TextField();
+	TextField firstNameField = new TextField();
 	@FXML
-	TextField lastName = new TextField();
-	@FXML
-	Label passwordLabel = new Label();
+	TextField lastNameField = new TextField();
 	@FXML
 	Label subtitle = new Label();
 
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-
-	public void loadLoginInfo (ActionEvent e) {
-		userLoginInfo.put("id1", "p1");
-		System.out.println("loaded LoginInfo");
-		
-		BufferedReader reader = null;
-		String file = "src\\loginInfo.csv";
-		String line = "";
-		String[] idPw = new String[2];
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			while((line=reader.readLine())!=null) {
-				String[] row = line.split(",");
-				int i = 0;
-				for (String index : row) {
-					//System.out.printf("%-10s",index);
-					idPw[i]=index;
-					i++;
-				}
-				userLoginInfo.put(idPw[0], idPw[1]);
-			}
-		}catch(Exception error) {
-			System.out.println(error);
-		}
-	}
-	
-	public void guestLogin (ActionEvent e) {
-		subtitle.setText("meow~~you login as Guest");
-	}
 	
 	public boolean readIdPassWord (ActionEvent e) {
-		String epw = String.valueOf(pwField.getText());
-		String eid = String.valueOf(idField.getText());
-		
-		loadLoginInfo(e);
-		
-		if(idField.getText().isBlank()) {
-			System.out.println("please enter userId");
-			subtitle.setText("please enter userId");
+		String username = String.valueOf(idField.getText());
+		String password = String.valueOf(pwField.getText());
+
+		return loginAttempt(username, password, subtitle);
+	}
+
+	public static boolean loginAttempt(String username, String password, Label errorLabel) {
+		User userAccount = getUserByUsername(username);
+
+		// If user not found, login failed
+		if(userAccount == null || username.equals("Username")) {
+			System.err.println("Login attempt failed: user not found");
+			errorLabel.setText("User account not found");
+			return false;
 		}
-		else if (userLoginInfo.containsKey(eid)) {
-			userInfo = eid;
-			System.out.println("yeaaaaa ID correct "+"as "+userInfo);
-			if(pwField.getText().isBlank()) {
-				System.out.println("please enter password");
-				subtitle.setText("please enter password");
+
+		// If no password entered, login failed
+		if(password.isBlank()) {
+			System.err.println("Login attempt failed: no password entered");
+			errorLabel.setText("Please enter your password");
+			return false;
+		}
+
+		// If password does not match, login failed
+		if(!userAccount.getPassword().equals(password)) {
+			System.err.println("Login attempt failed: incorrect password");
+			errorLabel.setText("Incorrect password");
+			return false;
+		}
+
+		// Check if they're already signed in
+		for(User user : loggedInUsers) {
+			if(user.getUserName().equals(username)) {
+				System.err.println("Login attempt failed: this user is already signed in");
+				errorLabel.setText("This account is already signed in");
+				return false;
 			}
-			else if (userLoginInfo.get(eid).equals(epw)) {
-				System.out.println("yeaaaaa boi login success");
-				subtitle.setText("yeaaaaa boi login success");
-				return true;
-			}
-			else if (userLoginInfo.get(eid).equals(epw)==false){
-				System.out.println("please enter correct password");
-				subtitle.setText("please enter correct password");
-			}
 		}
-		else if (userLoginInfo.containsKey(eid)==false){
-			System.out.println("please enter correct userId");
-			subtitle.setText("");
-		}
-		else {
-			System.out.println("you are shitty code mockey");
-		}
-		return false;
+
+		// Otherwise, login successful
+		System.out.println("User " + username + " logged in");
+		userInfo = username; // TODO what is this for?
+
+		// Add user to logged in users ArrayList
+		addToLoggedInUsersList(userAccount);
+		return true;
 	}
 
 	public void createAccount(ActionEvent e) throws IOException {
+
 		//Initializing User object
-		newUser = new User();
+		User newUser = new User();
 		
 		//Setting the user fields 
-		newUser.setUserName(userName.getText());
-		newUser.setPassword(password.getText());
-		newUser.setfirstName(firstName.getText());
-		newUser.setlastName(lastName.getText());
+		newUser.setUserName(userNameField.getText());
+		newUser.setPassword(passwordField.getText());
+		newUser.setfirstName(firstNameField.getText());
+		newUser.setlastName(lastNameField.getText());
 		uploadImage(e);
 		
 		
@@ -146,44 +142,73 @@ public class LoginControllerT2 {
 		
 //		String epw = String.valueOf(pwFieldc.getText());
 //		String eid = String.valueOf(idFieldc.getText());
+
+		// Get input from sign-up form to save in CSV file
+		String firstName = firstNameField.getText();
+		String lastName  = lastNameField.getText();
+		String username  = userNameField.getText();
+		String password  = passwordField.getText();
+
+		// Check that data was entered
+		if(username.isBlank() || password.isBlank()) {
+			// Username or password was not supplied
+			subtitle.setText("You must choose a username and password");
+			return;
+		}
+
+		// Check if user with same username already exists
+		User userCheck = getUserByUsername(username);
+		if(userCheck != null) {
+			// User with this username already exists, so don't
+			// create a new account with same username.
+			subtitle.setText("An account with this username already exists");
+			return;
+		}
+
+		System.out.println("--- Creating Account ---");
+		System.out.println("First name: " + firstName);
+		System.out.println("Last name: " + lastName);
+		System.out.println("Username: " + username);
+		System.out.println("Password: " + password);
+		System.out.println();
+
+
 		try {
-			//loadLoginInfo (e);
-			String loginFile = "src\\loginInfo.csv";
-			String userFile = "src\\UserInfo.csv";
-			
-			//Writer for login information
-			FileWriter fw = new FileWriter(loginFile,true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter pwr = new PrintWriter(bw);
-			
-			//Writer for user information
-			FileWriter fw1 = new FileWriter(userFile,true);
-			BufferedWriter bw1 = new BufferedWriter(fw1);
-			PrintWriter pwr1 = new PrintWriter(bw1);
-			
-			//Writing to csv
-			pwr.println(eid + "," + epw);
-			pwr.flush();
-			pwr.close();
-			
-			pwr1.println(firstname + "," + lastname + "," + eid + "," + epw);
-			pwr1.flush();
-			pwr1.close();
-			//System.out.println(eid+","+epw);
-			//System.out.println(userLoginInfo);
+			System.out.print("Appending new user to CSV file... ");
+
+			File file = new File(USERS_CSV_FILE);
+			String data = "";
+
+			if(!file.exists()) {
+				// If users CSV file does not already exist, create it and append column headings
+				var newFileCreated = file.createNewFile();
+				if(newFileCreated) {
+					data += "First name,Last Name,Username,Password\n";
+				}
+			}
+
+			FileWriter writer = new FileWriter(file, true);
+			BufferedWriter buffer = new BufferedWriter(writer);
+
+			data += firstName + "," +
+					lastName + "," +
+					username + "," +
+					password + "\n";
+
+			buffer.write(data);
+			buffer.close();
+
+			System.out.println("done!");
 			switchToLoginPage(e);
 		}
-		catch(Exception Error2) {
-			
+		catch(Exception ignored) {
+			System.err.println("Error creating new user");
 		}
-		
-		
 	}
 	
-		
+
 	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
-		System.out.println(readIdPassWord(event));
 		if(readIdPassWord(event)){
 			root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -191,8 +216,6 @@ public class LoginControllerT2 {
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-			//Game game = new Game(4);
-			System.out.println("You are now playing a game of Mancala! Enjoy");
 		}
 	}
 	
@@ -204,8 +227,7 @@ public class LoginControllerT2 {
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-		//Game game = new Game(4);
-		System.out.println("You are now playing a game of Mancala! Enjoy");
+		System.out.println("Showing create account page");
 	}
 	
 	//Action event to switch to login page
@@ -216,8 +238,67 @@ public class LoginControllerT2 {
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-		//Game game = new Game(4);
-		System.out.println("You are now playing a game of Mancala! Enjoy");
+		System.out.println("Showing login page");
+	}
+
+	public static void loadUserInfoFromCsv() {
+		System.out.print("Loading user data from CSV file...");
+		registeredUsers = new ArrayList<>();
+		BufferedReader reader;
+		String line;
+		try {
+			reader = new BufferedReader(new FileReader(USERS_CSV_FILE));
+			while((line=reader.readLine())!=null) {
+				String[] row = line.split(",");
+				ArrayList<String> data = new ArrayList<>(Arrays.asList(row));
+				User user = new User();
+				user.setfirstName(data.get(0));
+				user.setlastName(data.get(1));
+				user.setUserName(data.get(2));
+				user.setPassword(data.get(3));
+				registeredUsers.add(user);
+			}
+			System.out.println(" done!");
+		} catch(Exception error) {
+			System.out.println(" error.");
+			System.err.println(error.getMessage());
+		}
+	}
+
+	public static void addToLoggedInUsersList(User user) {
+		// If already in logged in users list, do nothing
+		for(User x : loggedInUsers) {
+			if(x.getUserName().equals(user.getUserName())) {
+				return;
+			}
+		}
+
+		// Add to logged in users list
+		loggedInUsers.add(user);
+	}
+
+	public static void signOutAllUsers() {
+		loggedInUsers.clear();
+	}
+
+	public static User getUserByUsername(String username) {
+		loadUserInfoFromCsv();
+
+		for(User user : registeredUsers) {
+			if(user.getUserName().equals(username)) {
+				return user;
+			}
+		}
+
+		return null;
+	}
+
+	public static User getLoggedInPlayer(int playerNumber) {
+		if(loggedInUsers.size() >= playerNumber) {
+			int arrayIndex = playerNumber - 1;
+			return loggedInUsers.get(arrayIndex);
+		}
+		return null;
 	}
 	
 	

@@ -54,7 +54,6 @@ public class Tutorial{
 
     }
 
-
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -70,8 +69,4 @@ public class Tutorial{
         stage.show();
         System.out.println("You are now viewing the Menu");
     }
-
-
-
-
 }
