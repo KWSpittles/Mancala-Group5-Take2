@@ -209,7 +209,7 @@ public class Game implements Initializable {
     public void firstPlayer(){
         if(Math.random()>0.5){
         	player1.isCurrentTurn = true;
-            turnMessage.setText("It is player 1s turn");
+            turnMessage.setText("It is " + player1.getFirstName() +"'s turn");
             buttonpit0.setStyle("-fx-border-color: green");
             buttonpit1.setStyle("-fx-border-color: green");
             buttonpit2.setStyle("-fx-border-color: green");
@@ -227,7 +227,7 @@ public class Game implements Initializable {
         }
         else{
             player1.isCurrentTurn = false;
-            turnMessage.setText("It is player 2s turn");
+            turnMessage.setText("It is " + player2.getFirstName() +"'s turn");
             buttonpit0.setStyle("-fx-border-color: red");
             buttonpit1.setStyle("-fx-border-color: red");
             buttonpit2.setStyle("-fx-border-color: red");
@@ -242,7 +242,6 @@ public class Game implements Initializable {
             buttonpit11.setStyle("-fx-border-color: green");
             buttonpit12.setStyle("-fx-border-color: green");
             labelpit13.setStyle("-fx-border-color: green");
-
         }
 
 
