@@ -45,7 +45,7 @@ public class MenuController {
             // Prompt player 2 to log in. On successful login, run
             // this method again and player2 won't be null anymore
             // and the game will start.
-
+            player2SignInPage(event);
         } else {
             // Player 2 is already logged in, start the game
             switchToGame(event);
@@ -93,5 +93,22 @@ public class MenuController {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    public void player2SignInPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("player2SignInPage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void player2SignInSubmit(ActionEvent event) throws IOException {
+        
+    }
+
+    public void switchToSignUpPage(ActionEvent event) throws IOException {
+        (new LoginControllerT2()).switchToSignUpPage(event);
     }
 }

@@ -35,28 +35,33 @@
             </Label>
             <VBox layoutX="45.0" layoutY="93.0" prefHeight="347.0" prefWidth="279.0" spacing="10.0">
                <children>
-                  <TextField fx:id="firstName" prefHeight="40.0" prefWidth="250.0" promptText="First Name">
+                  <TextField fx:id="firstNameField" prefHeight="40.0" prefWidth="250.0" promptText="First Name">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="lastName" prefHeight="40.0" prefWidth="250.0" promptText="Last Name">
+                  <TextField fx:id="lastNameField" prefHeight="40.0" prefWidth="250.0" promptText="Last Name">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="userName" prefHeight="40.0" prefWidth="250.0" promptText="Username">
+                  <TextField fx:id="userNameField" prefHeight="40.0" prefWidth="250.0" promptText="Username">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="password" prefHeight="40.0" prefWidth="250.0" promptText="Password">
+                  <PasswordField fx:id="passwordField" prefHeight="40.0" prefWidth="250.0" promptText="Password">
                      <font>
                         <Font name="Segoe UI" size="13.0" />
                      </font>
                   </PasswordField>
                </children>
             </VBox>
+            <Label fx:id="subtitle" layoutX="45.0" layoutY="330.0" prefWidth="280.0" wrapText="true">
+               <font>
+                  <Font name="Segoe UI" size="16.5" />
+               </font>
+            </Label>
             <Button fx:id="btnSignUp" layoutX="122.0" layoutY="400.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
