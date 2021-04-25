@@ -220,7 +220,6 @@ public class Game implements Initializable {
                 }
             }
 
-
             else if (player1.isCurrentTurn && firstRound) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {

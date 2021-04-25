@@ -71,13 +71,13 @@ public class LoginControllerT2 {
 				}
 				userLoginInfo.put(idPw[0], idPw[1]);
 			}
-		}catch(Exception error) {
-			System.out.println(error);
+		} catch(Exception error) {
+			System.err.println(error.getMessage());
 		}
 	}
 	
 	public void guestLogin (ActionEvent e) {
-		subtitle.setText("meow~~you login as Guest");
+		subtitle.setText("Logged in as Guest");
 	}
 	
 	public boolean readIdPassWord (ActionEvent e) {
@@ -87,37 +87,28 @@ public class LoginControllerT2 {
 		loadLoginInfo(e);
 		
 		if(idField.getText().isBlank()) {
-			System.out.println("please enter userId");
-			subtitle.setText("please enter userId");
+			System.out.println("User ID is blank");
+			subtitle.setText("Please enter your username");
 		}
 		else if (userLoginInfo.containsKey(eid)) {
-			userInfo = eid;
-			System.out.println("yeaaaaa ID correct "+"as "+userInfo);
+			System.out.println("User with this user ID exists: " + eid);
 			if(pwField.getText().isBlank()) {
-				System.out.println("please enter password");
-				subtitle.setText("please enter password");
+				subtitle.setText("Please enter your password");
+				return false;
 			}
 			else if (userLoginInfo.get(eid).equals(epw)) {
-				System.out.println("yeaaaaa boi login success");
-				subtitle.setText("yeaaaaa boi login success");
+				System.out.println("User " + eid + " logged in");
+				subtitle.setText("Logged in");
+				userInfo = eid;
 				return true;
 			}
-			else if (userLoginInfo.get(eid).equals(epw)==false){
-				System.out.println("please enter correct password");
-				subtitle.setText("please enter correct password");
-			}
 		}
-		else if (userLoginInfo.containsKey(eid)==false){
-			System.out.println("please enter correct userId");
-			subtitle.setText("");
-		}
-		else {
-			System.out.println("you are shitty code mockey");
-		}
+		System.out.println("Login attempt failed");
+		subtitle.setText("Incorrect username or password");
 		return false;
 	}
 
-	public void createAccount(ActionEvent e) throws IOException {
+	public void createAccount(ActionEvent e) {
 		//Initializing User object
 		newUser = new User();
 		
@@ -127,7 +118,7 @@ public class LoginControllerT2 {
 		newUser.setfirstName(firstName.getText());
 		newUser.setlastName(lastName.getText());
 		//newUser.setprofilePicture();
-		
+
 		//Applying getter methods to store variables
 		String firstname = newUser.getFirstName();
 		String lastname = newUser.getLastName();
@@ -164,14 +155,8 @@ public class LoginControllerT2 {
 			//System.out.println(userLoginInfo);
 			switchToLoginPage(e);
 		}
-		catch(Exception Error2) {
-			
-		}
-		
-		
+		catch(Exception ignored) { }
 	}
-	
-	
 	
 	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
@@ -197,7 +182,7 @@ public class LoginControllerT2 {
 		stage.setScene(scene);
 		stage.show();
 		//Game game = new Game(4);
-		System.out.println("You are now playing a game of Mancala! Enjoy");
+		System.out.println("Showing create account page");
 	}
 	
 	//Action event to switch to login page
@@ -209,7 +194,7 @@ public class LoginControllerT2 {
 		stage.setScene(scene);
 		stage.show();
 		//Game game = new Game(4);
-		System.out.println("You are now playing a game of Mancala! Enjoy");
+		System.out.println("Showing login page");
 	}
 }
 	
