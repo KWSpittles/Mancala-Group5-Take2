@@ -9,17 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashMap;
-
-import javax.imageio.ImageIO;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class LoginControllerT2 {
@@ -208,6 +202,8 @@ public class LoginControllerT2 {
 		System.out.println("Showing login page");
 	}
 
+
+
 	public static void loadUserInfoFromCsv() {
 		registeredUsers = new ArrayList<>();
 		BufferedReader reader;
@@ -260,7 +256,7 @@ public class LoginControllerT2 {
 
 	public static User getLoggedInPlayer(int playerNumber) {
 		if(loggedInUsers.size() >= playerNumber) {
-			int arrayIndex = playerNumber + 1;
+			int arrayIndex = playerNumber - 1;
 			return loggedInUsers.get(arrayIndex);
 		}
 		return null;
