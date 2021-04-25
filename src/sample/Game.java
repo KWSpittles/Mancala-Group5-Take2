@@ -27,10 +27,8 @@ public class Game implements Initializable {
     public int stones;
     
     //Declaration of player variables
-    private User player1;
-    private User player2;
-
-
+    private static User player1;
+    private static User player2;
 
     public Game() {
         gameBoard = new Board();
@@ -364,7 +362,7 @@ public class Game implements Initializable {
 
 
         if(player1.isCurrentTurn){
-            turnMessage.setText("It is player 1s turn");
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
             buttonpit0.setStyle("-fx-border-color: green");
             buttonpit1.setStyle("-fx-border-color: green");
             buttonpit2.setStyle("-fx-border-color: green");
@@ -381,7 +379,7 @@ public class Game implements Initializable {
             labelpit13.setStyle("-fx-border-color: red");
         }
         else {
-            turnMessage.setText("It is player 2s turn");
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
             buttonpit0.setStyle("-fx-border-color: red");
             buttonpit1.setStyle("-fx-border-color: red");
             buttonpit2.setStyle("-fx-border-color: red");
@@ -405,11 +403,17 @@ public class Game implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        Game game = new Game(4, LoginControllerT2.getLoggedInPlayer(1));
+        User player1 = LoginControllerT2.getLoggedInPlayer(1);
+        User player2 = LoginControllerT2.getLoggedInPlayer(2);
+        Game game = new Game(4, player1);
         resetBoard();
         displayBoard();
+
+        this.player1 = player1;
+        this.player2 = player2;
+
         firstPlayer();
+
         invalidTurnMessage.setText("");
     }
 
