@@ -120,25 +120,6 @@ public class LoginControllerT2 {
 	}
 
 	public void createAccount(ActionEvent e) throws IOException {
-
-		//Initializing User object
-		User newUser = new User();
-		
-		//Setting the user fields 
-		newUser.setUserName(userNameField.getText());
-		newUser.setPassword(passwordField.getText());
-		newUser.setfirstName(firstNameField.getText());
-		newUser.setlastName(lastNameField.getText());
-		uploadImage(e);
-		
-		
-		//Applying getter methods to store variables
-		String firstname = newUser.getFirstName();
-		String lastname = newUser.getLastName();
-		String eid = newUser.getUserName();		
-		String epw = newUser.getPassword();
-		URL profilePic = imageURL;
-		
 		
 //		String epw = String.valueOf(pwFieldc.getText());
 //		String eid = String.valueOf(idFieldc.getText());
@@ -148,6 +129,8 @@ public class LoginControllerT2 {
 		String lastName  = lastNameField.getText();
 		String username  = userNameField.getText();
 		String password  = passwordField.getText();
+		uploadImage(e);
+		URL profilePic = imageURL;
 
 		// Check that data was entered
 		if(username.isBlank() || password.isBlank()) {
@@ -193,7 +176,8 @@ public class LoginControllerT2 {
 			data += firstName + "," +
 					lastName + "," +
 					username + "," +
-					password + "\n";
+					password + "," +
+					profilePic + "\n";
 
 			buffer.write(data);
 			buffer.close();
@@ -256,6 +240,7 @@ public class LoginControllerT2 {
 				user.setlastName(data.get(1));
 				user.setUserName(data.get(2));
 				user.setPassword(data.get(3));
+				user.setprofilePicture(data.get(4));
 				registeredUsers.add(user);
 			}
 			System.out.println(" done!");

@@ -14,7 +14,7 @@ public class User {
     private String userName;
     private String firstName;
     private String lastName;
-    private URL profilePicture;
+    private String profilePicture;
     private String password;
     private int[] winLossDraw;
     private static int userCount = 0; //counter to track the number of users
@@ -74,10 +74,8 @@ public class User {
     	this.password = password;
     }
 
-    public void setprofilePicture() {
-    	FileOpener fileOpener = new FileOpener();
-    	fileOpener.pictureSelector();
-    	this.profilePicture = fileOpener.getimageURL();
+    public void setprofilePicture(String profilePicture) {
+    	this.profilePicture = profilePicture ;
     }
 
     public void setwinLossDraw(int[] winLossDraw) {
@@ -115,9 +113,6 @@ public class User {
     	return userCount;
     }
     
-    public URL getprofilePicture() {
-    	return profilePicture;
-    }
     
     //toString method
     public String toString() {
