@@ -242,6 +242,10 @@ public class LoginControllerT2 {
 		loggedInUsers.add(user);
 	}
 
+	public static void signOutAllUsers() {
+		loggedInUsers.clear();
+	}
+
 	public static User getUserByUsername(String username) {
 		loadUserInfoFromCsv();
 
