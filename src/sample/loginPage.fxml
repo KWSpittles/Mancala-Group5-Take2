@@ -52,6 +52,11 @@
                   <Font size="13.0" />
                </font>
             </Button>
+            <Label fx:id="subtitle" layoutX="59.0" layoutY="245.0" prefHeight="33.0" prefWidth="250.0" text="" style="color: red;">
+               <font>
+                  <Font name="Segoe UI" size="17.0" />
+               </font>
+            </Label>
          </Pane>
       </center>
    </BorderPane>
