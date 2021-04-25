@@ -38,11 +38,15 @@ public class MenuController {
     }
 
     public void setUpMultiplayerGame(ActionEvent event) throws IOException {
-        // Prompt player 2 to log in
+        // Check if there is already a player 2 logged in
+        User player2 = LoginControllerT2.getLoggedInPlayer(2);
 
+        if(player2 == null) {
+            // Prompt player 2 to log in
+
+        }
 
         // Then start multiplayer game
-
 
         System.out.println("You are now playing a multiplayer game of Mancala! Enjoy");
     }
