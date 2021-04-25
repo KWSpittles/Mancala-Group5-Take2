@@ -37,6 +37,12 @@ public class MenuController {
         System.out.println("You are now playing a game of Mancala! Enjoy");
     }
 
+    public void setUpMultiplayerGame(ActionEvent event) throws IOException {
+        // Prompt player 2 to log in
+        // Then start multiplayer game
+        System.out.println("You are now playing a multiplayer game of Mancala! Enjoy");
+    }
+
     public void switchToLeaderboard(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -61,7 +67,6 @@ public class MenuController {
         }
     }
 
-
     public void switchToTutorial(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Tutorial.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -76,10 +81,6 @@ public class MenuController {
         stage.show();
         System.out.println("You are now in Tutorial mode! Enjoy");
     }
-
-
-
-
 
     public void switchToSignInPage(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

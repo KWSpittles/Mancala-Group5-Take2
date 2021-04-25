@@ -32,8 +32,8 @@ public class Main extends Application {
             stage.setHeight(500);
             stage.setResizable(false);
             stage.centerOnScreen();
-            //       stage.setFullScreen(true);
-            //        stage.setFullScreenExitHint("Press 1 to escape :)");
+            //      stage.setFullScreen(true);
+            //      stage.setFullScreenExitHint("Press 1 to escape :)");
             //      stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("1"));
 
 
@@ -48,13 +48,13 @@ public class Main extends Application {
                 logout(stage);
             });
         }
-        catch (Exception e){
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public void logout(Stage stage){
+    public void logout(Stage stage) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit");
@@ -67,5 +67,4 @@ public class Main extends Application {
             stage.close();
         }
     }
-    }
-
+}
