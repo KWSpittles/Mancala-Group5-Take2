@@ -14,12 +14,12 @@
    <BorderPane layoutX="-4.0" layoutY="-4.0" prefHeight="518.0" prefWidth="909.0" style="-fx-background-color: #fff;" stylesheets="@main.css">
       <left>
          <Pane prefHeight="518.0" prefWidth="542.0" styleClass="linear-grad" BorderPane.alignment="CENTER">
-            <Label fx:id="lblGameHeading" layoutX="72.0" layoutY="141.0" prefHeight="118.0" prefWidth="364.0" text="MANCALA" textFill="WHITE">
+            <Label layoutX="72.0" layoutY="141.0" prefHeight="118.0" text="MANCALA" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Light" size="80.0" />
                </font>
             </Label>
-            <Label fx:id="lblGameHeadSuffix" layoutX="343.0" layoutY="251.0" prefHeight="36.0" prefWidth="93.0" text="Digital Version" textFill="WHITE">
+            <Label layoutX="350.0" layoutY="251.0" prefHeight="36.0" prefWidth="93.0" text="Digital Version" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Light" size="15.0" />
                </font>
@@ -62,7 +62,12 @@
                   <Font name="Segoe UI" size="16.5" />
                </font>
             </Label>
-            <Button fx:id="btnSignUp" layoutX="122.0" layoutY="400.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign Up" textFill="WHITE">
+            <Button layoutX="50.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchToLoginPage" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="190.0" layoutY="400.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
                </font>
