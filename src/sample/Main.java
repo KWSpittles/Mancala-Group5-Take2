@@ -53,17 +53,13 @@ public class Main extends Application {
         }
     }
 
-
     public void logout(Stage stage) {
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit");
-        alert.setHeaderText("You are logging out");
-        alert.setContentText("Are you sure you want to exit?");
-
+        alert.setHeaderText("Closing Mancala");
+        alert.setContentText("Are you sure you want to exit the game?");
 
         if(alert.showAndWait().get() == ButtonType.OK) {
-            System.out.println("Test");
             stage.close();
         }
     }
