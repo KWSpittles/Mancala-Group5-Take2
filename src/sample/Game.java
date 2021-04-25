@@ -175,7 +175,7 @@ public class Game implements Initializable {
 
         if (player1.isCurrentTurn) {
             if (player1Side && pitPressed <= 5) {
-                if(gameBoard.getPitValue(player1Side,pitPressed) == 0) {
+                if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
@@ -188,9 +188,9 @@ public class Game implements Initializable {
                 invalidTurnMessage.setText("Pit is invalid. Please choose a pit on your side.");
             }
         }
-        else if (!player1.isCurrentTurn){
-            if (!player1Side && pitPressed <= 5) {
-                if(gameBoard.getPitValue(!player1Side,pitPressed) == 0) {
+        else{
+            if ((!player1Side) && pitPressed <= 5) {
+                if(gameBoard.getPitValue(false,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
