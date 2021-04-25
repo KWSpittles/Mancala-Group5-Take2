@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -28,7 +29,7 @@ public class LoginControllerT2 {
 	public static HashMap<String, String> userLoginInfo = new HashMap<String, String>();
 	public static String userInfo = "";
 	private User newUser;
-	private ArrayList<User> userList;
+	private ArrayList<User> loggedInUsers;
 	
 	@FXML 
 	PasswordField pwField = new PasswordField();
@@ -99,7 +100,12 @@ public class LoginControllerT2 {
 			else if (userLoginInfo.get(eid).equals(epw)) {
 				System.out.println("User " + eid + " logged in");
 				subtitle.setText("Logged in");
+				// Add user to logged in users ArrayList
 				userInfo = eid;
+				//User loggedInUser = LeaderBoardController.loadUser(eid);
+				loadUserInfoFromCsv();
+				//loggedInUsers.add(loggedInUser);
+				//System.out.println("There are " + loggedInUsers.size() + " user(s) logged in.");
 				return true;
 			}
 		}
@@ -195,6 +201,42 @@ public class LoginControllerT2 {
 		stage.show();
 		//Game game = new Game(4);
 		System.out.println("Showing login page");
+	}
+
+	public static void loadUserInfoFromCsv() {
+		ArrayList<User> userData = new ArrayList<>();
+		BufferedReader reader;
+		String file = "src\\UserInfo.csv";
+		String line;
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			while((line=reader.readLine())!=null) {
+				String[] row = line.split(",");
+				ArrayList<String> data = new ArrayList<>(Arrays.asList(row));
+				User user = new User();
+				user.setfirstName(data.get(0));
+				user.setlastName(data.get(1));
+				user.setUserName(data.get(2));
+				user.setPassword(data.get(3));
+				userData.add(user);
+			}
+			System.out.println("loaded userInfo");
+			for(User user : userData) {
+				System.out.println(user);
+			}
+		} catch(Exception error) {
+			System.err.println(error.getMessage());
+		}
+	}
+
+	//public static User
+
+	public User getLoggedInPlayer(int playerNumber) {
+		if(loggedInUsers.size() >= playerNumber) {
+			int arrayIndex = playerNumber + 1;
+			return loggedInUsers.get(arrayIndex);
+		}
+		return null;
 	}
 }
 	

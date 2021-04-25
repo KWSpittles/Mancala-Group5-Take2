@@ -39,7 +39,11 @@ public class MenuController {
 
     public void setUpMultiplayerGame(ActionEvent event) throws IOException {
         // Prompt player 2 to log in
+        
+
         // Then start multiplayer game
+
+
         System.out.println("You are now playing a multiplayer game of Mancala! Enjoy");
     }
 

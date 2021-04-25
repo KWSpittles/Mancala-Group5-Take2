@@ -108,7 +108,6 @@ public class User {
     //gets the number of current users
     public static int getUserCount() {
     	return userCount;
-
     }
     
     //toString method
