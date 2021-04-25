@@ -61,20 +61,6 @@ public class MenuController {
         stage.show();
     }
 
-    public void logout(ActionEvent event) {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Exit");
-        alert.setHeaderText("You are logging out");
-        alert.setContentText("Are you sure you want to exit?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            stage = (Stage) scenePane.getScene().getWindow();
-            stage.close();
-            System.out.println("You have logged out successfully");
-        }
-    }
-
     public void switchToTutorial(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Tutorial.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -96,9 +82,9 @@ public class MenuController {
         alert.setHeaderText("You are logging out!");
         alert.setContentText("You'll be taken to Sign In window, are you sure?");
 
-        LoginControllerT2.signOutAllUsers();
-
         if (alert.showAndWait().get() == ButtonType.OK) {
+            LoginControllerT2.signOutAllUsers();
+
             root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.centerOnScreen();
