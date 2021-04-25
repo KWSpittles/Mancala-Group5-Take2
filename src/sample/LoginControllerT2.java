@@ -6,15 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -24,6 +29,8 @@ import java.util.ArrayList;
 public class LoginControllerT2 {
 	public String inputPassword;
 	public String inputId;
+	private BufferedImage profilePic;
+	private URL imageURL;
 
 	public static HashMap<String, String> userLoginInfo = new HashMap<String, String>();
 	public static String userInfo = "";
@@ -126,13 +133,15 @@ public class LoginControllerT2 {
 		newUser.setPassword(password.getText());
 		newUser.setfirstName(firstName.getText());
 		newUser.setlastName(lastName.getText());
-		//newUser.setprofilePicture();
+		uploadImage(e);
+		
 		
 		//Applying getter methods to store variables
 		String firstname = newUser.getFirstName();
 		String lastname = newUser.getLastName();
 		String eid = newUser.getUserName();		
 		String epw = newUser.getPassword();
+		URL profilePic = imageURL;
 		
 		
 //		String epw = String.valueOf(pwFieldc.getText());
@@ -171,8 +180,7 @@ public class LoginControllerT2 {
 		
 	}
 	
-	
-	
+		
 	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
 		System.out.println(readIdPassWord(event));
@@ -211,5 +219,45 @@ public class LoginControllerT2 {
 		//Game game = new Game(4);
 		System.out.println("You are now playing a game of Mancala! Enjoy");
 	}
+	
+	
+    public void uploadImage(ActionEvent event) {
+
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG
+                = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterjpg
+                = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter extFilterPNG
+                = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter extFilterpng
+                = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters()
+                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+
+			try {
+				profilePic = ImageIO.read(file.toURI().toURL());
+				imageURL = file.toURI().toURL();
+				System.out.println(file.toURI());
+				File outputfile = new File("src\\ProfilePic\\profilepic.jpg");
+				ImageIO.write(profilePic, "jpg", outputfile);
+
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+        
+    }
+	
+		
 }
 	

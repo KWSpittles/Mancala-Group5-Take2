@@ -2,18 +2,19 @@ package sample;
 
 import javafx.scene.image.Image;
 
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
 public class User {
 
-    //private final UUID PlayerID;
     private Date firstDate;
     private String userName;
     private String firstName;
     private String lastName;
-    private Image profilePicture;
+    private URL profilePicture;
     private String password;
     private int[] winLossDraw;
     private static int userCount = 0; //counter to track the number of users
@@ -22,7 +23,7 @@ public class User {
 
   
     //default no argument constructor
-    public User () {}
+    public User () {userCount++;}
     
     public User (String userName, String first, String last){
     	this.userName = userName;
@@ -71,8 +72,8 @@ public class User {
 
     public void setprofilePicture() {
     	FileOpener fileOpener = new FileOpener();
-    	FileOpener.main(null);
-    	this.profilePicture = fileOpener.getprofilePic();
+    	fileOpener.pictureSelector();
+    	this.profilePicture = fileOpener.getimageURL();
     }
 
     public void setwinLossDraw(int[] winLossDraw) {
@@ -109,6 +110,10 @@ public class User {
     public static int getUserCount() {
     	return userCount;
 
+    }
+    
+    public URL getprofilePicture() {
+    	return profilePicture;
     }
     
     //toString method
