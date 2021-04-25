@@ -15,8 +15,8 @@ public class Arcade extends Game {
     private int frequencyOfPowerUpsAndSpecialStone;
 
     // re-declaration of player variables
-    private Player player1;
-    private Player player2;
+    private User player1;
+    private User player2;
 
 
     public boolean player1ContinueTurn;
@@ -32,8 +32,8 @@ public class Arcade extends Game {
     //constructor
     public Arcade() {
         this.frequencyOfPowerUpsAndSpecialStone = 0;
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new User();
+        player2 = new User();
 
     }
 

@@ -27,8 +27,10 @@ public class Game implements Initializable {
     public int stones;
     
     //Declaration of player variables
-    private Player player1;
-    private Player player2;
+    private User player1;
+    private User player2;
+
+
 
     public Game() {
         gameBoard = new Board();
@@ -36,8 +38,8 @@ public class Game implements Initializable {
 //        playerNumber2 = 2;
         
         //Initializing Player Objects
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new User();
+        player2 = new User();
     }
 
     public Game(int stones) {
@@ -46,8 +48,14 @@ public class Game implements Initializable {
 //        playerNumber2 = 2;
         
       //Initializing Player Objects
-        player1 = new Player();
-        player2 = new Player();
+        player1 = new User();
+        player2 = new User();
+    }
+
+    public Game(int stones, User player1) {
+        gameBoard = new Board(stones);
+        this.player1 = player1;
+        player2 = new User();
     }
 
     public void resetBoard() {
@@ -70,6 +78,8 @@ public class Game implements Initializable {
         displayBoard();
 
         System.out.println("You have Reset the Board");
+        System.out.println(player1);
+
 
     }
 
@@ -397,7 +407,7 @@ public class Game implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Game game = new Game(4);
+        Game game = new Game(4, LoginControllerT2.getLoggedInPlayer(1));
         resetBoard();
         displayBoard();
         firstPlayer();
