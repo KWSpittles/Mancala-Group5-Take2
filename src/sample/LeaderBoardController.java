@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class LeaderBoardController {
-
     //public static ArrayList<String> userData = new ArrayList<>();
 
     //public static ArrayList[][] userData = new ArrayList[10][];
@@ -33,12 +32,7 @@ public class LeaderBoardController {
     TableColumn<User, String> totalWinsCol = new TableColumn<User, String>("Total Wins");
     TableColumn<User, String> WinPercentageCol = new TableColumn<User, String>("Win Percentage");
     TableColumn<User, String> rankCol = new TableColumn<User, String>("Rank");
-    TableColumn<User, String> favourateCol = new TableColumn<User, String>("Favourite");
-
-
-
-
-
+    TableColumn<User, String> favouriteCol = new TableColumn<User, String>("Favourite");
 
     public void switchBackToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
@@ -58,12 +52,12 @@ public class LeaderBoardController {
         totalWinsCol.setCellValueFactory(new PropertyValueFactory<>("Total Wins"));
         WinPercentageCol.setCellValueFactory(new PropertyValueFactory<>("Win Percentage"));
         rankCol.setCellValueFactory(new PropertyValueFactory<>("Rank"));
-        favourateCol.setCellValueFactory(new PropertyValueFactory<>("Favourite"));
+        favouriteCol.setCellValueFactory(new PropertyValueFactory<>("Favourite"));
         // Display row data
         ObservableList<User> list = getUserList();
         leaderboard.setItems(list);
 
-        leaderboard.getColumns().addAll(playerIdCol,userNameCol,totalWinsCol,WinPercentageCol,rankCol,favourateCol);
+        leaderboard.getColumns().addAll(playerIdCol,userNameCol,totalWinsCol,WinPercentageCol,rankCol, favouriteCol);
     }
 
     public static void loadInfo (ActionEvent e) throws IOException {
@@ -134,7 +128,6 @@ public class LeaderBoardController {
         for (int i=0; i<userData.size()-1;i++){
             list.add(loadUser(String.valueOf(i)));
             System.out.println(loadUser(String.valueOf(i)));
-            System.out.println("moew");
         }
         return list;
     }
