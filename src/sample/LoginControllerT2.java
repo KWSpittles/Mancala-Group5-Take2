@@ -205,18 +205,23 @@ public class LoginControllerT2 {
 			System.err.println("Error creating new user");
 		}
 	}
+
+	//Action event for login form submit
+	public void processPlayerLogin(ActionEvent event) throws IOException {
+		if(readIdPassWord(event)) {
+			switchToPlayerMenu(event);
+		}
+	}
 	
 
 	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
-		if(readIdPassWord(event)){
-			root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
-			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			stage.centerOnScreen();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		}
+		root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.centerOnScreen();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	//Action event to switch to sign up page

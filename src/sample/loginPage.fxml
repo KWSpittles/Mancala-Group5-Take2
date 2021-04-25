@@ -37,17 +37,17 @@
                   <Font size="13.0" />
                </font>
             </PasswordField>
-            <Button fx:id="btnSignIn" layoutX="184.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToPlayerMenu" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
+            <Button layoutX="184.0" layoutY="286.0" mnemonicParsing="false" onAction="#processPlayerLogin" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="lblSignIn" layoutX="59.0" layoutY="87.0" prefHeight="33.0" prefWidth="95.0" text="Sign In">
+            <Label layoutX="59.0" layoutY="87.0" prefHeight="33.0" prefWidth="95.0" text="Sign In">
                <font>
                   <Font name="Segoe UI Bold" size="25.0" />
                </font>
             </Label>
-            <Button fx:id="btnSignUp" layoutX="59.0" layoutY="387.0" mnemonicParsing="false" onAction="#switchToSignUpPage" prefHeight="40.0" prefWidth="250.0" styleClass="button2" text="Don't have an account? Sign Up" textFill="WHITE">
+            <Button layoutX="59.0" layoutY="387.0" mnemonicParsing="false" onAction="#switchToSignUpPage" prefHeight="40.0" prefWidth="250.0" styleClass="button2" text="Don't have an account? Sign Up" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
