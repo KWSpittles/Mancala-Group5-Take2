@@ -38,7 +38,12 @@
                         <Font size="13.0" />
                     </font>
                 </PasswordField>
-                <Button layoutX="184.0" layoutY="286.0" mnemonicParsing="false" onAction="#player2SignInSubmit" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
+                <Button layoutX="60.0" layoutY="286.0" mnemonicParsing="false" onAction="#switchToPlayerMenu" prefHeight="40.0" prefWidth="124.0" styleClass="button3" text="Cancel" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI" size="13.0" />
+                    </font>
+                </Button>
+                <Button layoutX="190.0" layoutY="286.0" mnemonicParsing="false" onAction="#player2SignInSubmit" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
                     <font>
                         <Font name="Segoe UI" size="13.0" />
                     </font>

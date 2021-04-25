@@ -119,4 +119,8 @@ public class MenuController {
     public void switchToSignUpPage(ActionEvent event) throws IOException {
         new LoginControllerT2().switchToSignUpPage(event);
     }
+
+    public void switchToPlayerMenu(ActionEvent event) throws IOException {
+        new LoginControllerT2().switchToPlayerMenu(event);
+    }
 }

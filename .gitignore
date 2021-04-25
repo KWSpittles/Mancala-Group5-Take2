@@ -3,6 +3,7 @@
 
 # Built project
 /out/
+/bin/
 
 # IntelliJ IDEA
 .idea/**/workspace.xml
@@ -27,4 +28,3 @@
 *.iws
 .idea_modules/
 .idea/httpRequests
-/bin/
