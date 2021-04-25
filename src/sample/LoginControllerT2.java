@@ -165,7 +165,6 @@ public class LoginControllerT2 {
 	
 	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
-		System.out.println(readIdPassWord(event));
 		if(readIdPassWord(event)){
 			root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -173,8 +172,6 @@ public class LoginControllerT2 {
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-			//Game game = new Game(4);
-			System.out.println("You are now playing a game of Mancala! Enjoy");
 		}
 	}
 	
