@@ -9,12 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 
 import java.io.*;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
+
 import java.util.ArrayList;
 
 public class LoginControllerT2 {
@@ -122,10 +126,11 @@ public class LoginControllerT2 {
 		newUser.setPassword(password.getText());
 		newUser.setfirstName(firstName.getText());
 		newUser.setlastName(lastName.getText());
+		//newUser.setprofilePicture();
 		
 		//Applying getter methods to store variables
-		String firstname = newUser.getfirstName();
-		String lastname = newUser.getlastName();
+		String firstname = newUser.getFirstName();
+		String lastname = newUser.getLastName();
 		String eid = newUser.getUserName();		
 		String epw = newUser.getPassword();
 		
@@ -165,6 +170,8 @@ public class LoginControllerT2 {
 		
 		
 	}
+	
+	
 	
 	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
