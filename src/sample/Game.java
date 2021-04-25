@@ -221,7 +221,7 @@ public class Game implements Initializable {
             }
 
 
-            else if (player1.isCurrentTurn && firstRound && stones>0) {
+            else if (player1.isCurrentTurn && firstRound) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     System.out.println(i);
