@@ -42,13 +42,14 @@ public class MenuController {
         User player2 = LoginControllerT2.getLoggedInPlayer(2);
 
         if(player2 == null) {
-            // Prompt player 2 to log in
+            // Prompt player 2 to log in. On successful login, run
+            // this method again and player2 won't be null anymore
+            // and the game will start.
 
+        } else {
+            // Player 2 is already logged in, start the game
+            switchToGame(event);
         }
-
-        // Then start multiplayer game
-
-        System.out.println("You are now playing a multiplayer game of Mancala! Enjoy");
     }
 
     public void switchToLeaderboard(ActionEvent event) throws IOException {

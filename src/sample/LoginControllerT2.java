@@ -260,7 +260,7 @@ public class LoginControllerT2 {
 
 	public static User getLoggedInPlayer(int playerNumber) {
 		if(loggedInUsers.size() >= playerNumber) {
-			int arrayIndex = playerNumber + 1;
+			int arrayIndex = playerNumber - 1;
 			return loggedInUsers.get(arrayIndex);
 		}
 		return null;
