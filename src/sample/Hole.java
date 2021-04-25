@@ -29,6 +29,9 @@ public class Hole {
     public void incrementPitValue(){
         this.pitValue += 1;
     }
+    public void incrementPitValue2(){
+        this.pitValue += 2;
+    }
 
     public void clearPitValue(){
         this.pitValue = 0;
