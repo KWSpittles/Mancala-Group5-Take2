@@ -28,7 +28,6 @@ public class Arcade extends Game {
     //constructor
     public Arcade() {
         this.frequencyOfPowerUpsAndSpecialStone = 0;
-
     }
 
     //assets
@@ -105,8 +104,7 @@ public class Arcade extends Game {
         int stones = gameBoard.getPitValue(player1Side, pitPressed);    //get
         gameBoard.setPitValue(player1Side, pitPressed, 0);        //set
         firstRound = true;
-        continueTurn();
-        player2PowerUps = true;
+        continueTurnTri = true;
         incrementFrequencyValue();
 
 
