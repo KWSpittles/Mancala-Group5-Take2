@@ -258,7 +258,7 @@ public class LoginControllerT2 {
 		return null;
 	}
 
-	public User getLoggedInPlayer(int playerNumber) {
+	public static User getLoggedInPlayer(int playerNumber) {
 		if(loggedInUsers.size() >= playerNumber) {
 			int arrayIndex = playerNumber + 1;
 			return loggedInUsers.get(arrayIndex);
