@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,6 +20,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LoginControllerT2 {
 	public String inputPassword;
