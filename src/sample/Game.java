@@ -11,39 +11,45 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
 public class Game implements Initializable {
 
-    //field
     private Stage stage;
     private Scene scene;
     private Parent root;
 
     private Board gameBoard;
-    private int playerNumber1;
-    private int playerNumber2;
-    public boolean player1Turn;
-    private boolean running;
+//    private int playerNumber1;
+//    private int playerNumber2;
+//    public boolean player1Turn;
     public boolean firstRound;
+    public int stones;
+    
+    //Declaration of player variables
+    private Player player1;
+    private Player player2;
 
-    //constructor
     public Game() {
         gameBoard = new Board();
-        playerNumber1 = 1;
-        playerNumber2 = 2;
-        running = true;
+//        playerNumber1 = 1;
+//        playerNumber2 = 2;
+        
+        //Initializing Player Objects
+        player1 = new Player();
+        player2 = new Player();
     }
 
     public Game(int stones) {
         gameBoard = new Board(stones);
-        playerNumber1 = 1;
-        playerNumber2 = 2;
-        running = true;
-
+//        playerNumber1 = 1;
+//        playerNumber2 = 2;
+        
+      //Initializing Player Objects
+        player1 = new Player();
+        player2 = new Player();
     }
 
     public void resetBoard() {
@@ -65,11 +71,9 @@ public class Game implements Initializable {
 
         displayBoard();
 
-        System.out.println("You have displayed a new Board");
+        System.out.println("You have Reset the Board");
 
     }
-
-    //assets
 
     @FXML
     public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13;
@@ -132,19 +136,33 @@ public class Game implements Initializable {
         validMove(gameBoard, false, 5);
     }
 
+    public void checkGameOver(Board gameBoard){
+
+        if (gameBoard.player1sideEmpty() | gameBoard.player2sideEmpty()){
+            System.out.println("Game Over");
+            for (int i = 0; i <= 5 ; i++) {
+                int store1 = gameBoard.Player1Store.getPitValue();
+                int store2 = gameBoard.Player2Store.getPitValue();
+                int value1 = gameBoard.getPitValue(true, i);
+                int value2 = gameBoard.getPitValue(false, i);
+
+                gameBoard.setPitValue(true, i, 0);
+                gameBoard.setPitValue(false, i, 0);
+                gameBoard.Player1Store.setPitValue(store1 + value1);
+                gameBoard.Player2Store.setPitValue(store2 + value2);
+
+            }
+        }
+    }
+
+
 
     @FXML
     Label turnMessage;
 
+    public void validMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
-
-
-    //methods
-
-
-    public void validMove(Board gameBoard, boolean player1Side, int pitPressed) {
-
-        if (player1Turn) {
+        if (player1.isCurrentTurn) {
             if (player1Side && pitPressed <= 5) {
                 makeMove(gameBoard, true, pitPressed);
             }
@@ -152,8 +170,8 @@ public class Game implements Initializable {
                 System.out.println("Pit is invalid. Please choose a pit on your side.");
             }
         }
-        else {
-            if (pitPressed <= 5) {
+        else if (!player1.isCurrentTurn){
+            if (!player1Side && pitPressed <= 5) {
                 makeMove(gameBoard, false, pitPressed);
             } else {
                 System.out.println("Pit is invalid. Please choose a pit on your side.");
@@ -161,14 +179,13 @@ public class Game implements Initializable {
         }
     }
 
-
     public void firstPlayer(){
         if(Math.random()>0.5){
-            player1Turn = true;
+        	player1.isCurrentTurn = true;
             turnMessage.setText("It is player 1s turn");
         }
         else{
-            player1Turn = false;
+            player1.isCurrentTurn = false;
             turnMessage.setText("It is player 2s turn");
 
         }
@@ -176,121 +193,123 @@ public class Game implements Initializable {
 
     }
 
-    public void makeMove(Board gameBoard, boolean player1Side, int pitPressed) {
-
-        int stones = gameBoard.getPitValue(player1Side, pitPressed);    //get
-
-        gameBoard.setPitValue(player1Side, pitPressed, 0);        //set
+    public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
         firstRound = true;
+        stones = gameBoard.getPitValue(player1Side, pitPressed);
+        gameBoard.setPitValue(player1Side, pitPressed, 0);
 
-        while(stones > 0) {
-            if (!firstRound && stones > 0) {                                    //... , player1SidePits-auto
+
+        while(stones>0) {
+
+            if (!firstRound) {
+
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(true, i);
                     stones--;
                     if (stones == 0) {
-                        if (gameBoard.getPlayer1Side().getPit(i).getPitValue() == 0) {
-                            break;
-                        } else {
-                            stones = gameBoard.getPitValue(true, i);           //get pit value
-                            gameBoard.setPitValue(player1Side, i, 0);           //reset the pit to 0
-                        }
-                    }
-                }
-            }
-
-            else if (player1Turn && firstRound && stones > 0) {               //..., pitPressed
-                for (int i = pitPressed + 1; i <= 5; i++) {
-                    gameBoard.incrementPitValue(true, i);
-                    stones--;
-                    if (stones == 0) {
-                        if (gameBoard.getPitValue(true, i) == 0) {              //next round
+                        if (gameBoard.getPitValue(true, i)== 1) {
+                            System.out.println("FLAG A");
                             break;
                         } else {
                             stones = gameBoard.getPitValue(true, i);
-                            gameBoard.setPitValue(true, i, 0);           // auto-continue
-                        }
-                    }
-                }
-                firstRound = !firstRound;                                     //->start second round
-            }
-
-            if (stones > 0 && player1Turn) {                                  // stone -> P1 store
-                gameBoard.getPlayer1Store().incrementPitValue();
-                if (stones == 1) {                                                     //last 1 stone-> store
-                    checkGameOver(gameBoard);
-                    displayBoard();
-                    System.out.println("You get another go! XXXX");
-                    if(player1Turn){
-                        turnMessage.setText("It is player 1s turn");
-                    }
-                    else{
-                        turnMessage.setText("It is player 2s turn");
-                    }
-                    return;
-                }
-                    stones--;                                                   //stone -1 to store, continue...
-            }
-
-            if (!firstRound & stones > 0) {                                           //...player2SidePit-auto
-
-                for (int i = 0; i <= 5; i++) {
-                    gameBoard.incrementPitValue(false, i);
-                    stones--;
-                    if (stones == 0) {
-                        if (gameBoard.getPitValue(false, i) == 0) {
-                            break;
-                        } else {
-                            stones = gameBoard.getPitValue(false, i);
-                            gameBoard.setPitValue(false, i, 0);
+                            gameBoard.setPitValue(true, i, 0);
+                            System.out.println("FLAG B");
                         }
                     }
                 }
             }
 
-            else if (!player1Turn && firstRound & stones > 0) {
+            else if (player1.isCurrentTurn && firstRound) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
-                    gameBoard.incrementPitValue(false, i);
+                    System.out.println(i);
+                    gameBoard.incrementPitValue(true, i);
                     stones--;
+                    System.out.println("Stones in hand = " + stones);
+
                     if (stones == 0) {
-                        if (gameBoard.getPitValue(false, i) == 0) {
+                        if (gameBoard.getPitValue(true, i) == 1) {
+                            System.out.println("FLAG C");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(false, i);
-                            gameBoard.setPitValue(false, i, 0);
+                            System.out.println("FLAG D");
+                            stones = gameBoard.getPitValue(true, i);
+                            gameBoard.setPitValue(true, i, 0);
                         }
                     }
                 }
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && !player1Turn) {
-                gameBoard.getPlayer2Store().incrementPitValue();
-                if (stones == 1) {
+            if (stones > 0 && player1.isCurrentTurn) {
+                gameBoard.getPlayer1Store().incrementPitValue();
+                stones--;
+                if (stones == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
-                    System.out.println("You get another go! XXXX");
-                    if(player1Turn){
-                        turnMessage.setText("It is player 1s turn");
-                    }
-                    else{
-                        turnMessage.setText("It is player 2s turn");
-                    }
+                    System.out.println("Flag E");
                     return;
                 }
+            }
+
+            if (!firstRound && stones>0) {
+
+                for (int i = 0; i <= 5; i++) {
+                    gameBoard.incrementPitValue(false, i);
+                    stones--;
+                    if (stones == 0) {
+                        if (gameBoard.getPitValue(false, i) == 1) {
+                            System.out.println("Flag F");
+                            break;
+                        } else {
+                            stones = gameBoard.getPitValue(false, i);
+                            gameBoard.setPitValue(false, i, 0);
+                            System.out.println("Flag G");
+                        }
+                    }
+                }
+            }
+
+            else if (!player1.isCurrentTurn && firstRound && stones>0) {
+
+                for (int i = pitPressed + 1; i <= 5; i++) {
+                    gameBoard.incrementPitValue(false, i);
+                    stones--;
+                    if (stones == 0) {
+                        if (gameBoard.getPitValue(false, i) == 1) {
+                            System.out.println("Flag H");
+                            break;
+                        } else {
+                            stones = gameBoard.getPitValue(false, i);
+                            gameBoard.setPitValue(false, i, 0);
+                            System.out.println("Flag I");
+                        }
+                    }
+                }
+                firstRound = !firstRound;
+            }
+
+            if (stones > 0 && !player1.isCurrentTurn) {
+                gameBoard.getPlayer2Store().incrementPitValue();
                 stones--;
+                if (stones == 0) {
+                    checkGameOver(gameBoard);
+                    displayBoard();
+                    System.out.println("Flag J");
+                    return;
+                }
             }
         }
 
-        player1Turn = !player1Turn;
+        System.out.println("Flag K");
+        player1.isCurrentTurn = !player1.isCurrentTurn;
         checkGameOver(gameBoard);
         System.out.println(player1Side);
         displayBoard();
 
 
-        if(player1Turn){
+        if(player1.isCurrentTurn){
             turnMessage.setText("It is player 1s turn");
         }
         else{
@@ -298,20 +317,6 @@ public class Game implements Initializable {
         }
         return;
     }
-
-    public void checkGameOver(Board gameBoard){
-
-        if (gameBoard.player1win()){
-            System.out.println("Player 1 Wins");
-        }
-        if (gameBoard.player2win()){
-            System.out.println("Player 2 Wins");
-        }
-        else return;
-    }
-
-    
-    //assets
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -321,7 +326,6 @@ public class Game implements Initializable {
         displayBoard();
         firstPlayer();
     }
-
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -16,20 +17,31 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
+
+import java.util.ArrayList;
+
 public class LoginControllerT2 {
 	public String inputPassword;
 	public String inputId;
 
 	public static HashMap<String, String> userLoginInfo = new HashMap<String, String>();
+	public static String userInfo = "";
+	private User newUser;
+	private ArrayList<User> userList;
 	
 	@FXML 
 	PasswordField pwField = new PasswordField();
 	@FXML 
 	TextField idField = new TextField();
 	@FXML
-	PasswordField pwFieldc = new PasswordField();
+	TextField password = new TextField();
 	@FXML
-	TextField idFieldc = new TextField();
+	TextField userName = new TextField();
+	@FXML
+	TextField firstName = new TextField();
+	@FXML
+	TextField lastName = new TextField();
 	@FXML
 	Label passwordLabel = new Label();
 	@FXML
@@ -59,75 +71,109 @@ public class LoginControllerT2 {
 				}
 				userLoginInfo.put(idPw[0], idPw[1]);
 			}
-		}catch(Exception error) {
-			System.out.println(error);
+		} catch(Exception error) {
+			System.err.println(error.getMessage());
 		}
 	}
 	
 	public void guestLogin (ActionEvent e) {
-		subtitle.setText("meow~~you login as Guest");
+		subtitle.setText("Logged in as Guest");
 	}
 	
-	public void readIdPassWord (ActionEvent e) throws IOException {
+	public boolean readIdPassWord (ActionEvent e) {
 		String epw = String.valueOf(pwField.getText());
 		String eid = String.valueOf(idField.getText());
 		
 		loadLoginInfo(e);
 		
 		if(idField.getText().isBlank()) {
-			System.out.println("please enter userId");
-			subtitle.setText("please enter userId");
+			System.out.println("User ID is blank");
+			subtitle.setText("Please enter your username");
 		}
 		else if (userLoginInfo.containsKey(eid)) {
-			System.out.println("yeaaaaa ID correct");
+			System.out.println("User with this user ID exists: " + eid);
 			if(pwField.getText().isBlank()) {
-				System.out.println("please enter password");
-				subtitle.setText("please enter password");
+				subtitle.setText("Please enter your password");
+				return false;
 			}
 			else if (userLoginInfo.get(eid).equals(epw)) {
-				System.out.println("yeaaaaa boi login success");
-				subtitle.setText("yeaaaaa boi login success");
-
-				switchToPlayerMenu(e);
-
-
-			}
-			else if (userLoginInfo.get(eid).equals(epw)==false){
-				System.out.println("please enter correct password");
-				subtitle.setText("please enter correct password");
+				System.out.println("User " + eid + " logged in");
+				subtitle.setText("Logged in");
+				userInfo = eid;
+				return true;
 			}
 		}
-		else if (idField.getText().equals(eid)==false){
-			System.out.println("please enter correct userId");
-			subtitle.setText("");
-		}
-		else {
-			System.out.println("you are shitty code mockey");
-		}
-		
+		System.out.println("Login attempt failed");
+		subtitle.setText("Incorrect username or password");
+		return false;
 	}
-	
+
 	public void createAccount(ActionEvent e) {
-		String epw = String.valueOf(pwFieldc.getText());
-		String eid = String.valueOf(idFieldc.getText());
+		//Initializing User object
+		newUser = new User();
+		
+		//Setting the user fields 
+		newUser.setUserName(userName.getText());
+		newUser.setPassword(password.getText());
+		newUser.setfirstName(firstName.getText());
+		newUser.setlastName(lastName.getText());
+		//newUser.setprofilePicture();
+
+		//Applying getter methods to store variables
+		String firstname = newUser.getFirstName();
+		String lastname = newUser.getLastName();
+		String eid = newUser.getUserName();		
+		String epw = newUser.getPassword();
+		
+		
+//		String epw = String.valueOf(pwFieldc.getText());
+//		String eid = String.valueOf(idFieldc.getText());
 		try {
-			loadLoginInfo (e);
-			String file = "src\\loginInfo.csv";
-			FileWriter fw = new FileWriter(file,true);
+			//loadLoginInfo (e);
+			String loginFile = "src\\loginInfo.csv";
+			String userFile = "src\\UserInfo.csv";
+			
+			//Writer for login information
+			FileWriter fw = new FileWriter(loginFile,true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter pwr = new PrintWriter(bw);
-
-			pwr.println(eid+","+epw);
+			
+			//Writer for user information
+			FileWriter fw1 = new FileWriter(userFile,true);
+			BufferedWriter bw1 = new BufferedWriter(fw1);
+			PrintWriter pwr1 = new PrintWriter(bw1);
+			
+			//Writing to csv
+			pwr.println(eid + "," + epw);
 			pwr.flush();
 			pwr.close();
-			System.out.println(epw+","+eid);
-			System.out.println(userLoginInfo);
-		}
-		catch(Exception Error2) {
 			
+			pwr1.println(firstname + "," + lastname + "," + eid + "," + epw);
+			pwr1.flush();
+			pwr1.close();
+			//System.out.println(eid+","+epw);
+			//System.out.println(userLoginInfo);
+			switchToLoginPage(e);
+		}
+		catch(Exception ignored) { }
+	}
+	
+	//Action event to switch to player menu
+	public void switchToPlayerMenu(ActionEvent event) throws IOException {
+		System.out.println(readIdPassWord(event));
+		if(readIdPassWord(event)){
+			root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.centerOnScreen();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			//Game game = new Game(4);
+			System.out.println("You are now playing a game of Mancala! Enjoy");
 		}
 	}
-
+	
+	//Action event to switch to sign up page
 	public void switchToSignUpPage(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -136,18 +182,19 @@ public class LoginControllerT2 {
 		stage.setScene(scene);
 		stage.show();
 		//Game game = new Game(4);
-		System.out.println("You are now playing a game of Mancala! Enjoy");
+		System.out.println("Showing create account page");
 	}
-
-	public void switchToPlayerMenu(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+	
+	//Action event to switch to login page
+	public void switchToLoginPage(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.centerOnScreen();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		//Game game = new Game(4);
-		System.out.println("You are now playing a game of Mancala! Enjoy");
+		System.out.println("Showing login page");
 	}
 }
 	

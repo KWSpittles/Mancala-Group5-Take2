@@ -19,7 +19,7 @@
                     <children>
                         <Pane layoutX="25.0" layoutY="125.0" prefHeight="251.0" prefWidth="200.0">
                             <children>
-                                <Label layoutX="48.0" layoutY="93.0" prefHeight="66.0" prefWidth="104.0" text="Admin">
+                                <Label layoutX="48.0" layoutY="93.0" prefHeight="66.0" prefWidth="104.0" text="Admin" textFill="WHITE">
                                     <font>
                                         <Font name="Segoe UI Bold" size="30.0" />
                                     </font>
@@ -64,29 +64,29 @@
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" styleClass="linear-grad" text="Add" GridPane.columnIndex="1">
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" styleClass="linear-grad" text="Add" textFill="WHITE" GridPane.columnIndex="1">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" styleClass="linear-grad" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" styleClass="linear-grad" text="Show" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="60.0" styleClass="linear-grad" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="60.0" styleClass="linear-grad" text="Show" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                         </Button>
-                        <Button layoutX="257.0" layoutY="91.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" styleClass="linear-grad" text="Show" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Button layoutX="257.0" layoutY="91.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" styleClass="linear-grad" text="Show" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                         </Button>
                      </children>
                   </GridPane>
-                  <Button layoutX="284.0" layoutY="429.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" styleClass="linear-grad" text="Log Out">
+                  <Button layoutX="271.0" layoutY="429.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="107.0" styleClass="linear-grad" text="Go to Menu" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font>
@@ -101,6 +101,11 @@
                         <ImageView fitHeight="125.0" fitWidth="144.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </Pane>
+                  <Button layoutX="512.0" layoutY="43.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="84.0" styleClass="linear-grad" text="Log Out" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI" size="15.0" />
+                     </font>
+                  </Button>
                </children></Pane>
             </center>
         </BorderPane>

@@ -1,0 +1,94 @@
+.root{
+    -fx-background-image: url("../resources/sample/wooden-background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+
+}
+
+#board{
+    -fx-background-color: transparent;
+
+}
+
+#store  {
+    -fx-background-color: rgba(255,255,255,0.75), linear-gradient(to bottom,#aaaaaa 0%,#cccccc 100%);
+    -fx-background-insets: 0,1;
+    -fx-padding: 7px;
+    -fx-background-radius: 150px;
+    -fx-border-radius: 150px;
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.75),1,0,1,1);
+    -fx-font: 14px "Arial";
+    -fx-text-fill: black;
+}
+
+.anchor-pane{
+    -fx-background-color: transparent;
+}
+
+.split-pane{
+    -fx-background-color: transparent;
+}
+
+.button{
+    -fx-pref-width: 150px;
+    -fx-pref-height: 150px;
+    -fx-background-color: rgba(255,255,255,0.75), linear-gradient(to bottom,#aaaaaa 0%,#cccccc 100%);
+    -fx-background-insets: 0,1;
+    -fx-padding: 7px;
+    -fx-background-radius: 150px;
+    -fx-border-radius: 150px;
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.75),1,0,1,1);
+    -fx-font: 14px "Arial";
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
+
+#player1button{
+    -fx-pref-width: 150px;
+    -fx-pref-height: 150px;
+    -fx-background-color: linear-gradient(to top,#8f6a1f 0%,#75520c 100%);
+    -fx-background-insets: 0,1;
+    -fx-padding: 7px;
+    -fx-background-radius: 150px;
+    -fx-border-radius: 150px;
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.75),15,0,1,1);
+    -fx-font: 14px "Arial";
+    -fx-text-fill: transparent;
+    -fx-alignment: center;
+    -fx-border-color: green;
+    -fx-border-width: 3px;
+
+}
+
+#player2button{
+    -fx-pref-width: 150px;
+    -fx-pref-height: 150px;
+    -fx-background-color: linear-gradient(to bottom,#8f6a1f 0%,#75520c 100%);
+    -fx-background-insets: 0,1;
+    -fx-padding: 7px;
+    -fx-background-radius: 150px;
+    -fx-border-radius: 150px;
+    -fx-effect: innershadow(three-pass-box, rgba(0,0,0,0.75),15,0,1,1);
+    -fx-font: 14px "Arial";
+    -fx-alignment: center;
+    -fx-text-fill: transparent;
+    -fx-border-color: red;
+    -fx-border-width: 3px;
+}
+
+#stonelabel{
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-family: "LM Mono 10";
+    -fx-font-size: 30px;
+}
+
+#turnMessage{
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-family: "LM Mono 10";
+    -fx-font-size: 80px;
+}
+

@@ -27,6 +27,7 @@ public class MenuController {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.centerOnScreen();
         scene = new Scene(root);
+        scene.getStylesheets().add("sample/game.css");
         stage.setScene(scene);
         stage.setWidth(1920);
         stage.setHeight(1080);

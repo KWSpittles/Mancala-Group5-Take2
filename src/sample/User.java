@@ -3,13 +3,14 @@ package sample;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class User {
 
     //private final UUID PlayerID;
     private Date firstDate;
-    private String UserName;
+    private String userName;
     private String firstName;
     private String lastName;
     private Image profilePicture;
@@ -24,12 +25,21 @@ public class User {
     public User () {}
     
     public User (String userName, String first, String last){
-    	UserName = userName;
+    	this.userName = userName;
     	firstName = first;
     	lastName = last;
 
     	userCount++; //adds one to the user count each time the constructor is called
     }
+    //hei correct me if wrong shouldnt it be something like this?
+//    public User(int id, String userName, String password, String firstName, String lastName, boolean admin) {
+//        this.id = id;
+//        this.userName = userName;
+//        this.password = password;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.admin = admin;
+//    }
     
     //method to add favourite player to an ArrayList
   	public void addfavUser(User user) {
@@ -43,7 +53,7 @@ public class User {
 
     //Setters
     public void setUserName(String UserName) {
-    	this.UserName = UserName;
+    	this.userName = UserName;
     }
 
     public void setfirstName(String firstName) {
@@ -52,14 +62,11 @@ public class User {
 
     public void setlastName(String lastName) {
     	this.lastName = lastName;
-
     }
 
     //sets the password
     public void setPassword(String password) {
-
     	this.password = password;
-
     }
 
     public void setprofilePicture() {
@@ -75,16 +82,16 @@ public class User {
     //getters
     //get user name
     public String getUserName() {
-    	return UserName;
+    	return userName;
     }
 
     //get first name
-    public String getfirstName() {
+    public String getFirstName() {
     	return firstName;
     }
 
     //get last name
-    public String getlastName() {
+    public String getLastName() {
     	return lastName;
     }
 
@@ -94,19 +101,19 @@ public class User {
     }
 
     //needs to retrieve this info from login system
-    public Date getfirstDate() {
+    public Date getFirstDate() {
     	return firstDate;
     }
 
     //gets the number of current users
-    public static int getuserCount() {
+    public static int getUserCount() {
     	return userCount;
 
     }
     
     //toString method
     public String toString() {
-		return ("Username :" + UserName + "\nFirst name :" + firstName + "\nLast name :" + lastName + "\nWins/Losses/Draws :"
-				+ winLossDraw);
+		return ("Username :" + userName + "\nFirst name :" + firstName + "\nLast name :" + lastName + "\nWins/Losses/Draws :"
+				+ Arrays.toString(winLossDraw));
 	}
 }
