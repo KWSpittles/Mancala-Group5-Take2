@@ -316,12 +316,14 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> branch 'main' of https://github.com/TW15T3DM1ND2/Mancala-Group5-Take2.git
         firstRound = true;
         stones = gameBoard.getPitValue(player1Side, pitPressed);
         gameBoard.setPitValue(player1Side, pitPressed, 0);
-
 
         while(stones>0) {
 
@@ -428,10 +430,18 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         System.out.println("Flag K");
 
         checkGameOver(gameBoard);
+<<<<<<< HEAD
         System.out.println(player1Side);
         //player2.isCurrentTurn = true;
         
+=======
+        displayBoard();
+
+
+
+>>>>>>> branch 'main' of https://github.com/TW15T3DM1ND2/Mancala-Group5-Take2.git
         //Player turn over
+<<<<<<< HEAD
 //        if(player2.isCurrentTurn == true) {
 //            //player1.isCurrentTurn = false;
 //        	displayBoard();
@@ -452,6 +462,24 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
 
 
+=======
+        if(player1.isCurrentTurn == true) {
+            System.out.println("COMPUTERS TURN");
+            player1.isCurrentTurn = false;
+            displayBoard();
+
+            try {
+                TimeUnit.SECONDS.sleep(5);
+                makeMove(gameBoard, false, getComputersMove());
+                displayBoard();
+                player1.isCurrentTurn = true;
+                displayBoard();
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+>>>>>>> branch 'main' of https://github.com/TW15T3DM1ND2/Mancala-Group5-Take2.git
         return;
     }
 

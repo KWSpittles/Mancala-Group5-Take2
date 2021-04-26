@@ -40,6 +40,22 @@ public class MenuController {
         System.out.println("You are now playing a game of Mancala! Enjoy");
     }
 
+    public void switchToArcadeMultiPlayerGame(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ArcadeMultiPlayer.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        scene = new Scene(root);
+        scene.getStylesheets().add("sample/game.css");
+        stage.setScene(scene);
+        stage.setWidth(1920);
+        stage.setHeight(1080);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+        System.out.println("You are now playing a game of Mancala! Enjoy");
+    }
+
+
     public void switchToSinglePlayerGame(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("GameSinglePlayer.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -55,6 +71,21 @@ public class MenuController {
         System.out.println("You are now playing a game of Mancala! Enjoy");
     }
 
+//    public void switchToArcadeSinglePlayerGame(ActionEvent event) throws IOException {
+//        root = FXMLLoader.load(getClass().getResource("ArcadeSinglePlayer.fxml"));
+//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage.centerOnScreen();
+//        scene = new Scene(root);
+//        scene.getStylesheets().add("sample/game.css");
+//        stage.setScene(scene);
+//        stage.setWidth(1920);
+//        stage.setHeight(1080);
+//        stage.centerOnScreen();
+//        stage.setResizable(false);
+//        stage.show();
+//        System.out.println("You are now playing a game of Mancala! Enjoy");
+//    }
+
     public void setUpMultiplayerGame(ActionEvent event) throws IOException {
         // Check if there is already a player 2 logged in
         User player2 = LoginControllerT2.getLoggedInPlayer(2);
@@ -67,6 +98,21 @@ public class MenuController {
         } else {
             // Player 2 is already logged in, start the game
             switchToMultiPlayerGame(event);
+        }
+    }
+
+    public void setUpArcadeMultiplayerGame(ActionEvent event) throws IOException {
+        // Check if there is already a player 2 logged in
+        User player2 = LoginControllerT2.getLoggedInPlayer(2);
+
+        if(player2 == null) {
+            // Prompt player 2 to log in. On successful login, run
+            // this method again and player2 won't be null anymore
+            // and the game will start.
+            player2ArcadeSignInPage(event);
+        } else {
+            // Player 2 is already logged in, start the game
+            switchToArcadeMultiPlayerGame(event);
         }
     }
 
@@ -128,6 +174,14 @@ public class MenuController {
         stage.setScene(scene);
         stage.show();
     }
+    public void player2ArcadeSignInPage(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("player2ArcadeSignInPage.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public void player2SignInSubmit(ActionEvent event) throws IOException {
         String username = usernameField.getText();
@@ -135,6 +189,14 @@ public class MenuController {
         boolean loggedIn = LoginControllerT2.loginAttempt(username, password, subtitle);
         if(loggedIn) {
             setUpMultiplayerGame(event);
+        }
+    }
+    public void player2ArcadeSignInSubmit(ActionEvent event) throws IOException {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        boolean loggedIn = LoginControllerT2.loginAttempt(username, password, subtitle);
+        if(loggedIn) {
+            setUpArcadeMultiplayerGame(event);
         }
     }
 

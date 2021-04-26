@@ -122,6 +122,41 @@ public class ArcadeMultiPlayer implements Initializable {
         labelpit12.setText(String.valueOf(gameBoard.getPlayer2Side().getPit(5).getPitValue()));
         labelpit13.setText(String.valueOf(gameBoard.getPlayer2Store().getPitValue()));
         System.out.println("You have displayed a new Board");
+
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
+        }
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
     }
 
     @FXML
@@ -200,36 +235,46 @@ public class ArcadeMultiPlayer implements Initializable {
     public void validMove(Board gameBoard, boolean player1Side, int pitPressed) {
 
         if (player1.isCurrentTurn) {
-            if (player1Side && pitPressed <= 5 && Math.random() >= 0.1 && Math.random() <= 0.55) {
+            if (player1Side && pitPressed <= 5 && Math.random() <= 0.033) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
-                    continueTurn(gameBoard, true, pitPressed);
-                    continueTurnTri = true;
-                    PowerUpsMessage.setText("A continue turn power-ups has been used.");
-                }
-
-            }
-            else if (player1Side && pitPressed <= 5 && Math.random() > 0.55) {
-                if(gameBoard.getPitValue(true,pitPressed) == 0) {
-                    invalidTurnMessage.setText("Please pick a pit with stones in!");
-                }
-                else{
-                    doublePoints(gameBoard, true, pitPressed);
-                    doublePointTri = true;
-                    PowerUpsMessage.setText("A continue turn power-ups has been used.");
+                    makeMove(gameBoard, true, pitPressed);
+                    invalidTurnMessage.setText("processing");
                 }
             }
 
-            else if (player1Side && pitPressed <= 5 && Math.random() <= 0.033) {
+//            } if (player1Side && pitPressed <= 5 && Math.random() >= 0.1 && Math.random() <= 0.55) {
+//                if(gameBoard.getPitValue(true,pitPressed) == 0) {
+//                    invalidTurnMessage.setText("Please pick a pit with stones in!");
+//                }
+//                else{
+//                    continueTurn(gameBoard, true, pitPressed);
+//                    continueTurnTri = true;
+//                    invalidTurnMessage.setText("A continue turn power-ups has been used.");
+//                }
+//
+//            }
+//            else if (player1Side && pitPressed <= 5 && Math.random() > 0.55) {
+//                if(gameBoard.getPitValue(true,pitPressed) == 0) {
+//                    invalidTurnMessage.setText("Please pick a pit with stones in!");
+//                }
+//                else{
+//                    doublePoints(gameBoard, true, pitPressed);
+//                    doublePointTri = true;
+//                    invalidTurnMessage.setText("A double point power-ups has been used.");
+//                }
+//            }
+
+            else if (player1Side && pitPressed <= 5 && Math.random() >=0.1) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
                     halfHand(gameBoard, true, pitPressed);
                     halfHandTri = true;
-                    SpecialStoneMessage.setText("A Half hand special stone has been triggered.");
+                    invalidTurnMessage.setText("A Half hand special stone has been triggered.");
                 }
             }
 
@@ -240,17 +285,17 @@ public class ArcadeMultiPlayer implements Initializable {
                 else {
                     reverseTurn(gameBoard, true, pitPressed);
                     reverseTurnTri = true;
-                    SpecialStoneMessage.setText("A reverse turn special stone has been triggered.");
+                    invalidTurnMessage.setText("A reverse turn special stone has been triggered.");
                 }
             }
 
-            else if (player1Side && pitPressed <= 5 && Math.random() <= 0.99) {
+            else if (player1Side && pitPressed <= 5 && Math.random() >0.66 && Math.random() <= 0.099) {
                 if (gameBoard.getPitValue(true, pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 } else {
-                    reverseTurn(gameBoard, true, pitPressed);
+                    switchSides(gameBoard, true, pitPressed);
                     switchSideTri = true;
-                    SpecialStoneMessage.setText("A switch sides special stone has been triggered.");
+                    invalidTurnMessage.setText("A switch sides special stone has been triggered.");
                 }
             }
             else {
@@ -260,36 +305,43 @@ public class ArcadeMultiPlayer implements Initializable {
 
         }
         else {
-            if (!player1Side && pitPressed <= 5 && Math.random() >= 0.1 && Math.random() <= 0.55) {
+            if (!player1Side && pitPressed <= 5 && Math.random() <= 0.033) {
                 if(gameBoard.getPitValue(false,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
-                    continueTurn(gameBoard, false, pitPressed);
-                    continueTurnTri = true;
-                    PowerUpsMessage.setText("A continue turn power-ups has been used.");
-                }
-
-            }
-            else if (!player1Side && pitPressed <= 5 && Math.random() > 0.55) {
-                if(gameBoard.getPitValue(false,pitPressed) == 0) {
-                    invalidTurnMessage.setText("Please pick a pit with stones in!");
-                }
-                else{
-                    doublePoints(gameBoard, false, pitPressed);
-                    doublePointTri = true;
-                    PowerUpsMessage.setText("A continue turn power-ups has been used.");
+                    makeMove(gameBoard, false, pitPressed);
+                    invalidTurnMessage.setText("processing");
                 }
             }
-
-            else if (!player1Side && pitPressed <= 5 && Math.random() <= 0.033) {
+//                if(gameBoard.getPitValue(false,pitPressed) == 0) {
+//                    invalidTurnMessage.setText("Please pick a pit with stones in!");
+//                }
+//                else{
+//                    continueTurn(gameBoard, false, pitPressed);
+//                    continueTurnTri = true;
+//                    invalidTurnMessage.setText("A continue turn power-ups has been used.");
+//                }
+//
+//            }
+//            else if (!player1Side && pitPressed <= 5 && Math.random() > 0.55) {
+//                if(gameBoard.getPitValue(false,pitPressed) == 0) {
+//                    invalidTurnMessage.setText("Please pick a pit with stones in!");
+//                }
+//                else{
+//                    doublePoints(gameBoard, false, pitPressed);
+//                    doublePointTri = true;
+//                    invalidTurnMessage.setText("A continue turn power-ups has been used.");
+//                }
+//            }
+            else if (!player1Side && pitPressed <= 5 && Math.random() >=0.1) {
                 if(gameBoard.getPitValue(false,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
                     halfHand(gameBoard, false, pitPressed);
                     halfHandTri = true;
-                    SpecialStoneMessage.setText("A Half hand special stone has been triggered.");
+                    invalidTurnMessage.setText("A Half hand special stone has been triggered.");
                 }
             }
 
@@ -300,17 +352,17 @@ public class ArcadeMultiPlayer implements Initializable {
                 else {
                     reverseTurn(gameBoard, false, pitPressed);
                     reverseTurnTri = true;
-                    SpecialStoneMessage.setText("A reverse turn special stone has been triggered.");
+                    invalidTurnMessage.setText("A reverse turn special stone has been triggered.");
                 }
             }
 
-            else if (!player1Side && pitPressed <= 5 && Math.random() <= 0.99) {
+            else if (!player1Side && pitPressed <= 5 && Math.random() >0.066 && Math.random() <= 0.099) {
                 if (gameBoard.getPitValue(false, pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 } else {
-                    reverseTurn(gameBoard, false, pitPressed);
+                    switchSides(gameBoard, false, pitPressed);
                     switchSideTri = true;
-                    SpecialStoneMessage.setText("A switch sides special stone has been triggered.");
+                    invalidTurnMessage.setText("A switch sides special stone has been triggered.");
                 }
             }
             else {
@@ -362,14 +414,168 @@ public class ArcadeMultiPlayer implements Initializable {
         }
 
     }
+    public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
+
+        firstRound = true;
+        stones = gameBoard.getPitValue(player1Side, pitPressed);
+        gameBoard.setPitValue(player1Side, pitPressed, 0);
+
+
+        while(stones>0) {
+
+            if (!firstRound) {
+
+                for (int i = 0; i <= 5; i++) {
+                    gameBoard.incrementPitValue(true, i);
+                    stones--;
+                    if (stones == 0) {
+                        if (gameBoard.getPitValue(true, i)== 1) {
+                            System.out.println("FLAG A");
+                            break;
+                        } else {
+                            stones = gameBoard.getPitValue(true, i);
+                            gameBoard.setPitValue(true, i, 0);
+                            System.out.println("FLAG B");
+                        }
+                    }
+                }
+            }
+
+            else if (player1.isCurrentTurn && firstRound) {
+
+                for (int i = pitPressed + 1; i <= 5; i++) {
+                    System.out.println(i);
+                    gameBoard.incrementPitValue(true, i);
+                    stones--;
+                    System.out.println("Stones in hand = " + stones);
+
+                    if (stones == 0) {
+                        if (gameBoard.getPitValue(true, i) == 1) {
+                            System.out.println("FLAG C");
+                            break;
+                        } else {
+                            System.out.println("FLAG D");
+                            stones = gameBoard.getPitValue(true, i);
+                            gameBoard.setPitValue(true, i, 0);
+                        }
+                    }
+                }
+                firstRound = !firstRound;
+            }
+
+            if (stones > 0 && player1.isCurrentTurn) {
+                gameBoard.getPlayer1Store().incrementPitValue();
+                stones--;
+                if (stones == 0) {
+                    checkGameOver(gameBoard);
+                    displayBoard();
+                    System.out.println("Flag E");
+                    return;
+                }
+            }
+
+            if (!firstRound && stones>0) {
+
+                for (int i = 0; i <= 5; i++) {
+                    gameBoard.incrementPitValue(false, i);
+                    stones--;
+                    if (stones == 0) {
+                        if (gameBoard.getPitValue(false, i) == 1) {
+                            System.out.println("Flag F");
+                            break;
+                        } else {
+                            stones = gameBoard.getPitValue(false, i);
+                            gameBoard.setPitValue(false, i, 0);
+                            System.out.println("Flag G");
+                        }
+                    }
+                }
+            }
+
+            else if (!player1.isCurrentTurn && firstRound && stones>0) {
+
+                for (int i = pitPressed + 1; i <= 5; i++) {
+                    gameBoard.incrementPitValue(false, i);
+                    stones--;
+                    if (stones == 0) {
+                        if (gameBoard.getPitValue(false, i) == 1) {
+                            System.out.println("Flag H");
+                            break;
+                        } else {
+                            stones = gameBoard.getPitValue(false, i);
+                            gameBoard.setPitValue(false, i, 0);
+                            System.out.println("Flag I");
+                        }
+                    }
+                }
+                firstRound = !firstRound;
+            }
+
+            if (stones > 0 && !player1.isCurrentTurn) {
+                gameBoard.getPlayer2Store().incrementPitValue();
+                stones--;
+                if (stones == 0) {
+                    checkGameOver(gameBoard);
+                    displayBoard();
+                    System.out.println("Flag J");
+                    return;
+                }
+            }
+        }
+
+        System.out.println("Flag K");
+        player1.isCurrentTurn = !player1.isCurrentTurn;
+        checkGameOver(gameBoard);
+        System.out.println(player1Side);
+        displayBoard();
+
+
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
+        }
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
+        return;
+    }
+
 
     // POWER-UPS
 
-    //option for player to choose select power up
-    public boolean playerPowerUps() {
+//    //option for player to choose select power up
+//    public boolean playerPowerUps() {
+//
+//        return false;
+//    }
 
-        return false;
-    }
 
     public void continueTurn(Board gameBoard, boolean player1Side, int pitPressed) {
         firstRound = true;
@@ -728,33 +934,33 @@ public class ArcadeMultiPlayer implements Initializable {
 
     //reduce pick up point by half and round up if odd number
     public void halfHand(Board gameBoard, boolean player1Side, int pitPressed) {
-        stones = gameBoard.getPitValue(player1Side, pitPressed);    //get
-        gameBoard.setPitValue(player1Side, pitPressed, 0);
 
         firstRound = true;
-        halfHandTri = true;
-        incrementFrequencyValue();
+        stones = gameBoard.getPitValue(player1Side, pitPressed) / 2;
+        gameBoard.setPitValue(player1Side, pitPressed, 0);
 
-        while (stones > 0) {
-            stones = stones / 2;
 
-            if (!firstRound) {                                              //...player1Turn
+        while(stones>0) {
+
+            if (!firstRound) {
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(true, i);
                     stones--;
                     if (stones == 0) {
-                        if (gameBoard.getPitValue(true, i) == 1) {
+                        if (gameBoard.getPitValue(true, i)== 1) {
                             System.out.println("FLAG A");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(true, i);    //get
-                            gameBoard.setPitValue(player1Side, i, 0);                //set
+                            stones = gameBoard.getPitValue(true, i);
+                            gameBoard.setPitValue(true, i, 0);
                             System.out.println("FLAG B");
                         }
                     }
                 }
-            } else if (player1.isCurrentTurn && firstRound) {
+            }
+
+            else if (player1.isCurrentTurn && firstRound) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     System.out.println(i);
@@ -787,7 +993,7 @@ public class ArcadeMultiPlayer implements Initializable {
                 }
             }
 
-            if (!firstRound && stones > 0) {
+            if (!firstRound && stones>0) {
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
@@ -803,7 +1009,9 @@ public class ArcadeMultiPlayer implements Initializable {
                         }
                     }
                 }
-            } else if (!player1.isCurrentTurn && firstRound && stones > 0) {
+            }
+
+            else if (!player1.isCurrentTurn && firstRound && stones>0) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
@@ -1218,5 +1426,7 @@ public class ArcadeMultiPlayer implements Initializable {
         stage.show();
         System.out.println("You are now viewing the Menu");
     }
+    public void continueTurnOn(ActionEvent event) throws IOException {
 
+    }
 }
