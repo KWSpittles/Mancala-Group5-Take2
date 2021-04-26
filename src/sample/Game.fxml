@@ -6,104 +6,99 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Game">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" stylesheets="@game.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Game">
    <top>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@game.css" BorderPane.alignment="CENTER" />
-   </top>
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </right>
-   <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="150.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="1645.0" layoutY="30.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="40.0" prefWidth="100.0" text="Menu" />
-            <Button layoutX="533.0" layoutY="53.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="40.0" prefWidth="174.0" text="Reset Board" />
+            <Button layoutX="525.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="40.0" prefWidth="100.0" text="Menu" />
+         </children></AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="150.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="569.0" layoutY="14.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="40.0" prefWidth="174.0" text="Reset Board" />
          </children>
       </AnchorPane>
    </bottom>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <bottom>
-            <GridPane prefHeight="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="320.0" prefWidth="663.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane prefHeight="550.0" prefWidth="900.0">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button id="player1button" fx:id="buttonpit0" mnemonicParsing="false" onAction="#buttonpit0" prefHeight="139.0" prefWidth="166.0" stylesheets="@game.css" text="1" GridPane.columnIndex="1" />
-                  <Label id="stonelabel" fx:id="labelpit0" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="1" />
-                  <Button id="player1button" fx:id="buttonpit1" mnemonicParsing="false" onAction="#buttonpit1" prefHeight="112.0" prefWidth="175.0" stylesheets="@game.css" text="2" GridPane.columnIndex="2" />
-                  <Label id="stonelabel" fx:id="labelpit1" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="2" />
-                  <Button id="player1button" fx:id="buttonpit2" mnemonicParsing="false" onAction="#buttonpit2" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="3" GridPane.columnIndex="3" />
-                  <Label id="stonelabel" fx:id="labelpit2" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="3" />
-                  <Button id="player1button" fx:id="buttonpit3" mnemonicParsing="false" onAction="#buttonpit3" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="4" GridPane.columnIndex="4" />
-                  <Label id="stonelabel" fx:id="labelpit3" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="4" />
-                  <Button id="player1button" fx:id="buttonpit4" mnemonicParsing="false" onAction="#buttonpit4" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="5" GridPane.columnIndex="5" />
-                  <Label id="stonelabel" fx:id="labelpit4" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="5" />
-                  <Button id="player1button" fx:id="buttonpit5" mnemonicParsing="false" onAction="#buttonpit5" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="6" GridPane.columnIndex="6" />
-                  <Label id="stonelabel" fx:id="labelpit5" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="6" />
-               </children>
-            </GridPane>
-         </bottom>
-         <left>
-            <Label fx:id="labelpit13" alignment="TOP_RIGHT" prefHeight="800.0" stylesheets="@game.css" text="Label" BorderPane.alignment="CENTER" />
-         </left>
-         <top>
-            <GridPane prefHeight="200.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button id="player2button" fx:id="buttonpit12" mnemonicParsing="false" onAction="#buttonpit12" prefHeight="183.0" prefWidth="176.0" stylesheets="@game.css" text="12" GridPane.columnIndex="1" />
-                  <Label id="stonelabel" fx:id="labelpit12" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="1" />
-                  <Button id="player2button" fx:id="buttonpit11" mnemonicParsing="false" onAction="#buttonpit11" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="12" GridPane.columnIndex="2" />
-                  <Label id="stonelabel" fx:id="labelpit11" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="2" />
-                  <Button id="player2button" fx:id="buttonpit10" mnemonicParsing="false" onAction="#buttonpit10" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="11" GridPane.columnIndex="3" />
-                  <Label id="stonelabel" fx:id="labelpit10" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="3" />
-                  <Button id="player2button" fx:id="buttonpit9" mnemonicParsing="false" onAction="#buttonpit9" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="10" GridPane.columnIndex="4" />
-                  <Label id="stonelabel" fx:id="labelpit9" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="4" />
-                  <Button id="player2button" fx:id="buttonpit8" mnemonicParsing="false" onAction="#buttonpit8" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="9" GridPane.columnIndex="5" />
-                  <Label id="stonelabel" fx:id="labelpit8" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="5" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowSpan="2">
+                     <children>
+                        <Label fx:id="labelpit13" text="Label" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                     <children>
+                        <Label fx:id="labelpit6" prefHeight="398.0" prefWidth="107.0" text="Label" />
+                     </children>
+                  </HBox>
+                  <Button id="player1button" fx:id="buttonpit0" mnemonicParsing="false" onAction="#buttonpit0" prefHeight="139.0" prefWidth="166.0" stylesheets="@game.css" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <graphic>
+                        <Label id="stonelabel" fx:id="labelpit0" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefHeight="73.0" prefWidth="70.0" stylesheets="@game.css" text="Label" textAlignment="CENTER" />
+                     </graphic>
+                  </Button>
+                  <Button id="player1button" fx:id="buttonpit1" mnemonicParsing="false" onAction="#buttonpit1" prefHeight="112.0" prefWidth="175.0" stylesheets="@game.css" text="2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label id="stonelabel" fx:id="labelpit1" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefWidth="70.0" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Button id="player1button" fx:id="buttonpit2" mnemonicParsing="false" onAction="#buttonpit2" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="3" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label id="stonelabel" fx:id="labelpit2" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefWidth="70.0" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Button id="player1button" fx:id="buttonpit3" mnemonicParsing="false" onAction="#buttonpit3" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="4" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Label id="stonelabel" fx:id="labelpit3" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefWidth="70.0" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Button id="player1button" fx:id="buttonpit4" mnemonicParsing="false" onAction="#buttonpit4" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="5" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <Label id="stonelabel" fx:id="labelpit4" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefWidth="70.0" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <Button id="player1button" fx:id="buttonpit5" mnemonicParsing="false" onAction="#buttonpit5" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="6" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <Label id="stonelabel" fx:id="labelpit5" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefWidth="70.0" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                   <Button id="player2button" fx:id="buttonpit7" mnemonicParsing="false" onAction="#buttonpit7" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="8" GridPane.columnIndex="6" />
                   <Label id="stonelabel" fx:id="labelpit7" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="6" />
+                  <Button id="player2button" fx:id="buttonpit8" mnemonicParsing="false" onAction="#buttonpit8" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="9" GridPane.columnIndex="5" />
+                  <Label id="stonelabel" fx:id="labelpit8" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="5" />
+                  <Button id="player2button" fx:id="buttonpit9" mnemonicParsing="false" onAction="#buttonpit9" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="10" GridPane.columnIndex="4" />
+                  <Label id="stonelabel" fx:id="labelpit9" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="4" />
+                  <Button id="player2button" fx:id="buttonpit10" mnemonicParsing="false" onAction="#buttonpit10" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="11" GridPane.columnIndex="3" />
+                  <Label id="stonelabel" fx:id="labelpit10" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="3" />
+                  <Button id="player2button" fx:id="buttonpit11" mnemonicParsing="false" onAction="#buttonpit11" prefHeight="50.0" prefWidth="50.0" stylesheets="@game.css" text="12" GridPane.columnIndex="2" />
+                  <Label id="stonelabel" fx:id="labelpit11" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="2" />
+                  <Button id="player2button" fx:id="buttonpit12" mnemonicParsing="false" onAction="#buttonpit12" prefHeight="183.0" prefWidth="176.0" stylesheets="@game.css" text="12" GridPane.columnIndex="1" />
+                  <Label id="stonelabel" fx:id="labelpit12" alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" stylesheets="@game.css" text="Label" textAlignment="CENTER" GridPane.columnIndex="1" />
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="6" GridPane.rowIndex="1">
+                     <children>
+                        <AnchorPane prefHeight="192.0" prefWidth="677.0">
+                           <children>
+                              <Label fx:id="invalidTurnMessage" layoutX="6.0" layoutY="114.0" prefHeight="73.0" prefWidth="666.0" text="Label" />
+                              <Label fx:id="turnMessage" layoutX="55.0" layoutY="3.0" maxHeight="-Infinity" prefHeight="50.0" prefWidth="582.0" text="Label" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
-         </top>
-         <right>
-            <Label fx:id="labelpit6" alignment="BOTTOM_LEFT" prefHeight="439.0" prefWidth="105.0" stylesheets="@game.css" text="Label" BorderPane.alignment="CENTER" />
-         </right>
-         <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="turnMessage" layoutX="60.0" layoutY="37.0" prefHeight="94.0" prefWidth="1095.0" text="Label" />
-                  <Label fx:id="invalidTurnMessage" layoutX="11.0" layoutY="162.0" prefHeight="84.0" prefWidth="1202.0" text="Label" />
-               </children>
-            </AnchorPane>
-         </center>
-      </BorderPane>
+         </children>
+      </AnchorPane>
    </center>
+   <left>
+      <AnchorPane prefHeight="420.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="420.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>

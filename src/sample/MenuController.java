@@ -32,8 +32,8 @@ public class MenuController {
         scene = new Scene(root);
         scene.getStylesheets().add("sample/game.css");
         stage.setScene(scene);
-        stage.setWidth(1920);
-        stage.setHeight(1080);
+        stage.setWidth(1200);
+        stage.setHeight(900);
         stage.centerOnScreen();
         stage.setResizable(false);
         stage.show();
