@@ -4,7 +4,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class Arcade extends Game {
+public class Arcade extends GameMultiPlayer {
 
     //field
     public boolean halfHandTri;

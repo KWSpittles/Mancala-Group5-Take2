@@ -6,34 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
-import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-
-
 import javafx.stage.Stage;
 
-
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-
-
 import java.io.*;
-
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import java.util.HashMap;
-
-import javax.imageio.ImageIO;
 
 public class LoginControllerT2 {
 
@@ -52,7 +38,14 @@ public class LoginControllerT2 {
 	private static final ArrayList<User> loggedInUsers = new ArrayList<>();
 	private static ArrayList<User> registeredUsers;
 
-	@FXML 
+	private static final User computer = new User("Computer","Computer","Computer");
+
+
+
+
+
+
+	@FXML
 	PasswordField pwField = new PasswordField();
 	@FXML 
 	TextField idField = new TextField();
@@ -77,6 +70,9 @@ public class LoginControllerT2 {
 
 		return loginAttempt(username, password, subtitle);
 	}
+
+
+
 
 	public static boolean loginAttempt(String username, String password, Label errorLabel) {
 		User userAccount = getUserByUsername(username);
@@ -291,7 +287,10 @@ public class LoginControllerT2 {
 		}
 		return null;
 	}
-	
+
+	public static User getComputer(){
+		return computer;
+	}
 	//Method upload profile picture from directory, and stores images in a chosen directory
     public void uploadImage(ActionEvent event, String userName) {
 
@@ -330,6 +329,7 @@ public class LoginControllerT2 {
 		}
         
     }
+
 	
 		
 }

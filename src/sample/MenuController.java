@@ -25,8 +25,23 @@ public class MenuController {
     @FXML
     private AnchorPane scenePane;
 
-    public void switchToGame(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Game.fxml"));
+    public void switchToMultiPlayerGame(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("GameMultiPlayer.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        scene = new Scene(root);
+        scene.getStylesheets().add("sample/game.css");
+        stage.setScene(scene);
+        stage.setWidth(1920);
+        stage.setHeight(1080);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+        System.out.println("You are now playing a game of Mancala! Enjoy");
+    }
+
+    public void switchToSinglePlayerGame(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("GameSinglePlayer.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.centerOnScreen();
         scene = new Scene(root);
@@ -51,8 +66,15 @@ public class MenuController {
             player2SignInPage(event);
         } else {
             // Player 2 is already logged in, start the game
-            switchToGame(event);
+            switchToMultiPlayerGame(event);
         }
+    }
+
+    public void setUpSingleplayerGame(ActionEvent event) throws IOException {
+        // Check if there is already a player 2 logged in
+
+        switchToSinglePlayerGame(event);
+
     }
 
     public void switchToLeaderboard(ActionEvent event) throws IOException {
