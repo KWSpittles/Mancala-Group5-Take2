@@ -303,13 +303,9 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
-        displayBoard();
-
-
         firstRound = true;
         stones = gameBoard.getPitValue(player1Side, pitPressed);
         gameBoard.setPitValue(player1Side, pitPressed, 0);
-
 
         while(stones>0) {
 
@@ -416,27 +412,27 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         System.out.println("Flag K");
 
         checkGameOver(gameBoard);
-        System.out.println(player1Side);
         displayBoard();
 
+
+
         //Player turn over
-        if(player1.isCurrentTurn) {
-            player1.isCurrentTurn = false;
+        if(player1.isCurrentTurn == true) {
             System.out.println("COMPUTERS TURN");
+            player1.isCurrentTurn = false;
+            displayBoard();
+
             try {
                 TimeUnit.SECONDS.sleep(5);
                 makeMove(gameBoard, false, getComputersMove());
+                displayBoard();
                 player1.isCurrentTurn = true;
                 displayBoard();
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
-
-
-
-
         return;
     }
 
