@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
@@ -56,6 +57,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         gameBoard = new Board(stones);
         this.player1 = player1;
         player2 = new User();
+        computersValidMoves = new ArrayList<>();
     }
 
     public void resetBoard() {
@@ -102,6 +104,42 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         labelpit12.setText(String.valueOf(gameBoard.getPlayer2Side().getPit(5).getPitValue()));
         labelpit13.setText(String.valueOf(gameBoard.getPlayer2Store().getPitValue()));
         System.out.println("You have displayed a new Board");
+
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
+        }
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
+
     }
 
     @FXML
@@ -207,7 +245,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     }
 
     public void firstPlayer(){
-        if(Math.random()>0.5){
+        if(Math.random()>=0){
             player1.isCurrentTurn = true;
             turnMessage.setText("It is " + player1.getFirstName() +"'s turn");
             buttonpit0.setStyle("-fx-border-color: green");
@@ -249,6 +287,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
     }
 
+
     public int getComputersMove(){
         for (int i = 0; i <= 5; i++) {
             if(gameBoard.getPitValue(false, i) != 0){
@@ -258,13 +297,13 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         int value = (int)Math.random()*computersValidMoves.size();
         int pitPressed = computersValidMoves.get(value);
 
-
         return pitPressed;
     }
 
 
-
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
+
+        displayBoard();
 
 
         firstRound = true;
@@ -375,50 +414,29 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         }
 
         System.out.println("Flag K");
-        player1.isCurrentTurn = !player1.isCurrentTurn;
-        makeMove(gameBoard, false, getComputersMove());
-        player1.isCurrentTurn = !player1.isCurrentTurn;
-
 
         checkGameOver(gameBoard);
         System.out.println(player1Side);
         displayBoard();
 
+        //Player turn over
+        if(player1.isCurrentTurn) {
+            player1.isCurrentTurn = false;
+            System.out.println("COMPUTERS TURN");
+            try {
+                TimeUnit.SECONDS.sleep(5);
+                makeMove(gameBoard, false, getComputersMove());
+                player1.isCurrentTurn = true;
+                displayBoard();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-        if(player1.isCurrentTurn){
-            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
-            buttonpit0.setStyle("-fx-border-color: green");
-            buttonpit1.setStyle("-fx-border-color: green");
-            buttonpit2.setStyle("-fx-border-color: green");
-            buttonpit3.setStyle("-fx-border-color: green");
-            buttonpit4.setStyle("-fx-border-color: green");
-            buttonpit5.setStyle("-fx-border-color: green");
-            labelpit6.setStyle("-fx-border-color: green");
-            buttonpit7.setStyle("-fx-border-color: red");
-            buttonpit8.setStyle("-fx-border-color: red");
-            buttonpit9.setStyle("-fx-border-color: red");
-            buttonpit10.setStyle("-fx-border-color: red");
-            buttonpit11.setStyle("-fx-border-color: red");
-            buttonpit12.setStyle("-fx-border-color: red");
-            labelpit13.setStyle("-fx-border-color: red");
         }
-        else {
-            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
-            buttonpit0.setStyle("-fx-border-color: red");
-            buttonpit1.setStyle("-fx-border-color: red");
-            buttonpit2.setStyle("-fx-border-color: red");
-            buttonpit3.setStyle("-fx-border-color: red");
-            buttonpit4.setStyle("-fx-border-color: red");
-            buttonpit5.setStyle("-fx-border-color: red");
-            labelpit6.setStyle("-fx-border-color: red");
-            buttonpit7.setStyle("-fx-border-color: green");
-            buttonpit8.setStyle("-fx-border-color: green");
-            buttonpit9.setStyle("-fx-border-color: green");
-            buttonpit10.setStyle("-fx-border-color: green");
-            buttonpit11.setStyle("-fx-border-color: green");
-            buttonpit12.setStyle("-fx-border-color: green");
-            labelpit13.setStyle("-fx-border-color: green");
-        }
+
+
+
+
         return;
     }
 
@@ -427,6 +445,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         User player1 = LoginControllerT2.getLoggedInPlayer(1);
         User player2 = LoginControllerT2.getComputer();
         GameSinglePlayer gameMultiPlayer = new GameSinglePlayer(4, player1);
