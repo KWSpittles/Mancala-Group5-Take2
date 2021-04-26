@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GameMultiPlayer">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ArcadeMultiPlayer">
     <top>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@game.css" BorderPane.alignment="CENTER" />
     </top>
@@ -23,6 +23,8 @@
             <children>
                 <Button layoutX="1645.0" layoutY="30.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="40.0" prefWidth="100.0" text="Menu" />
                 <Button layoutX="533.0" layoutY="53.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="40.0" prefWidth="174.0" text="Reset Board" />
+            <Button layoutX="939.0" layoutY="52.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="40.0" prefWidth="174.0" text="Continute Turn" />
+            <Button layoutX="1138.0" layoutY="53.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="40.0" prefWidth="174.0" text="Double Points" />
             </children>
         </AnchorPane>
     </bottom>
