@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
@@ -29,6 +30,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     //Declaration of player variables
     private static User player1;
     private static User player2;
+    private static ArrayList<Integer> computersValidMoves;
 
     public GameSinglePlayer() {
         gameBoard = new Board();
@@ -247,6 +249,19 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
     }
 
+    public int getComputersMove(){
+        for (int i = 0; i <= 5; i++) {
+            if(gameBoard.getPitValue(false, i) != 0){
+                computersValidMoves.add(i);
+            }
+        }
+        int value = (int)Math.random()*computersValidMoves.size();
+        int pitPressed = computersValidMoves.get(value);
+
+
+        return pitPressed;
+    }
+
 
 
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
@@ -361,6 +376,10 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
         System.out.println("Flag K");
         player1.isCurrentTurn = !player1.isCurrentTurn;
+        makeMove(gameBoard, false, getComputersMove());
+        player1.isCurrentTurn = !player1.isCurrentTurn;
+
+
         checkGameOver(gameBoard);
         System.out.println(player1Side);
         displayBoard();

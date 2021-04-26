@@ -100,6 +100,41 @@ public class GameMultiPlayer implements Initializable {
         labelpit12.setText(String.valueOf(gameBoard.getPlayer2Side().getPit(5).getPitValue()));
         labelpit13.setText(String.valueOf(gameBoard.getPlayer2Store().getPitValue()));
         System.out.println("You have displayed a new Board");
+
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
+        }
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
     }
 
     @FXML
@@ -247,10 +282,7 @@ public class GameMultiPlayer implements Initializable {
 
     }
 
-
-
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
-
 
         firstRound = true;
         stones = gameBoard.getPitValue(player1Side, pitPressed);
