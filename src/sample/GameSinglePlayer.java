@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -86,8 +88,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     }
 
     @FXML
-    public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13;
-
+    public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13, labelpit14, labelpit15;
     public void displayBoard() {
         labelpit0.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(0).getPitValue()));
         labelpit1.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(1).getPitValue()));
@@ -103,6 +104,18 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         labelpit11.setText(String.valueOf(gameBoard.getPlayer2Side().getPit(4).getPitValue()));
         labelpit12.setText(String.valueOf(gameBoard.getPlayer2Side().getPit(5).getPitValue()));
         labelpit13.setText(String.valueOf(gameBoard.getPlayer2Store().getPitValue()));
+        
+        //Displaying profile pictures of players
+    
+        Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
+        ImageView imageView1 = new ImageView();
+        imageView1.setImage(profilepic1);
+        labelpit15.setGraphic(imageView1);
+        
+//        Image profilepic2 = new Image(player2.getprofilePicture());
+//        ImageView imageView2 = new ImageView(profilepic2);
+//        labelpit15.setGraphic(imageView2);
+        
         System.out.println("You have displayed a new Board");
 
         if(player1.isCurrentTurn){
@@ -303,7 +316,6 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
-        displayBoard();
 
 
         firstRound = true;
@@ -417,22 +429,25 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
         checkGameOver(gameBoard);
         System.out.println(player1Side);
-        displayBoard();
-
+        //player2.isCurrentTurn = true;
+        
         //Player turn over
-        if(player1.isCurrentTurn) {
-            player1.isCurrentTurn = false;
-            System.out.println("COMPUTERS TURN");
-            try {
-                TimeUnit.SECONDS.sleep(5);
-                makeMove(gameBoard, false, getComputersMove());
-                player1.isCurrentTurn = true;
-                displayBoard();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
+//        if(player2.isCurrentTurn == true) {
+//            //player1.isCurrentTurn = false;
+//        	displayBoard();
+//            System.out.println("COMPUTERS TURN");
+////            try {
+////                TimeUnit.SECONDS.sleep(2);
+////                makeMove(gameBoard, false, getComputersMove());
+////                
+////                
+////            } catch (InterruptedException e) {
+////                e.printStackTrace();
+////            }
+//            makeMove(gameBoard, false, getComputersMove());
+//            player2.isCurrentTurn = false;
+//            displayBoard();
+//        }
 
 
 

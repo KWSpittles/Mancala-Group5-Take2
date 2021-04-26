@@ -113,6 +113,10 @@ public class User {
     	return userCount;
     }
     
+    public String getprofilePicture() {
+    	return profilePicture;
+    }
+    
     
     //toString method
     public String toString() {
