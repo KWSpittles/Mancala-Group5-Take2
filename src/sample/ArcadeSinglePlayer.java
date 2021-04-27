@@ -1106,6 +1106,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
+
         System.out.println("You are now viewing the Menu");
     }
 
