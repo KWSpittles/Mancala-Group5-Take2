@@ -1101,8 +1101,8 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setWidth(720);
-        stage.setHeight(720);
+        stage.setWidth(900);
+        stage.setHeight(500);
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
