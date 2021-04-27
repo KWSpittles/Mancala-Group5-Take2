@@ -256,7 +256,7 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("processing");
                 }
             }
-            else if (player1Side && pitPressed <= 5 && continueTurnButton== true) {
+            else if (player1Side && pitPressed <= 5 && continueTurnButton == true) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -265,12 +265,12 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("A continue turn power-ups has been used.");
                 }
             }
-            else if (player1Side && pitPressed <= 5 && doublePointsButton== true) {
+            else if (player1Side && pitPressed <= 5 && doublePointsButton == true) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
-                    halfHand(gameBoard, true, pitPressed);
+                    doublePoints(gameBoard, true, pitPressed);
                     invalidTurnMessage.setText("A double points power-ups has been used.");
                 }
             }
@@ -844,7 +844,7 @@ public class ArcadeMultiPlayer implements Initializable  {
             labelpit13.setStyle("-fx-border-color: green");
         }
 
-        continueTurnButton = false;
+        continueTurnButton = !continueTurnButton;
 
         return;
     }
@@ -1531,8 +1531,8 @@ public class ArcadeMultiPlayer implements Initializable  {
 
     @FXML
     public void continueTurnOn(ActionEvent e) throws IOException {
-        System.out.println("111");
         continueTurnButton = true;
+        System.out.println("111");
     }
 
     public void doublePointsOn(ActionEvent e) throws IOException{
