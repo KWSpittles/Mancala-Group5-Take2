@@ -422,33 +422,34 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                     return;
                 }
             }
+            
+            if(player1.isCurrentTurn) {
+                System.out.println("COMPUTERS TURN");
+                player1.isCurrentTurn = false;
+                displayBoard();
+                
+                //TimeUnit.SECONDS.sleep(5);
+                makeMove(gameBoard, false, getComputersMove());
+                player1.isCurrentTurn = true;
+                displayBoard();
+
+//                try {
+//                    TimeUnit.SECONDS.sleep(5);
+//                    makeMove(gameBoard, false, getComputersMove());
+//                    displayBoard();
+////                    player1.isCurrentTurn = true;
+////                    displayBoard();
+//
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+            }
         }
 
         System.out.println("Flag K");
 
         checkGameOver(gameBoard);
-
-
         displayBoard();
-
-
-        if(player1.isCurrentTurn == true) {
-            System.out.println("COMPUTERS TURN");
-            player1.isCurrentTurn = false;
-            displayBoard();
-
-            try {
-                TimeUnit.SECONDS.sleep(5);
-                makeMove(gameBoard, false, getComputersMove());
-                displayBoard();
-                player1.isCurrentTurn = true;
-                displayBoard();
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
         return;
     }
 

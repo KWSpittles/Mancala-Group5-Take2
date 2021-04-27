@@ -7,7 +7,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-
+/**
+ * The class illustrates a user object
+ *
+ * @author Julian Chan
+ */
 public class User {
 
     private Date firstDate;
@@ -98,6 +102,16 @@ public class User {
         this.winLossDraw[0] = tw;
         this.winLossDraw[1] = tl;
         this.winLossDraw[2] = td;
+    }
+    
+    public void addWinLossDraw(int i) {
+    	int[] temp = getWinLossDraw();
+    	temp[i] += 1;
+    	winLossDraw = temp;
+    }
+    
+    public int[] getWinLossDraw() {
+    	return winLossDraw;
     }
 
     //getters
