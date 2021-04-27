@@ -1522,6 +1522,8 @@ public class ArcadeMultiPlayer implements Initializable  {
 
     @FXML
     Label username2;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         User player1 = LoginControllerT2.getLoggedInPlayer(1);
