@@ -34,7 +34,7 @@ public class User {
        
     /**
      * Create a User object with specified arguments
-     * @param username
+     * @param userName
      * @param first name
      * @param last name
      */

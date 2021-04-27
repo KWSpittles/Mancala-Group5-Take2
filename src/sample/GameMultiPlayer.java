@@ -12,10 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+/**
+ * This class is used to run the Single player traditional mode.
+ * @author Kieren;
+ */
 
 public class GameMultiPlayer implements Initializable {
 
@@ -24,40 +28,47 @@ public class GameMultiPlayer implements Initializable {
     private Parent root;
 
     private Board gameBoard;
-
-    public boolean firstRound;
-    public int stones;
-    
-    //Declaration of player variables
     private static User player1;
     private static User player2;
+    public boolean firstRound;
+    public int stones;
 
+    /**
+     * Default constructor, Constructs a GameMultiPlayer which can be called with no arguments.
+     */
     public GameMultiPlayer() {
         gameBoard = new Board();
-//        playerNumber1 = 1;
-//        playerNumber2 = 2;
-        
-        //Initializing Player Objects
         player1 = new User();
         player2 = new User();
     }
 
-    public GameMultiPlayer(int stones) {
-        gameBoard = new Board(stones);
-//        playerNumber1 = 1;
-//        playerNumber2 = 2;
-        
-      //Initializing Player Objects
+    /**
+     * Constructor for GameMultiPlayer that allows you to specify the
+     * starting number of stones in each pit.
+     * @param stonesPerPit Number of stones each player will start with in each pit.
+     */
+    public GameMultiPlayer(int stonesPerPit) {
+        gameBoard = new Board(stonesPerPit);
         player1 = new User();
         player2 = new User();
     }
 
-    public GameMultiPlayer(int stones, User player1) {
-        gameBoard = new Board(stones);
+    /**
+     * Constructor for gameSinglePlayer. Allows you to specify the 2 players
+     * and the amount of starting stones per pit.
+     * @param stonesPerPit Number of stones each player will start with in each pit.
+     * @param player1 A User, player1
+     * @param player2 A User, player2
+     */
+    public GameMultiPlayer(int stonesPerPit, User player1, User player2) {
+        gameBoard = new Board(stonesPerPit);
         this.player1 = player1;
-        player2 = new User();
+        this.player2 = player2;
     }
-
+    /**
+     * Resets the gameBoard. Puts 4 stones in each pit, and 0 in each
+     * players store. Then displays the Board on the GUI.
+     */
     public void resetBoard() {
 
         gameBoard.getPlayer1Side().getPit(0).setPitValue(4);
@@ -98,6 +109,10 @@ public class GameMultiPlayer implements Initializable {
     @FXML
     Label username2;
 
+    /**
+     * Method to display the GUI. Displays the gameBoard on the GUI, displays a
+     * players profile picture and shows which players turn it is.
+     */
     public void displayBoard() {
         labelpit0.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(0).getPitValue()));
         labelpit1.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(1).getPitValue()));
@@ -150,56 +165,80 @@ public class GameMultiPlayer implements Initializable {
             buttonpit12.setStyle("-fx-border-color: green");
             labelpit13.setStyle("-fx-border-color: green");
         }
-
-//        Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
-//        imageview1.setImage(profilepic1);
-//
-//        Image profilepic2 = new Image(getClass().getResourceAsStream("/" + player2.getUserName() + ".jpg"),150,150,false,false);
-//        imageview2.setImage(profilepic2);
-//
-//        username1.setText(player1.getFirstName());
-//        username2.setText(player2.getFirstName());
-
-
     }
 
     @FXML
     public Button buttonpit0, buttonpit1,buttonpit2,buttonpit3,buttonpit4,buttonpit5,buttonpit7,buttonpit8,buttonpit9,buttonpit10,buttonpit11,buttonpit12;
     public Label store;
-
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit0() {
         validMove(gameBoard, true, 0);
     }
+    /**
+     * Method for player1's 2nd pit button. Gets player input and starts a turn.
+     */
     public void buttonpit1() {
         validMove(gameBoard, true, 1);
     }
+    /**
+     * Method for player1's 3rd pit button. Gets player input and starts a turn.
+     */
     public void buttonpit2() {
         validMove(gameBoard, true, 2);
     }
+    /**
+     * Method for player1's 4st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit3() {
         validMove(gameBoard, true, 3);
     }
+    /**
+     * Method for player1's 5th pit button. Gets player input and starts a turn.
+     */
     public void buttonpit4() {
         validMove(gameBoard, true, 4);
     }
+    /**
+     * Method for player1's 6th pit button. Gets player input and starts a turn.
+     */
     public void buttonpit5() {
         validMove(gameBoard, true, 5);
     }
+    /**
+     * Method for player2's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit7() {
         validMove(gameBoard, false, 0);
     }
+    /**
+     * Method for player2's 2nd pit button. Gets player input and starts a turn.
+     */
     public void buttonpit8() {
         validMove(gameBoard, false, 1 );
     }
+    /**
+     * Method for player2's 3rd pit button. Gets player input and starts a turn.
+     */
     public void buttonpit9() {
         validMove(gameBoard, false, 2);
     }
+    /**
+     * Method for player2's 4th pit button. Gets player input and starts a turn.
+     */
     public void buttonpit10() {
         validMove(gameBoard, false, 3);
     }
+    /**
+     * Method for player2's 5th pit button. Gets player input and starts a turn.
+     */
     public void buttonpit11() {
         validMove(gameBoard, false, 4);
     }
+    /**
+     * Method for player2's 6th pit button. Gets player input and starts a turn.
+     */
     public void buttonpit12() {
         validMove(gameBoard, false, 5);
     }
@@ -212,6 +251,10 @@ public class GameMultiPlayer implements Initializable {
     @FXML
     Label invalidTurnMessage;
 
+    /**
+     * Checks if the game is over. If it is it ends the game, Updates the GUI and updates WinLossDraw.
+     * @param gameBoard The current state of the board.
+     */
     public void checkGameOver(Board gameBoard){
 
         if (gameBoard.player1sideEmpty() | gameBoard.player2sideEmpty()){
@@ -251,11 +294,17 @@ public class GameMultiPlayer implements Initializable {
         }
         
     }
-    
 
 
 
-   
+    /**
+     *Checks if a given move is valid on a given turn. If it is it will execute the
+     * move starting from a particular pit. If not a relevant error message is displayed.
+     * @param gameBoard The current state of the board.
+     * @param player1Side Boolean to check which side the pit was on.
+     * @param pitPressed The starting pit.
+     */
+
 
     public void validMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
@@ -292,6 +341,10 @@ public class GameMultiPlayer implements Initializable {
         }
     }
 
+    /**
+     * Selects a player to start the game. 50% chance.
+     * Updates GUI to display whose turn.
+     */
     public void firstPlayer(){
         if(Math.random()>0.5){
         	player1.isCurrentTurn = true;
@@ -335,6 +388,14 @@ public class GameMultiPlayer implements Initializable {
 
     }
 
+
+    /**
+     * Executes the algorithm for a players turn. After a players turn
+     * it will make a move for the computer.
+     * @param gameBoard The current state of the board.
+     * @param player1Side Boolean to check which side the pit was on.
+     * @param pitPressed The starting pit.
+     */
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
         firstRound = true;
@@ -491,13 +552,15 @@ public class GameMultiPlayer implements Initializable {
     }
 
 
-
-
+    /**
+     * Initialises the Game, selects a first player,
+     * and then displays the updated GUI.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         User player1 = LoginControllerT2.getLoggedInPlayer(1);
         User player2 = LoginControllerT2.getLoggedInPlayer(2);
-        GameMultiPlayer gameMultiPlayer = new GameMultiPlayer(4, player1);
+        GameMultiPlayer gameMultiPlayer = new GameMultiPlayer(4, player1, player2);
         resetBoard();
 
         Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
@@ -508,13 +571,7 @@ public class GameMultiPlayer implements Initializable {
 
         username1.setText(player1.getFirstName());
         username2.setText(player2.getFirstName());
-
         gameover.setText("");
-
-
-
-
-        displayBoard();
 
         this.player1 = player1;
         this.player2 = player2;
@@ -523,7 +580,9 @@ public class GameMultiPlayer implements Initializable {
 
         invalidTurnMessage.setText("");
     }
-
+    /**
+     * Method to switch control of the GUI from GameSinglePlayer to Meny.
+     */
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
