@@ -1154,9 +1154,8 @@ public class ArcadeMultiPlayer implements Initializable  {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         User player1 = LoginControllerT2.getLoggedInPlayer(1);
         User player2 = LoginControllerT2.getLoggedInPlayer(2);
-        GameMultiPlayer gameMultiPlayer = new GameMultiPlayer(4, player1, player2);
+        ArcadeMultiPlayer arcadeMultiPlayer = new ArcadeMultiPlayer(4, player1, player2);
         resetBoard();
-        displayBoard();
 
         Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
         imageview1.setImage(profilepic1);
@@ -1168,9 +1167,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         username2.setText(player2.getFirstName());
         
         gameover.setText("");
-
-
-
 
         this.player1 = player1;
         this.player2 = player2;
@@ -1196,8 +1192,8 @@ public class ArcadeMultiPlayer implements Initializable  {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setWidth(720);
-        stage.setHeight(720);
+        stage.setWidth(900);
+        stage.setHeight(500);
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
