@@ -30,12 +30,11 @@ public class Main extends Application {
             stage.getIcons().add(new Image("https://cdn.asp.events/CLIENT_CL_Gamin_A45C4908_5056_B725_6B2249A7AD85625A/sites/iGB-Live-2020/media/libraries/exhibitors/3315D8BD-C9E8-F899-A2A622859897DC57-logo.jpg.png"));
             stage.setWidth(900);
             stage.setHeight(500);
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.centerOnScreen();
             //      stage.setFullScreen(true);
             //      stage.setFullScreenExitHint("Press 1 to escape :)");
             //      stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("1"));
-
 
             stage.setScene(scene);
 

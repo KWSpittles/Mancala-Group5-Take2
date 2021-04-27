@@ -14,12 +14,8 @@ public class Side {
         this.playerNumber = playerNumber;
     }
 
-
     public Hole getPit(int pitNumber){
         return playerPits[pitNumber];
     }
-
-
-
 
 }

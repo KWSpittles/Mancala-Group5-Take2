@@ -18,7 +18,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class Tutorial{
 
     int currentImage = 1;
@@ -34,11 +33,9 @@ public class Tutorial{
         if (currentImage == 10){
             currentImage = 1;
         }
-
         Image myImage = new Image(getClass().getResourceAsStream((currentImage) + ".png"));
         myImageView.setImage(myImage);
         System.out.println("current = " + currentImage);
-
     }
 
     public void prevImage() {
@@ -47,11 +44,9 @@ public class Tutorial{
         if (currentImage == 0) {
             currentImage = 9;
         }
-
         Image myImage = new Image(getClass().getResourceAsStream((currentImage) + ".png"));
         myImageView.setImage(myImage);
         System.out.println("current = " + currentImage);
-
     }
 
     private Stage stage;
