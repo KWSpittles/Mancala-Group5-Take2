@@ -203,6 +203,14 @@ public class GameMultiPlayer implements Initializable {
     public void buttonpit12() {
         validMove(gameBoard, false, 5);
     }
+    
+    @FXML 
+    Label gameover;
+    
+    @FXML
+    Label turnMessage;
+    @FXML
+    Label invalidTurnMessage;
 
     public void checkGameOver(Board gameBoard){
 
@@ -218,17 +226,36 @@ public class GameMultiPlayer implements Initializable {
                 gameBoard.setPitValue(false, i, 0);
                 gameBoard.Player1Store.setPitValue(store1 + value1);
                 gameBoard.Player2Store.setPitValue(store2 + value2);
-
+               
+            }
+            if (gameBoard.Player1Store.getPitValue() < gameBoard.Player2Store.getPitValue()) {
+            	gameover.setText("Player 2 Wins");
+            	turnMessage.setText("");
+            	player1.addWinLossDraw(1);
+            	player2.addWinLossDraw(0);
+            }
+            
+            if (gameBoard.Player1Store.getPitValue() > gameBoard.Player2Store.getPitValue()) {
+            	gameover.setText("Player 1 Wins");
+            	turnMessage.setText("");
+            	player1.addWinLossDraw(0);
+            	player2.addWinLossDraw(1);
+            }
+            
+            if (gameBoard.Player1Store.getPitValue() == gameBoard.Player2Store.getPitValue()) {
+            	gameover.setText("Draw");
+            	turnMessage.setText("");
+            	player1.addWinLossDraw(2);
+            	player2.addWinLossDraw(2);
             }
         }
+        
     }
+    
 
 
 
-    @FXML
-    Label turnMessage;
-    @FXML
-    Label invalidTurnMessage;
+   
 
     public void validMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
@@ -419,9 +446,10 @@ public class GameMultiPlayer implements Initializable {
 
         System.out.println("Flag K");
         player1.isCurrentTurn = !player1.isCurrentTurn;
+        displayBoard();
         checkGameOver(gameBoard);
         System.out.println(player1Side);
-        displayBoard();
+      
 
 
         if(player1.isCurrentTurn){
@@ -458,6 +486,7 @@ public class GameMultiPlayer implements Initializable {
             buttonpit12.setStyle("-fx-border-color: green");
             labelpit13.setStyle("-fx-border-color: green");
         }
+        checkGameOver(gameBoard);
         return;
     }
 
@@ -480,7 +509,7 @@ public class GameMultiPlayer implements Initializable {
         username1.setText(player1.getFirstName());
         username2.setText(player2.getFirstName());
 
-
+        gameover.setText("");
 
 
 

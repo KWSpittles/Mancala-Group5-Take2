@@ -43,10 +43,6 @@ public class LoginControllerT2 {
 	private static final User computer = new User("Computer","Computer","Computer","src/Computer.jpg");
 
 
-
-
-
-
 	@FXML
 	PasswordField pwField = new PasswordField();
 	@FXML 
@@ -300,7 +296,7 @@ public class LoginControllerT2 {
 
         FileChooser fileChooser = new FileChooser();
 
-        //Set extension filter
+        //Extension of image filters
         FileChooser.ExtensionFilter extFilterJPG
                 = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
         FileChooser.ExtensionFilter extFilterjpg
@@ -311,7 +307,8 @@ public class LoginControllerT2 {
                 = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
         fileChooser.getExtensionFilters()
                 .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
-        //Show open file dialog
+        
+        //Show open file dialog to choose picture
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
 
@@ -325,10 +322,8 @@ public class LoginControllerT2 {
 				ImageIO.write(profilePic, "jpg", outputfile);
 
 			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}

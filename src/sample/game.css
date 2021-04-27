@@ -26,7 +26,15 @@
 }
 
 
-
+#gameover{
+	-fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-text-fill: red;
+    -fx-font-family: "LM Mono 10";
+    -fx-font-size: 50px;
+    -fx-pref-width: 800px;
+   
+}
 
  #labelpit13{
      -fx-pref-width: 150px;
