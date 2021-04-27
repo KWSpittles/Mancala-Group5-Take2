@@ -149,7 +149,7 @@ public class MenuController implements Initializable {
         stage.setWidth(1220);
         stage.setHeight(1080);
         stage.centerOnScreen();
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         Tutorial tutorial = new Tutorial();
         stage.show();
@@ -175,8 +175,6 @@ public class MenuController implements Initializable {
     }
 
     public void player2SignInPage(ActionEvent event) throws IOException {
-
-
 
         root = FXMLLoader.load(getClass().getResource("player2SignInPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

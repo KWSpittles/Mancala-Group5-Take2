@@ -24,9 +24,6 @@ public class User {
     private int currentScore;
     private int playerNumber;
 
-
-
-
     //default no argument constructor
     public User () {userCount++;}
 
@@ -142,7 +139,6 @@ public class User {
     public int getsWinLossDraw(int i) {
         return winLossDraw[i];
     }
-
 
     //toString method
     public String toString() {
