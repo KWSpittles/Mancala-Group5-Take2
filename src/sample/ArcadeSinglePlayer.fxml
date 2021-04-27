@@ -168,6 +168,7 @@
                         <Label fx:id="turnMessage" layoutX="65.0" layoutY="118.0" prefHeight="94.0" prefWidth="1095.0" text="Label" />
                         <Label fx:id="invalidTurnMessage" layoutX="11.0" layoutY="249.0" prefHeight="84.0" prefWidth="1202.0" text="Label" />
                         <Label fx:id="gameover" layoutX="212.0" layoutY="23.0" prefHeight="59.0" prefWidth="234.0" text="Label" />
+                        <Button layoutX="529.0" layoutY="261.0" mnemonicParsing="false" onAction="#computerMove" text="Take Computer Turn" />
                     </children>
                 </AnchorPane>
             </center>

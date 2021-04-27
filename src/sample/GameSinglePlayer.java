@@ -170,9 +170,6 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
     }
 
-    public ArrayList<Integer> getComputersValidMoves(){
-        return computersValidMoves;
-    }
 
     @FXML
     public Button buttonpit0, buttonpit1,buttonpit2,buttonpit3,buttonpit4,buttonpit5,buttonpit7,buttonpit8,buttonpit9,buttonpit10,buttonpit11,buttonpit12;
@@ -393,12 +390,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
     }
 
-    /**
-     * Selects a random, non-empty pit for the computer AI
-     */
-    public void computerMove() {
-        validMove(gameBoard, false, getComputersMove(getComputersValidMoves()));
-    }
+
 
     public int getComputersMove(ArrayList<Integer> computersValidMoves){
         for (int i = 0; i <= 5; i++) {
@@ -411,6 +403,20 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         System.out.println(pitPressed);
 
         return pitPressed;
+    }
+
+
+    public ArrayList<Integer> getComputersValidMoves(){
+        return computersValidMoves;
+    }
+
+
+
+    /**
+     * Selects a random, non-empty pit for the computer AI
+     */
+    public void computerMove() {
+        validMove(gameBoard, false, getComputersMove(getComputersValidMoves()));
     }
 
 
@@ -469,6 +475,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                 }
                 firstRound = !firstRound;
             }
+
 
             if (stones > 0 && player1.isCurrentTurn) {
                 gameBoard.getPlayer1Store().incrementPitValue();
