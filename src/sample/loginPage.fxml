@@ -13,7 +13,7 @@
    <BorderPane layoutX="-4.0" layoutY="-4.0" prefHeight="518.0" prefWidth="909.0" style="-fx-background-color: #fff;" stylesheets="@main.css">
       <left>
          <Pane prefHeight="518.0" prefWidth="542.0" styleClass="linear-grad" BorderPane.alignment="CENTER">
-            <Label layoutX="72.0" layoutY="141.0" prefHeight="118.0" text="MANCALA" wrapText="true" textFill="WHITE">
+            <Label layoutX="72.0" layoutY="141.0" prefHeight="118.0" text="MANCALA" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="Segoe UI Light" size="80.0" />
                </font>
@@ -27,7 +27,7 @@
       </left>
       <center>
          <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-            <TextField  fx:id="idField" layoutX="59.0" layoutY="147.0" prefHeight="40.0" prefWidth="250.0" promptText="Username">
+            <TextField fx:id="idField" layoutX="59.0" layoutY="147.0" prefHeight="40.0" prefWidth="250.0" promptText="Username">
                <font>
                   <Font size="13.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Font size="13.0" />
                </font>
             </PasswordField>
-            <Button layoutX="184.0" layoutY="286.0" mnemonicParsing="false" onAction="#processPlayerLogin" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
+            <Button layoutX="59.0" layoutY="291.0" mnemonicParsing="false" onAction="#processPlayerLogin" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Label fx:id="subtitle" layoutX="59.0" layoutY="245.0" prefHeight="33.0" prefWidth="250.0" text="" style="color: red;">
+            <Label fx:id="subtitle" layoutX="59.0" layoutY="245.0" prefHeight="33.0" prefWidth="250.0" style="color: red;" text="">
                <font>
                   <Font name="Segoe UI" size="17.0" />
                </font>
