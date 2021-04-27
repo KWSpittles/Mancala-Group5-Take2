@@ -1,9 +1,9 @@
 playerID,userID,password,firstName,LastName,TotalWins,totalLost,totalDraw,Admin,Favourite
-1,admin,admin,tfN,lfN,2,4,6,true,null
-2,q,q,null,null,0,0,0,false,null
-3,itIs,>9000,null,null,0,0,0,false,null
-4,Dio,theWorld,null,null,0,0,0,false,null
-5,jojo,ola,null,null,0,0,0,false,null
-6,keran,whereIsManager,null,null,0,0,0,false,null
-7,snoop,420,null,null,0,0,0,false,null
+1,admin,admin,afN,alN,2,4,6,true,null
+2,q,q,cheng,chong,6,6,18,false,null
+3,itIs,>9000,Gu,koung,2,18,7,false,null
+4,Dio,theWorld,Doi,Bland,6,2,1,false,null
+5,jojo,ola,Josiph,Jotalo,7,6,2,false,null
+6,keran,whereIsManager,null,null,2,2,2,false,null
+7,snoop,420,Snoop,Dog,8,4,4,false,null
 
