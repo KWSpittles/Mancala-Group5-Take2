@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.net.Inet4Address;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -34,7 +36,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     private static User player2;
     public boolean firstRound;
     public int stonesInHand;
-    private static ArrayList<Integer> computersValidMoves;
+    private ArrayList<Integer> computersValidMoves;
 
     /**
      * Default constructor, Constructs a GameSinglePlayer which can be called with no arguments.
@@ -166,6 +168,10 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
             labelpit13.setStyle("-fx-border-color: green");
         }
 
+    }
+
+    public ArrayList<Integer> getComputersValidMoves(){
+        return computersValidMoves;
     }
 
     @FXML
@@ -390,14 +396,19 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     /**
      * Selects a random, non-empty pit for the computer AI
      */
-    public int getComputersMove(){
+    public void computerMove() {
+        validMove(gameBoard, false, getComputersMove(getComputersValidMoves()));
+    }
+
+    public int getComputersMove(ArrayList<Integer> computersValidMoves){
         for (int i = 0; i <= 5; i++) {
             if(gameBoard.getPitValue(false, i) != 0){
                 computersValidMoves.add(i);
             }
         }
-        int value = (int)Math.random()*computersValidMoves.size();
+        int value = (int)Math.random()*(computersValidMoves.size());
         int pitPressed = computersValidMoves.get(value);
+        System.out.println(pitPressed);
 
         return pitPressed;
     }
@@ -413,22 +424,23 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
         firstRound = true;
-        stonesInHand = gameBoard.getPitValue(player1Side, pitPressed);
+        stones = gameBoard.getPitValue(player1Side, pitPressed);
         gameBoard.setPitValue(player1Side, pitPressed, 0);
 
-        while(stonesInHand >0) {
+
+        while(stones>0) {
 
             if (!firstRound) {
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(true, i);
-                    stonesInHand--;
-                    if (stonesInHand == 0) {
+                    stones--;
+                    if (stones == 0) {
                         if (gameBoard.getPitValue(true, i)== 1) {
                             System.out.println("FLAG A");
                             break;
                         } else {
-                            stonesInHand = gameBoard.getPitValue(true, i);
+                            stones = gameBoard.getPitValue(true, i);
                             gameBoard.setPitValue(true, i, 0);
                             System.out.println("FLAG B");
                         }
@@ -441,16 +453,16 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     System.out.println(i);
                     gameBoard.incrementPitValue(true, i);
-                    stonesInHand--;
-                    System.out.println("Stones in hand = " + stonesInHand);
+                    stones--;
+                    System.out.println("Stones in hand = " + stones);
 
-                    if (stonesInHand == 0) {
+                    if (stones == 0) {
                         if (gameBoard.getPitValue(true, i) == 1) {
                             System.out.println("FLAG C");
                             break;
                         } else {
                             System.out.println("FLAG D");
-                            stonesInHand = gameBoard.getPitValue(true, i);
+                            stones = gameBoard.getPitValue(true, i);
                             gameBoard.setPitValue(true, i, 0);
                         }
                     }
@@ -458,10 +470,10 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                 firstRound = !firstRound;
             }
 
-            if (stonesInHand > 0 && player1.isCurrentTurn) {
+            if (stones > 0 && player1.isCurrentTurn) {
                 gameBoard.getPlayer1Store().incrementPitValue();
-                stonesInHand--;
-                if (stonesInHand == 0) {
+                stones--;
+                if (stones == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("Flag E");
@@ -469,17 +481,17 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                 }
             }
 
-            if (!firstRound && stonesInHand >0) {
+            if (!firstRound && stones>0) {
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
-                    stonesInHand--;
-                    if (stonesInHand == 0) {
+                    stones--;
+                    if (stones == 0) {
                         if (gameBoard.getPitValue(false, i) == 1) {
                             System.out.println("Flag F");
                             break;
                         } else {
-                            stonesInHand = gameBoard.getPitValue(false, i);
+                            stones = gameBoard.getPitValue(false, i);
                             gameBoard.setPitValue(false, i, 0);
                             System.out.println("Flag G");
                         }
@@ -487,17 +499,17 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                 }
             }
 
-            else if (!player1.isCurrentTurn && firstRound && stonesInHand >0) {
+            else if (!player1.isCurrentTurn && firstRound && stones>0) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
-                    stonesInHand--;
-                    if (stonesInHand == 0) {
+                    stones--;
+                    if (stones == 0) {
                         if (gameBoard.getPitValue(false, i) == 1) {
                             System.out.println("Flag H");
                             break;
                         } else {
-                            stonesInHand = gameBoard.getPitValue(false, i);
+                            stones = gameBoard.getPitValue(false, i);
                             gameBoard.setPitValue(false, i, 0);
                             System.out.println("Flag I");
                         }
@@ -506,42 +518,60 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                 firstRound = !firstRound;
             }
 
-            if (stonesInHand > 0 && !player1.isCurrentTurn) {
+            if (stones > 0 && !player1.isCurrentTurn) {
                 gameBoard.getPlayer2Store().incrementPitValue();
-                stonesInHand--;
-                if (stonesInHand == 0) {
+                stones--;
+                if (stones == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("Flag J");
                     return;
                 }
             }
-            
-            if(player1.isCurrentTurn) {
-                System.out.println("COMPUTERS TURN");
-                player1.isCurrentTurn = false;
-                displayBoard();
-                
-                //TimeUnit.SECONDS.sleep(5);
-                makeMove(gameBoard, false, getComputersMove());
-                player1.isCurrentTurn = true;
-                displayBoard();
-
-//                try {
-//                    TimeUnit.SECONDS.sleep(5);
-//                    makeMove(gameBoard, false, getComputersMove());
-//                    displayBoard();
-////                    player1.isCurrentTurn = true;
-////                    displayBoard();
-//
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-            }
         }
 
         System.out.println("Flag K");
+        player1.isCurrentTurn = !player1.isCurrentTurn;
         displayBoard();
+        checkGameOver(gameBoard);
+        System.out.println(player1Side);
+
+
+
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
+        }
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
         checkGameOver(gameBoard);
         return;
     }
@@ -564,6 +594,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         
         this.player1 = player1;
         this.player2 = player2;
+        this.computersValidMoves = new ArrayList<>();
 
         firstPlayer();
 
