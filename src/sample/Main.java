@@ -1,23 +1,31 @@
 package sample;
 
+/**
+ * This class is used to Run the program. Launches the GUI.
+ * @author Kieren Spittles
+ */
+
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    /**
+     * Main method. Launches program.
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Launches and customises the GUI, then displays the log in page.
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -51,6 +59,12 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Allows you to log out after displaying a confirmation box.
+     * @param stage The GUI.
+     */
+
 
     public void logout(Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
