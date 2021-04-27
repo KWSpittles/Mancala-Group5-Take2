@@ -16,7 +16,8 @@ public class User {
     private String lastName;
     private String profilePicture;
     private String password;
-    private int[] winLossDraw;
+    private String playerID;
+    private int[] winLossDraw = new int[3]; //@@@
     private static int userCount = 0; //counter to track the number of users
     private ArrayList<User> favUsers;
     public boolean isCurrentTurn;
@@ -28,13 +29,13 @@ public class User {
 
     //default no argument constructor
     public User () {userCount++;}
-    
-    public User (String userName, String first, String last){
-    	this.userName = userName;
-    	firstName = first;
-    	lastName = last;
 
-    	userCount++; //adds one to the user count each time the constructor is called
+    public User (String userName, String first, String last){
+        this.userName = userName;
+        firstName = first;
+        lastName = last;
+
+        userCount++; //adds one to the user count each time the constructor is called
     }
     //hei correct me if wrong shouldnt it be something like this?
 //    public User(int id, String userName, String password, String firstName, String lastName, boolean admin) {
@@ -45,77 +46,97 @@ public class User {
 //        this.lastName = lastName;
 //        this.admin = admin;
 //    }
-    
+
     //method to add favourite player to an ArrayList
-  	public void addfavUser(User user) {
-      	favUsers.add(user);
+    public void addfavUser(User user) {
+        favUsers.add(user);
     }
-  	
-  	//method to remove favourite player to an ArrayList
-  	public void removefavUser(User user) {
-      	favUsers.remove(user);
+
+    //method to remove favourite player to an ArrayList
+    public void removefavUser(User user) {
+        favUsers.remove(user);
     }
 
     //Setters
     public void setUserName(String UserName) {
-    	this.userName = UserName;
+        this.userName = UserName;
     }
 
     public void setfirstName(String firstName) {
-    	this.firstName = firstName;
+        this.firstName = firstName;
     }
 
     public void setlastName(String lastName) {
-    	this.lastName = lastName;
+        this.lastName = lastName;
     }
 
     //sets the password
     public void setPassword(String password) {
-    	this.password = password;
+        this.password = password;
+    }
+    //set setPlayerID
+    public void setPlayerID(String playerID) {
+        this.playerID = playerID;
     }
 
     public void setprofilePicture(String profilePicture) {
-    	this.profilePicture = profilePicture ;
+        this.profilePicture = profilePicture ;
     }
 
-    public void setwinLossDraw(int[] winLossDraw) {
-    	this.winLossDraw = winLossDraw;
+    //@@@
+    public void setWinLossDraw(String w, String l, String d) {
+        int tw =  Integer.parseInt(w);
+        int tl =  Integer.parseInt(l);
+        int td =  Integer.parseInt(d);
+        this.winLossDraw[0] = tw;
+        this.winLossDraw[1] = tl;
+        this.winLossDraw[2] = td;
     }
 
     //getters
     //get user name
     public String getUserName() {
-    	return userName;
+        return userName;
     }
 
     //get first name
     public String getFirstName() {
-    	return firstName;
+        return firstName;
     }
 
     //get last name
     public String getLastName() {
-    	return lastName;
+        return lastName;
     }
 
     //get password
     public String getPassword() {
-    	return password;
+        return password;
+    }
+    //get playerID
+    public String getplayerID() {
+        return playerID;
     }
 
     //needs to retrieve this info from login system
     public Date getFirstDate() {
-    	return firstDate;
+        return firstDate;
     }
 
     //gets the number of current users
     public static int getUserCount() {
-    	return userCount;
+        return userCount;
     }
+
+    //@@@ gets setWinLossDraw
+    public int getsWinLossDraw(int i) {
+        return winLossDraw[i];
+    }
+
 
     //toString method
     public String toString() {
-		return ("Username :" + userName + "\nFirst name :" + firstName + "\nLast name :" + lastName + "\nWins/Losses/Draws :"
-				+ Arrays.toString(winLossDraw));
-	}
+        return ("Username :" + userName + "\nFirst name :" + firstName + "\nLast name :" + lastName + "\nWins/Losses/Draws :"
+                + Arrays.toString(winLossDraw));
+    }
 }
