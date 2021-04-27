@@ -76,20 +76,20 @@ public class MenuController implements Initializable {
         System.out.println("You are now playing a game of Mancala! Enjoy");
     }
 
-//    public void switchToArcadeSinglePlayerGame(ActionEvent event) throws IOException {
-//        root = FXMLLoader.load(getClass().getResource("ArcadeSinglePlayer.fxml"));
-//        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.centerOnScreen();
-//        scene = new Scene(root);
-//        scene.getStylesheets().add("sample/game.css");
-//        stage.setScene(scene);
-//        stage.setWidth(1920);
-//        stage.setHeight(1080);
-//        stage.centerOnScreen();
-//        stage.setResizable(false);
-//        stage.show();
-//        System.out.println("You are now playing a game of Mancala! Enjoy");
-//    }
+    public void switchToArcadeSinglePlayerGame(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("ArcadeSinglePlayer.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.centerOnScreen();
+        scene = new Scene(root);
+        scene.getStylesheets().add("sample/game.css");
+        stage.setScene(scene);
+        stage.setWidth(1920);
+        stage.setHeight(1080);
+        stage.centerOnScreen();
+        stage.setResizable(false);
+        stage.show();
+        System.out.println("You are now playing a game of Mancala! Enjoy");
+    }
 
     public void setUpMultiplayerGame(ActionEvent event) throws IOException {
         // Check if there is already a player 2 logged in
@@ -128,6 +128,12 @@ public class MenuController implements Initializable {
         // Check if there is already a player 2 logged in
 
         switchToSinglePlayerGame(event);
+
+    }
+    public void setUpArcadeSingleplayerGame(ActionEvent event) throws IOException {
+        // Check if there is already a player 2 logged in
+
+        switchToArcadeSinglePlayerGame(event);
 
     }
 

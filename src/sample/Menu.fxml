@@ -51,7 +51,7 @@
                   </Pane>
                   <Pane layoutX="396.0" layoutY="209.0" prefHeight="200.0" prefWidth="170.0">
                      <children>
-                        <Button fx:id="btnSinglePlayer1" layoutX="35.0" layoutY="87.0" mnemonicParsing="false" onAction="#setUpSingleplayerGame" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Single Player" textFill="WHITE">
+                        <Button fx:id="btnSinglePlayer1" layoutX="35.0" layoutY="87.0" mnemonicParsing="false" onAction="#setUpArcadeSingleplayerGame" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Single Player" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI" size="13.0" />
                            </font>
