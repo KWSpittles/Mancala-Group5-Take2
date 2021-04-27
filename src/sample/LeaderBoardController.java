@@ -23,25 +23,21 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/***
+ * @author Hei
+ * @version 1.0LeaderBoardController for read userInfo fom file & display it
+ */
 public class LeaderBoardController implements Initializable {
-    //public static ArrayList<String> userData = new ArrayList<>();
+
     public static ArrayList<ArrayList<String>> userData = new ArrayList<>(1);
     public static ObservableList<User> list = null;
+    // TextArea leaderBoardText are for showing data for leaderboard
     @FXML
     TextArea leaderBoardText = new TextArea();
 
-
-    //stuff for tableView
-
-    TableView<User> leaderboard = new TableView<User>();
-    // Create column UserName (Data type of String).
-    TableColumn<User, String> playerIdCol = new TableColumn<User, String>("Player ID");
-    TableColumn<User, String> userNameCol = new TableColumn<User, String>("User Name");
-    TableColumn<User, String> totalWinsCol = new TableColumn<User, String>("Total Wins");
-    TableColumn<User, String> WinPercentageCol = new TableColumn<User, String>("Win Percentage");
-    TableColumn<User, String> rankCol = new TableColumn<User, String>("Rank");
-    TableColumn<User, String> favouriteCol = new TableColumn<User, String>("Favourite");
-
+    /**
+     * direct back to menu page
+     */
     public void switchBackToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -51,7 +47,11 @@ public class LeaderBoardController implements Initializable {
         stage.show();
     }
 
-
+    /**
+     * It read userData from file & display in TextArea
+     *-done by set text at textarea also reutrn that text
+     * @return table text.
+     */
     public String test() throws IOException { //!! it has to be test i finding why
         list = getUserList();
         String lText = new String();
@@ -62,17 +62,23 @@ public class LeaderBoardController implements Initializable {
                 lText=lText+"\t";
             }
             lText=lText+"\t\t"+list.get(i).getFirstName();
-            lText=lText+"\t\t"+list.get(i).getLastName();
+            if(list.get(i).getFirstName().length()<5){
+                lText=lText+"\t";
+            }
+            lText=lText+"\t"+list.get(i).getLastName();
+            if(list.get(i).getLastName().length()<5){
+                lText=lText+"\t";
+            }
             int w=list.get(i).getsWinLossDraw(0);
             int l=list.get(i).getsWinLossDraw(1);
             int d=list.get(i).getsWinLossDraw(2);
             lText=lText+"\t\t\t"+w;
             lText=lText+"\t\t\t"+l;
             lText=lText+"\t\t\t"+d;
-            if(w!=0||l+d!=0){ //cant divide 0
+            if(w!=0||l+d!=0){ //cuz cant divide 0
                 double ans = w/(w+l+d);
                 double rem = (w%(w+l+d))*0.1;
-                lText=lText+"\t\t\t"+(ans+rem);
+                lText=lText+"\t\t\t"+(String.format("%.2f", ans+rem));
             }
             else{
                 lText=lText+"\t\t\t"+0;
@@ -83,6 +89,9 @@ public class LeaderBoardController implements Initializable {
         return lText;
     }
 
+    /**
+     * It load data form file & load to userData<>
+     */
     public static void loadInfo (ActionEvent e) throws IOException {
         BufferedReader reader = null;
         String file = "src\\LeaderBoard.csv";
@@ -109,19 +118,27 @@ public class LeaderBoardController implements Initializable {
         }
     }
 
+    /**
+     * It search via userName and return user
+     * @param string as userID.
+     * @return scanner as row of user data.
+     */
     public static ArrayList searchUser(String uid){
         ArrayList scanner = new ArrayList();
         for (int i=0; i<userData.size()-1;i++){
             scanner = userData.get(i);
             if(scanner.get(1).equals(LoginControllerT2.userInfo)){
-//                System.out.println("found "+scanner.get(1));
-//                System.out.println(scanner);
                 return scanner;
             }
         }
         return scanner;
     }
 
+    /**
+     * It search via userID num and return user
+     * @param string as userID.
+     * @return scanner as row of user data.
+     */
     public static ArrayList getUser(String uid){
         ArrayList scanner = new ArrayList();
         for (int i=0; i<userData.size()-1;i++){
@@ -134,7 +151,11 @@ public class LeaderBoardController implements Initializable {
     }
 
 
-    //@@@
+    /**
+     * It is method for set data to obj user
+     * @param string as userID.
+     * @return obj user that fill with data
+     */
     public static User loadUser (String uid){
         ArrayList tem = getUser(uid);
         User newUser = new User();
@@ -147,6 +168,10 @@ public class LeaderBoardController implements Initializable {
         return newUser;
     }
 
+    /**
+     * It fill all user in list<> from </>userData<>
+     * @return list that store all user
+     */
     public static ObservableList getUserList() throws IOException {
         ObservableList<User> list = FXCollections.observableArrayList();
 
@@ -159,6 +184,10 @@ public class LeaderBoardController implements Initializable {
         return list;
     }
 
+    /**
+     * It is method for initialize action
+     * -it execute wheil leadeerBoard page loadedq  q
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -168,16 +197,6 @@ public class LeaderBoardController implements Initializable {
         }
     }
 
-
-//    public static User getUserList(){
-//        ArrayList tem = searchUser(LoginControllerT2.userInfo);
-//        User newUser = new User();
-//        newUser.setUserName((String) tem.get(1));
-//        newUser.setPassword((String) tem.get(2));
-//        newUser.setfirstName((String) tem.get(4));
-//        newUser.setlastName((String) tem.get(5));
-//        return newUser;
-//    }
 }
 
 
