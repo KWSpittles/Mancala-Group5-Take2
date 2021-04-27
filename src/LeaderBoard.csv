@@ -6,4 +6,3 @@ playerID,userID,password,firstName,LastName,TotalWins,totalLost,totalDraw,Admin,
 5,jojo,ola,null,null,0,0,0,false,null
 6,keran,whereIsManager,null,null,0,0,0,false,null
 7,snoop,420,null,null,0,0,0,false,null
-
