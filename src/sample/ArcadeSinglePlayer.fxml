@@ -16,7 +16,6 @@
             <children>
                 <ImageView fx:id="imageview1" fitHeight="178.0" fitWidth="217.0" layoutX="43.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1587.0" pickOnBounds="true" preserveRatio="true" />
-                <ImageView fx:id="imageview2" fitHeight="202.0" fitWidth="268.0" layoutX="1574.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
                 <ImageView fx:id="imageview2" fitHeight="178.0" fitWidth="217.0" layoutX="1669.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Computer.jpg" />
