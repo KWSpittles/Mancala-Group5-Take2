@@ -27,7 +27,7 @@ public class LoginControllerT2 {
 	public String inputId;
 	private BufferedImage profilePic;
 	private URL imageURL;
-	private String outputURL;
+	//private URL outputURL;
 
 	public static final String USERS_CSV_FILE = "src" + File.separator + "UserInfo.csv";
 
@@ -127,7 +127,7 @@ public class LoginControllerT2 {
 		String username  = userNameField.getText();
 		String password  = passwordField.getText();
 		uploadImage(e, username);
-		String profilePic = outputURL;
+		URL profilePic = imageURL;
 
 		// Check that data was entered
 		if(username.isBlank() || password.isBlank()) {
@@ -150,7 +150,7 @@ public class LoginControllerT2 {
 		System.out.println("Last name: " + lastName);
 		System.out.println("Username: " + username);
 		System.out.println("Password: " + password);
-		System.out.println("Profile Picture:" + outputURL);
+		System.out.println();
 
 
 		try {
@@ -174,7 +174,7 @@ public class LoginControllerT2 {
 					lastName + "," +
 					username + "," +
 					password + "," +
-					profilePic + "\n";
+					profilePic.toString() + "\n";
 
 			buffer.write(data);
 			buffer.close();
@@ -316,7 +316,7 @@ public class LoginControllerT2 {
 				imageURL = file.toURI().toURL();
 				System.out.println(file.toURI());
 				File outputfile = new File("src\\" + userName + ".jpg");
-				outputURL = "src\\" + userName + ".jpg";
+				//outputURL = new File("src\\" + userName + ".jpg").toURI().toURL();
 				ImageIO.write(profilePic, "jpg", outputfile);
 
 			} catch (MalformedURLException e1) {

@@ -1523,20 +1523,22 @@ public class ArcadeMultiPlayer implements Initializable  {
     }
 
 
+    //continue && double buttons
 
     @FXML
     public void continueTurnOn(ActionEvent e){
+        continueTurnButton = true;
 
         System.out.println("111");
 
     }
 
     public void doublePointsOn(ActionEvent e){
+        continueTurnButton = false;
 
         System.out.println("222");
 
     }
-
 
     private boolean continueTurnButton;
     private boolean doublePointsButton;
