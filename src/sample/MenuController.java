@@ -131,6 +131,7 @@ public class MenuController {
         stage.setTitle("Leaderboard");
         stage.setScene(scene);
         stage.show();
+        LeaderBoardController.loadData(event);
     }
 
     public void switchToTutorial(ActionEvent event) throws IOException {

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,15 +18,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class LeaderBoardController {
+public class LeaderBoardController implements Initializable {
     //public static ArrayList<String> userData = new ArrayList<>();
+    public static ArrayList<ArrayList<String>> userData = new ArrayList<>(1);
+    public static ObservableList<User> list = null;
     @FXML
     TextArea leaderBoardText = new TextArea();
-    //public static ArrayList[][] userData = new ArrayList[10][];
-    public static ArrayList<ArrayList<String>> userData = new ArrayList<>(1);
+
+
     //stuff for tableView
 
     TableView<User> leaderboard = new TableView<User>();
@@ -46,21 +51,9 @@ public class LeaderBoardController {
         stage.show();
     }
 
-    public void test(ActionEvent event) throws IOException { //!! it has to be test i finding why
-//        //System.out.println(LoginControllerT2.userInfo);
-//        // Defines how to fill data for each cell.
-//        // Get value from property of UserAccount. .
-//        playerIdCol.setCellValueFactory(new PropertyValueFactory<>("Player ID"));
-//        userNameCol.setCellValueFactory(new PropertyValueFactory<>("User Name"));
-//        totalWinsCol.setCellValueFactory(new PropertyValueFactory<>("Total Wins"));
-//        WinPercentageCol.setCellValueFactory(new PropertyValueFactory<>("Win Percentage"));
-//        rankCol.setCellValueFactory(new PropertyValueFactory<>("Rank"));
-//        favouriteCol.setCellValueFactory(new PropertyValueFactory<>("Favourite"));
-//        // Display row data
-//        leaderboard.getColumns().addAll(playerIdCol,userNameCol,totalWinsCol,WinPercentageCol,rankCol, favouriteCol);
-        ObservableList<User> list = getUserList();
-        leaderboard.setItems(list);
 
+    public String test() throws IOException { //!! it has to be test i finding why
+        list = getUserList();
         String lText = new String();
         for (int i=0; i< list.size()-1;i++){
             lText=lText+"\t"+list.get(i).getplayerID();
@@ -86,8 +79,8 @@ public class LeaderBoardController {
             }
             lText=lText+"\n";
         }
-//        System.out.println(lText);
         leaderBoardText.setText(lText);
+        return lText;
     }
 
     public static void loadInfo (ActionEvent e) throws IOException {
@@ -164,6 +157,15 @@ public class LeaderBoardController {
 //            System.out.println(loadUser(String.valueOf(i)));
         }
         return list;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            test();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
