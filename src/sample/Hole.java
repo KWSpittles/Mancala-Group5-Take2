@@ -2,18 +2,16 @@ package sample;
 
 /**
  * Class to control the pit values
- * like setting and getting them
- * and also incrementing them
+ * Includes getting, setting and incrementing values.
  *
- * @author
+ * @author Kieran
  */
 public class Hole {
 
     private int pitValue;
 
-
     /**
-     * Constructor to set the default pit value
+     * Constructor to set the default pit value at start of the game
      */
     public Hole() {
         this.pitValue = 0;
@@ -71,7 +69,7 @@ public class Hole {
     }
 
     /**
-     * Method for clearing the pit values
+     * Method clears the pit values.
      */
     public void clearPitValue() {
         this.pitValue = 0;
