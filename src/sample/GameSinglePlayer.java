@@ -92,8 +92,6 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     @FXML
     ImageView imageview1;
 
-    @FXML
-    ImageView imageview2;
 
 
     public void displayBoard() {
@@ -116,8 +114,8 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
         imageview1.setImage(profilepic1);
 
-        Image profilepic2 = new Image(getClass().getResourceAsStream("/Computer.jpg"),150,150,false,false);
-        imageview2.setImage(profilepic2);
+//        Image profilepic2 = new Image(getClass().getResourceAsStream("/Computer.jpg"),150,150,false,false);
+//        imageview2.setImage(profilepic2);
 
 
         System.out.println("You have displayed a new Board");

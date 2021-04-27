@@ -85,7 +85,19 @@ public class GameMultiPlayer implements Initializable {
 
     @FXML
     public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13;
-   
+
+    @FXML
+    ImageView imageview1;
+
+    @FXML
+    ImageView imageview2;
+
+    @FXML
+    Label username1;
+
+    @FXML
+    Label username2;
+
     public void displayBoard() {
         labelpit0.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(0).getPitValue()));
         labelpit1.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(1).getPitValue()));
@@ -138,6 +150,17 @@ public class GameMultiPlayer implements Initializable {
             buttonpit12.setStyle("-fx-border-color: green");
             labelpit13.setStyle("-fx-border-color: green");
         }
+
+//        Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
+//        imageview1.setImage(profilepic1);
+//
+//        Image profilepic2 = new Image(getClass().getResourceAsStream("/" + player2.getUserName() + ".jpg"),150,150,false,false);
+//        imageview2.setImage(profilepic2);
+//
+//        username1.setText(player1.getFirstName());
+//        username2.setText(player2.getFirstName());
+
+
     }
 
     @FXML
@@ -447,6 +470,21 @@ public class GameMultiPlayer implements Initializable {
         User player2 = LoginControllerT2.getLoggedInPlayer(2);
         GameMultiPlayer gameMultiPlayer = new GameMultiPlayer(4, player1);
         resetBoard();
+
+        Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
+        imageview1.setImage(profilepic1);
+
+        Image profilepic2 = new Image(getClass().getResourceAsStream("/" + player2.getUserName() + ".jpg"),150,150,false,false);
+        imageview2.setImage(profilepic2);
+
+        username1.setText(player1.getFirstName());
+        username2.setText(player2.getFirstName());
+
+
+
+
+
+
         displayBoard();
 
         this.player1 = player1;

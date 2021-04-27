@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -10,7 +11,13 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GameMultiPlayer">
     <top>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@game.css" BorderPane.alignment="CENTER" />
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@game.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="imageview1" fitHeight="150.0" fitWidth="200.0" layoutX="53.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageview2" fitHeight="211.0" fitWidth="251.0" layoutX="1605.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="username1" layoutX="290.0" layoutY="74.0" text="Label" />
+            <Label fx:id="username2" layoutX="1479.0" layoutY="92.0" text="Label" />
+         </children></AnchorPane>
     </top>
     <left>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
