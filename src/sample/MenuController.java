@@ -3,16 +3,21 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MenuController {
+public class MenuController implements Initializable {
 
     public Label subtitle;
     public TextField usernameField;
@@ -101,6 +106,9 @@ public class MenuController {
         }
     }
 
+
+
+
     public void setUpArcadeMultiplayerGame(ActionEvent event) throws IOException {
         // Check if there is already a player 2 logged in
         User player2 = LoginControllerT2.getLoggedInPlayer(2);
@@ -142,7 +150,7 @@ public class MenuController {
         stage.setWidth(1220);
         stage.setHeight(1080);
         stage.centerOnScreen();
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setScene(scene);
         Tutorial tutorial = new Tutorial();
         stage.show();
@@ -168,6 +176,7 @@ public class MenuController {
     }
 
     public void player2SignInPage(ActionEvent event) throws IOException {
+
         root = FXMLLoader.load(getClass().getResource("player2SignInPage.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.centerOnScreen();
@@ -184,7 +193,7 @@ public class MenuController {
         stage.show();
     }
 
-    public void player2SignInSubmit(ActionEvent event) throws IOException {
+    public void player2SignInSubmitTraditional(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
         boolean loggedIn = LoginControllerT2.loginAttempt(username, password, subtitle);
@@ -192,6 +201,16 @@ public class MenuController {
             setUpMultiplayerGame(event);
         }
     }
+
+    public void player2SignInSubmitArcade(ActionEvent event) throws IOException {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        boolean loggedIn = LoginControllerT2.loginAttempt(username, password, subtitle);
+        if(loggedIn) {
+            setUpArcadeMultiplayerGame(event);
+        }
+    }
+
     public void player2ArcadeSignInSubmit(ActionEvent event) throws IOException {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -206,6 +225,19 @@ public class MenuController {
     }
 
     public void switchToPlayerMenu(ActionEvent event) throws IOException {
+
+
         new LoginControllerT2().switchToPlayerMenu(event);
+    }
+
+    @FXML
+    ImageView menuProfileImg;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
     }
 }

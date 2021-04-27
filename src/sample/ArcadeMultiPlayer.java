@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -1494,7 +1496,17 @@ public class ArcadeMultiPlayer implements Initializable  {
     public void incrementFrequencyValue(){
         this.frequencyOfPowerUpsAndSpecialStone += 1;
     }
+    @FXML
+    ImageView imageview1;
 
+    @FXML
+    ImageView imageview2;
+
+    @FXML
+    Label username1;
+
+    @FXML
+    Label username2;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         User player1 = LoginControllerT2.getLoggedInPlayer(1);
@@ -1502,6 +1514,18 @@ public class ArcadeMultiPlayer implements Initializable  {
         ArcadeMultiPlayer ArcadeMultiPlayer = new ArcadeMultiPlayer(4, player1);
         resetBoard();
         displayBoard();
+
+        Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
+        imageview1.setImage(profilepic1);
+
+        Image profilepic2 = new Image(getClass().getResourceAsStream("/" + player2.getUserName() + ".jpg"),150,150,false,false);
+        imageview2.setImage(profilepic2);
+
+        username1.setText(player1.getFirstName());
+        username2.setText(player2.getFirstName());
+
+
+
 
         this.player1 = player1;
         this.player2 = player2;
