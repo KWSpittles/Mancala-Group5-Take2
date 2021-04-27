@@ -576,7 +576,8 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         return;
     }
 
-
+    @FXML
+    Label firstName1, firstName2;
     /**
      * Initialises the Game, selects a first player,
      * and then displays the updated GUI.
@@ -589,8 +590,13 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         GameSinglePlayer gameMultiPlayer = new GameSinglePlayer(4, player1, player2);
         resetBoard();
         displayBoard();
+        firstName1.setText(player1.getFirstName());
+        firstName2.setText(player2.getFirstName());
+        username1.setText(player1.getUserName());
+        username2.setText(player2.getUserName());
 
         gameover.setText("");
+
         
         this.player1 = player1;
         this.player2 = player2;

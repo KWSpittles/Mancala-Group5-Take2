@@ -1145,7 +1145,8 @@ public class ArcadeMultiPlayer implements Initializable  {
         this.frequencyOfPowerUpsAndSpecialStone += 1;
     }
 
-
+    @FXML
+    Label firstName1, firstName2;
     /**
      * Initialises the Game, selects a first player,
      * and then displays the updated GUI.
@@ -1163,6 +1164,8 @@ public class ArcadeMultiPlayer implements Initializable  {
         Image profilepic2 = new Image(getClass().getResourceAsStream("/" + player2.getUserName() + ".jpg"),150,150,false,false);
         imageview2.setImage(profilepic2);
 
+        firstName1.setText(player1.getFirstName());
+        firstName2.setText(player2.getFirstName());
         username1.setText(player1.getFirstName());
         username2.setText(player2.getFirstName());
         

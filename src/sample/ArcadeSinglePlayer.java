@@ -1074,6 +1074,10 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
      * Initialises the Game, selects a first player,
      * and then displays the updated GUI.
      */
+
+    @FXML
+    Label firstName1, firstName2;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -1082,6 +1086,12 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         ArcadeSinglePlayer arcadeSinglePlayer = new ArcadeSinglePlayer(4, player1, player2);
         resetBoard();
         displayBoard();
+
+        firstName1.setText(player1.getFirstName());
+        firstName2.setText(player2.getFirstName());
+        username1.setText(player1.getUserName());
+        username2.setText(player2.getUserName());
+
 
         gameover.setText("");
 
