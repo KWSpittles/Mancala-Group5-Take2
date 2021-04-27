@@ -197,6 +197,14 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     public void buttonpit12() {
         validMove(gameBoard, false, 5);
     }
+    
+    @FXML 
+    Label gameover;
+    
+    @FXML
+    Label turnMessage;
+    @FXML
+    Label invalidTurnMessage;
 
     public void checkGameOver(Board gameBoard){
 
@@ -214,15 +222,29 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                 gameBoard.Player2Store.setPitValue(store2 + value2);
 
             }
+            if (gameBoard.Player1Store.getPitValue() < gameBoard.Player2Store.getPitValue()) {
+            	gameover.setText("Player 2 Wins");
+            	turnMessage.setText("");
+            	player1.addWinLossDraw(1);
+            	player2.addWinLossDraw(0);
+            }
+            
+            if (gameBoard.Player1Store.getPitValue() > gameBoard.Player2Store.getPitValue()) {
+            	gameover.setText("Player 1 Wins");
+            	turnMessage.setText("");
+            	player1.addWinLossDraw(0);
+            	player2.addWinLossDraw(1);
+            }
+            
+            if (gameBoard.Player1Store.getPitValue() == gameBoard.Player2Store.getPitValue()) {
+            	gameover.setText("Draw");
+            	turnMessage.setText("");
+            	player1.addWinLossDraw(2);
+            	player2.addWinLossDraw(2);
+            }
         }
     }
 
-
-
-    @FXML
-    Label turnMessage;
-    @FXML
-    Label invalidTurnMessage;
 
     public void validMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
@@ -298,6 +320,8 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
             //MAKE MOVE TODO
         }
+        checkGameOver(gameBoard);
+        return;
 
 
     }
@@ -422,33 +446,33 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
                     return;
                 }
             }
-        }
-
-        System.out.println("Flag K");
-
-        checkGameOver(gameBoard);
-
-
-        displayBoard();
-
-
-        if(player1.isCurrentTurn == true) {
-            System.out.println("COMPUTERS TURN");
-            player1.isCurrentTurn = false;
-            displayBoard();
-
-            try {
-                TimeUnit.SECONDS.sleep(5);
-                makeMove(gameBoard, false, getComputersMove());
+            
+            if(player1.isCurrentTurn) {
+                System.out.println("COMPUTERS TURN");
+                player1.isCurrentTurn = false;
                 displayBoard();
+                
+                //TimeUnit.SECONDS.sleep(5);
+                makeMove(gameBoard, false, getComputersMove());
                 player1.isCurrentTurn = true;
                 displayBoard();
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+//                try {
+//                    TimeUnit.SECONDS.sleep(5);
+//                    makeMove(gameBoard, false, getComputersMove());
+//                    displayBoard();
+////                    player1.isCurrentTurn = true;
+////                    displayBoard();
+//
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
             }
         }
 
+        System.out.println("Flag K");
+        displayBoard();
+        checkGameOver(gameBoard);
         return;
     }
 
@@ -464,7 +488,8 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         resetBoard();
         displayBoard();
 
-
+        gameover.setText("");
+        
         this.player1 = player1;
         this.player2 = player2;
 

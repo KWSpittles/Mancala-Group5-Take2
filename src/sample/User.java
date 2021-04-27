@@ -1,13 +1,16 @@
 package sample;
 
 import javafx.scene.image.Image;
-
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+/**
+ * The class illustrates a User profile
+ * @author Julian Chan
+ */
 public class User {
 
     private Date firstDate;
@@ -24,17 +27,31 @@ public class User {
     private int currentScore;
     private int playerNumber;
 
-    //default no argument constructor
+    /**
+     * Create a no-argument constructor
+     */
     public User () {userCount++;}
-
+       
+    /**
+     * Create a User object with specified arguments
+     * @param username
+     * @param first name
+     * @param last name
+     */
     public User (String userName, String first, String last){
         this.userName = userName;
         firstName = first;
         lastName = last;
-
         userCount++; //adds one to the user count each time the constructor is called
     }
-
+        
+    /**
+     * Create a User object with specified arguments
+     * @param username
+     * @param first name
+     * @param last name
+     * @param URL of profile picture
+     */
     public User (String userName, String first, String last, String url){
         this.userName = userName;
         firstName = first;
@@ -44,53 +61,77 @@ public class User {
         userCount++; //adds one to the user count each time the constructor is called
     }
 
-    //hei correct me if wrong shouldnt it be something like this?
-//    public User(int id, String userName, String password, String firstName, String lastName, boolean admin) {
-//        this.id = id;
-//        this.userName = userName;
-//        this.password = password;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.admin = admin;
-//    }
-
-    //method to add favourite player to an ArrayList
+    /**
+     * Method to add favourite players
+     * @param User
+     */
     public void addfavUser(User user) {
         favUsers.add(user);
     }
 
-    //method to remove favourite player to an ArrayList
+    /**
+     * Method to remove favourite players
+     * @param User
+     */
     public void removefavUser(User user) {
         favUsers.remove(user);
     }
 
-    //Setters
+    /**
+     * Set the username
+     * @param username
+     */
     public void setUserName(String UserName) {
         this.userName = UserName;
     }
-
+    
+    /**
+     * Set the first name
+     * @param first name
+     */
     public void setfirstName(String firstName) {
         this.firstName = firstName;
     }
-
+    
+    
+    /**
+     * Set the last name
+     * @param first name
+     */
     public void setlastName(String lastName) {
         this.lastName = lastName;
     }
 
-    //sets the password
+    /**
+     * Set the last name
+     * @param first name
+     */
     public void setPassword(String password) {
         this.password = password;
     }
-    //set setPlayerID
+    
+    /**
+     * Set the unique player ID
+     * @param player ID
+     */
     public void setPlayerID(String playerID) {
         this.playerID = playerID;
     }
-
+    
+    /**
+     * Set the URL String of the profile picture
+     * @param URL String of the profile picture
+     */
     public void setprofilePicture(String profilePicture) {
         this.profilePicture = profilePicture ;
     }
 
-    //@@@
+    /**
+     * Set the wins,losses and draws for a user
+     * @param wins
+     * @param losses
+     * @param draws
+     */
     public void setWinLossDraw(String w, String l, String d) {
         int tw =  Integer.parseInt(w);
         int tl =  Integer.parseInt(l);
@@ -99,45 +140,87 @@ public class User {
         this.winLossDraw[1] = tl;
         this.winLossDraw[2] = td;
     }
+    
+    /**
+     * Method to add and update the wins, losses and
+     * draws for users
+     * @param integer representing wins,losses or draws
+     */
+    public void addWinLossDraw(int i) {
+    	int[] temp = getWinLossDraw();
+    	temp[i] += 1;
+    	winLossDraw = temp;
+    }
+    
+    /**
+     * Get the wins,losses and draws of a user
+     * draws for players
+     * @return wins,losses,draws of a user
+     */
+    public int[] getWinLossDraw() {
+    	return winLossDraw;
+    }
+    
+    /**
+     * Get the wins/losses/draws
+     * @param integer representing wins/losses/draws
+     * @return wins/losses/draws of a user
+     */
+    public int getsWinLossDraw(int i) {
+        return winLossDraw[i];
+    }
 
-    //getters
-    //get user name
+    /**
+     * Get the username
+     * @return username
+     */
     public String getUserName() {
         return userName;
     }
 
-    //get first name
+    /**
+     * Get the first name
+     * @return first name
+     */
     public String getFirstName() {
         return firstName;
     }
 
-    //get last name
+    /**
+     * Get the last name
+     * @return last name
+     */
     public String getLastName() {
         return lastName;
     }
 
-    //get password
+    /**
+     * Get the password
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
-    //get playerID
+    
+    /**
+     * Get the unique player ID
+     * @return player ID
+     */
     public String getplayerID() {
         return playerID;
     }
-
+    
     //needs to retrieve this info from login system
     public Date getFirstDate() {
         return firstDate;
     }
-
-    //gets the number of current users
+    
+    /**
+     * Get the number of users in the system
+     * @return number of users
+     */
     public static int getUserCount() {
         return userCount;
-    }
-
-    //@@@ gets setWinLossDraw
-    public int getsWinLossDraw(int i) {
-        return winLossDraw[i];
     }
 
     //toString method
