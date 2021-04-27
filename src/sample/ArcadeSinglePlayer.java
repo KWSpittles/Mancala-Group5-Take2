@@ -1071,11 +1071,14 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         User player1 = LoginControllerT2.getLoggedInPlayer(1);
         User player2 = LoginControllerT2.getComputer();
-        GameSinglePlayer gameMultiPlayer = new GameSinglePlayer(4, player1, player2);
+        ArcadeSinglePlayer arcadeSinglePlayer = new ArcadeSinglePlayer(4, player1, player2);
         resetBoard();
         displayBoard();
+
+        gameover.setText("");
 
         this.player1 = player1;
         this.player2 = player2;
