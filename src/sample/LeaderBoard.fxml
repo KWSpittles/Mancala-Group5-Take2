@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -31,12 +32,14 @@
                 <children>
                     <TableView fx:id="leaderboard" layoutX="1.0" onSort="#test" prefHeight="392.0" prefWidth="648.0">
                         <columns>
-                            <TableColumn prefWidth="109.60003507137299" text="Player ID" />
-                            <TableColumn prefWidth="140.80005645751953" text="Username" />
-                            <TableColumn prefWidth="88.00009155273438" text="Total Wins" />
-                            <TableColumn fx:id="t" prefWidth="107.2000732421875" text="Win Percentage" />
-                            <TableColumn prefWidth="84.80001831054688" sortType="DESCENDING" text="Rank" />
-                            <TableColumn prefWidth="109.60009765625" text="Favourite" />
+                            <TableColumn prefWidth="64.66665649414062" text="Player ID" />
+                            <TableColumn prefWidth="76.66668701171875" text="Username" />
+                            <TableColumn prefWidth="75.33334350585938" text="First Name" />
+                            <TableColumn prefWidth="78.00006103515625" sortType="DESCENDING" text="Last name" />
+                            <TableColumn maxWidth="500.0" prefWidth="71.3333740234375" text="Total Wins" />
+                     <TableColumn prefWidth="74.66668701171875" text="Total Lose" />
+                     <TableColumn prefWidth="80.00006103515625" text="Total Draw" />
+                            <TableColumn fx:id="t" prefWidth="95.3333740234375" text="Win Percentage" />
                         </columns>
                     </TableView>
                     <Button fx:id="btnBackToMenuLB" layoutX="275.0" layoutY="422.0" mnemonicParsing="false" onAction="#switchBackToMenu" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Back to Menu" textFill="WHITE">
@@ -49,6 +52,7 @@
                      <Font name="Segoe UI" size="13.0" />
                   </font>
                </Button>
+               <TextArea fx:id="leaderBoardText" layoutY="26.0" prefHeight="365.0" prefWidth="650.0" text="N/A" />
                 </children>
             </Pane>
         </center>

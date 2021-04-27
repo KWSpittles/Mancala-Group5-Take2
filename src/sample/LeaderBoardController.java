@@ -3,12 +3,14 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -20,7 +22,8 @@ import java.util.Objects;
 
 public class LeaderBoardController {
     //public static ArrayList<String> userData = new ArrayList<>();
-
+    @FXML
+    TextArea leaderBoardText = new TextArea();
     //public static ArrayList[][] userData = new ArrayList[10][];
     public static ArrayList<ArrayList<String>> userData = new ArrayList<>(1);
     //stuff for tableView
@@ -43,21 +46,48 @@ public class LeaderBoardController {
         stage.show();
     }
 
-    public void test(ActionEvent event) throws IOException {
-        //System.out.println(LoginControllerT2.userInfo);
-        // Defines how to fill data for each cell.
-        // Get value from property of UserAccount. .
-        playerIdCol.setCellValueFactory(new PropertyValueFactory<>("Player ID"));
-        userNameCol.setCellValueFactory(new PropertyValueFactory<>("User Name"));
-        totalWinsCol.setCellValueFactory(new PropertyValueFactory<>("Total Wins"));
-        WinPercentageCol.setCellValueFactory(new PropertyValueFactory<>("Win Percentage"));
-        rankCol.setCellValueFactory(new PropertyValueFactory<>("Rank"));
-        favouriteCol.setCellValueFactory(new PropertyValueFactory<>("Favourite"));
-        // Display row data
+    public void test(ActionEvent event) throws IOException { //!! it has to be test i finding why
+//        //System.out.println(LoginControllerT2.userInfo);
+//        // Defines how to fill data for each cell.
+//        // Get value from property of UserAccount. .
+//        playerIdCol.setCellValueFactory(new PropertyValueFactory<>("Player ID"));
+//        userNameCol.setCellValueFactory(new PropertyValueFactory<>("User Name"));
+//        totalWinsCol.setCellValueFactory(new PropertyValueFactory<>("Total Wins"));
+//        WinPercentageCol.setCellValueFactory(new PropertyValueFactory<>("Win Percentage"));
+//        rankCol.setCellValueFactory(new PropertyValueFactory<>("Rank"));
+//        favouriteCol.setCellValueFactory(new PropertyValueFactory<>("Favourite"));
+//        // Display row data
+//        leaderboard.getColumns().addAll(playerIdCol,userNameCol,totalWinsCol,WinPercentageCol,rankCol, favouriteCol);
         ObservableList<User> list = getUserList();
         leaderboard.setItems(list);
 
-        leaderboard.getColumns().addAll(playerIdCol,userNameCol,totalWinsCol,WinPercentageCol,rankCol, favouriteCol);
+        String lText = new String();
+        for (int i=0; i< list.size()-1;i++){
+            lText=lText+"\t"+list.get(i).getplayerID();
+            lText=lText+"\t\t"+list.get(i).getUserName();
+            if(list.get(i).getUserName().length()<5){
+                lText=lText+"\t";
+            }
+            lText=lText+"\t\t"+list.get(i).getFirstName();
+            lText=lText+"\t\t"+list.get(i).getLastName();
+            int w=list.get(i).getsWinLossDraw(0);
+            int l=list.get(i).getsWinLossDraw(1);
+            int d=list.get(i).getsWinLossDraw(2);
+            lText=lText+"\t\t\t"+w;
+            lText=lText+"\t\t\t"+l;
+            lText=lText+"\t\t\t"+d;
+            if(w!=0||l+d!=0){ //cant divide 0
+                double ans = w/(w+l+d);
+                double rem = (w%(w+l+d))*0.1;
+                lText=lText+"\t\t\t"+(ans+rem);
+            }
+            else{
+                lText=lText+"\t\t\t"+0;
+            }
+            lText=lText+"\n";
+        }
+//        System.out.println(lText);
+        leaderBoardText.setText(lText);
     }
 
     public static void loadInfo (ActionEvent e) throws IOException {
@@ -88,8 +118,8 @@ public class LeaderBoardController {
         for (int i=0; i<userData.size()-1;i++){
             scanner = userData.get(i);
             if(scanner.get(1).equals(LoginControllerT2.userInfo)){
-                System.out.println("found "+scanner.get(1));
-                System.out.println(scanner);
+//                System.out.println("found "+scanner.get(1));
+//                System.out.println(scanner);
                 return scanner;
             }
         }
@@ -101,9 +131,6 @@ public class LeaderBoardController {
         for (int i=0; i<userData.size()-1;i++){
             scanner = userData.get(i);
             if(scanner.get(0).equals(uid)){
-                System.out.println("@@@@@");
-                System.out.println("found uID"+scanner.get(0));
-                System.out.println(scanner);
                 return scanner;
             }
         }
@@ -111,13 +138,16 @@ public class LeaderBoardController {
     }
 
 
+    //@@@
     public static User loadUser (String uid){
         ArrayList tem = getUser(uid);
         User newUser = new User();
+        newUser.setPlayerID((String) tem.get(0));
         newUser.setUserName((String) tem.get(1));
         newUser.setPassword((String) tem.get(2));
-        newUser.setfirstName((String) tem.get(4));
-        newUser.setlastName((String) tem.get(5));
+        newUser.setfirstName((String) tem.get(3));
+        newUser.setlastName((String) tem.get(4));
+        newUser.setWinLossDraw((String) tem.get(5),(String) tem.get(6),(String) tem.get(7));
         return newUser;
     }
 
@@ -127,7 +157,7 @@ public class LeaderBoardController {
         loadInfo(e);
         for (int i=0; i<userData.size()-1;i++){
             list.add(loadUser(String.valueOf(i)));
-            System.out.println(loadUser(String.valueOf(i)));
+//            System.out.println(loadUser(String.valueOf(i)));
         }
         return list;
     }
