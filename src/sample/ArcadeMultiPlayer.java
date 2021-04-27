@@ -257,15 +257,17 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("processing");
                 }
             }
-            else if (player1Side && pitPressed <= 5 && continueTurnButton ) {
-                if(gameBoard.getPitValue(true,pitPressed) == 0) {
-                    invalidTurnMessage.setText("Please pick a pit with stones in!");
-                }
-                else{
-                    continueTurn(gameBoard, true, pitPressed);
-                    invalidTurnMessage.setText("A continue turn power-ups has been used.");
-                }
-            }
+//            else if (player1Side && pitPressed <= 5 && continueTurnButton ) {
+//                if(gameBoard.getPitValue(true,pitPressed) == 0) {
+//                    invalidTurnMessage.setText("Please pick a pit with stones in!");
+//                }
+//                else{
+//                    continueTurn(gameBoard, true, pitPressed);
+//                    invalidTurnMessage.setText("A continue turn power-ups has been used.");
+//                    continueTurnButton = false;
+//                    return;
+//                }
+//            }
             else if (player1Side && pitPressed <= 5 && doublePointsButton) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
@@ -320,15 +322,17 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("processing");
                 }
             }
-            else if (!player1Side && pitPressed <= 5 && continueTurnButton) {
-                if(gameBoard.getPitValue(false,pitPressed) == 0) {
-                    invalidTurnMessage.setText("Please pick a pit with stones in!");
-                }
-                else{
-                    continueTurn(gameBoard, false, pitPressed);
-                    invalidTurnMessage.setText("A continue turn power-ups has been used.");
-                }
-            }
+//            else if (!player1Side && pitPressed <= 5 && continueTurnButton) {
+//                if(gameBoard.getPitValue(false,pitPressed) == 0) {
+//                    invalidTurnMessage.setText("Please pick a pit with stones in!");
+//                }
+//                else{
+//                    continueTurn(gameBoard, false, pitPressed);
+//                    invalidTurnMessage.setText("A continue turn power-ups has been used.");
+//                    continueTurnButton = false;
+//                    return;
+//                }
+//            }
             else if (!player1Side && pitPressed <= 5 && doublePointsButton) {
                 if(gameBoard.getPitValue(false,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
@@ -525,11 +529,18 @@ public class ArcadeMultiPlayer implements Initializable  {
             }
         }
 
+        if(continueTurnButton){
+            checkGameOver(gameBoard);
+            displayBoard();
+            invalidTurnMessage.setText("A continue turn power-ups has been used.");
+
+            continueTurnButton = false;
+            return;
+        }
+
         System.out.println("Flag K");
         player1.isCurrentTurn = !player1.isCurrentTurn;
-        checkGameOver(gameBoard);
-        System.out.println(player1Side);
-        displayBoard();
+
 
 
         if(player1.isCurrentTurn){
@@ -840,7 +851,6 @@ public class ArcadeMultiPlayer implements Initializable  {
             labelpit13.setStyle("-fx-border-color: green");
         }
 
-        continueTurnButton = !continueTurnButton;
 
         return;
     }
