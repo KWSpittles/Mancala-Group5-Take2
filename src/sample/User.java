@@ -90,7 +90,7 @@ public class User {
         this.profilePicture = profilePicture ;
     }
 
-    //@@@
+
     public void setWinLossDraw(String w, String l, String d) {
         int tw =  Integer.parseInt(w);
         int tl =  Integer.parseInt(l);
@@ -99,6 +99,8 @@ public class User {
         this.winLossDraw[1] = tl;
         this.winLossDraw[2] = td;
     }
+
+
 
     //getters
     //get user name
