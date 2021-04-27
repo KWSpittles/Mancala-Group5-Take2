@@ -1526,7 +1526,7 @@ public class ArcadeMultiPlayer implements Initializable  {
 
     //continue && double buttons
     public boolean continueTurnButton = true;
-    public boolean doublePointsButton;
+    public boolean doublePointsButton = true;
 
     @FXML
     public void continueTurnOn(ActionEvent e) throws IOException {
