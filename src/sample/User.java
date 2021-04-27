@@ -112,12 +112,7 @@ public class User {
     public static int getUserCount() {
     	return userCount;
     }
-    
-    public String getprofilePicture() {
-    	return profilePicture;
-    }
-    
-    
+
     //toString method
     public String toString() {
 		return ("Username :" + userName + "\nFirst name :" + firstName + "\nLast name :" + lastName + "\nWins/Losses/Draws :"
