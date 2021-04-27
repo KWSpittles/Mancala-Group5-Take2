@@ -23,29 +23,53 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 /**
- * This class is used to run the Single player traditional mode.
+ * This class is used to run the multiplayer version of the arcade mode
  * @author Kakoi Pun;
  * @author Kieren;
  */
 public class ArcadeMultiPlayer implements Initializable  {
 
+    /**
+     * Private variables to store the stages and scenes for the JavaFXML resources.
+     */
     private Stage stage;
     private Scene scene;
     private Parent root;
-
+    /**
+     * Stores a new gameboard
+     */
     private Board gameBoard;
+    /**
+     * Variable to store player1 as a User type
+     */
     private static User player1;
+    /**
+     * Variable to store player2 as a User type
+     */
     private static User player2;
+    /**
+     * Integer to store frequency of power ups and special stones used.
+     */
     private int frequencyOfPowerUpsAndSpecialStone;
+    /**
+     * Boolean detects if first round or not
+     */
     public boolean firstRound;
+    /**
+     * Integer storing current stone value and updated value
+     */
     public int stones;
+    /**
+     * Boolean variables provide status of when to apply special stones at start of turn
+     */
     public boolean continueTurnButton1 = false;
     public boolean doublePointsButton1= false;
     public boolean continueTurnButton2 = false;
     public boolean doublePointsButton2 = false;
 
     /**
-     * Default constructor, Constructs a GameMultiPlayer which can be called with no arguments.
+     * Default constructor
+     * Constructs the arcade multiplayer to initiate the player classes and a new board
      */
     public ArcadeMultiPlayer() {
         this.frequencyOfPowerUpsAndSpecialStone = 0;
@@ -55,8 +79,7 @@ public class ArcadeMultiPlayer implements Initializable  {
     }
 
     /**
-     * Constructor for GameMultiPlayer that allows you to specify the
-     * starting number of stones in each pit.
+     * Constructor to return the number of stones in each pit
      * @param stonesPerPit Number of stones each player will start with in each pit.
      */
     public ArcadeMultiPlayer(int stonesPerPit) {
@@ -66,9 +89,9 @@ public class ArcadeMultiPlayer implements Initializable  {
     }
 
     /**
-     * Constructor for gameSinglePlayer. Allows you to specify the 2 players
-     * and the amount of starting stones per pit.
-     * @param stonesPerPit Number of stones each player will start with in each pit.
+     * Constructor specifies two players entering the game
+     * and the amount of starting stones per pit follwoign new board.
+     * @param stonesPerPit Number of stones each player will start with in each pit (4).
      * @param player1 A User, player1
      * @param player2 A User, player2
      */
@@ -79,7 +102,8 @@ public class ArcadeMultiPlayer implements Initializable  {
     }
 
     /**
-     * Resets the gameBoard. Puts 4 stones in each pit, and 0 in each
+     * Resets the gameBoard.
+     * Puts 4 stones in each pit, and 0 in each
      * players store. Then displays the Board on the GUI.
      */
     public void resetBoard() {
@@ -105,7 +129,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         System.out.println(player1);
 
     }
-
 
     @FXML
     public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13;
@@ -190,67 +213,67 @@ public class ArcadeMultiPlayer implements Initializable  {
         validMove(gameBoard, true, 0);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player1's 2nd pit button. Gets player input and starts a turn.
      */
     public void buttonpit1() {
         validMove(gameBoard, true, 1);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player1's 3rd pit button. Gets player input and starts a turn.
      */
     public void buttonpit2() {
         validMove(gameBoard, true, 2);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player1's 4th pit button. Gets player input and starts a turn.
      */
     public void buttonpit3() {
         validMove(gameBoard, true, 3);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player1's 5th pit button. Gets player input and starts a turn.
      */
     public void buttonpit4() {
         validMove(gameBoard, true, 4);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player1's 6th pit button. Gets player input and starts a turn.
      */
     public void buttonpit5() {
         validMove(gameBoard, true, 5);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player2's 1st pit button. Gets player input and starts a turn.
      */
     public void buttonpit7() {
         validMove(gameBoard, false, 0);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player2's 2nd pit button. Gets player input and starts a turn.
      */
     public void buttonpit8() {
         validMove(gameBoard, false, 1 );
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player2's 3rd pit button. Gets player input and starts a turn.
      */
     public void buttonpit9() {
         validMove(gameBoard, false, 2);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player2's 4th pit button. Gets player input and starts a turn.
      */
     public void buttonpit10() {
         validMove(gameBoard, false, 3);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player2's 5th pit button. Gets player input and starts a turn.
      */
     public void buttonpit11() {
         validMove(gameBoard, false, 4);
     }
     /**
-     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     * Method for player2's 6th pit button. Gets player input and starts a turn.
      */
     public void buttonpit12() {
         validMove(gameBoard, false, 5);
@@ -258,14 +281,14 @@ public class ArcadeMultiPlayer implements Initializable  {
     
     @FXML 
     Label gameover;
-    
     @FXML
     Label turnMessage;
     @FXML
     Label invalidTurnMessage;
 
     /**
-     * Checks if the game is over. If it is it ends the game, Updates the GUI and updates WinLossDraw.
+     * Method to check if the game is over.
+     * If side is empty is it ends the game, Updates the GUI and updates WinLossDraw.
      * @param gameBoard The current state of the board.
      */
     public void checkGameOver(Board gameBoard){
@@ -282,10 +305,8 @@ public class ArcadeMultiPlayer implements Initializable  {
                 gameBoard.setPitValue(false, i, 0);
                 gameBoard.Player1Store.setPitValue(store1 + value1);
                 gameBoard.Player2Store.setPitValue(store2 + value2);
-                
-                
-
             }
+
             if (gameBoard.Player1Store.getPitValue() < gameBoard.Player2Store.getPitValue()) {
             	gameover.setText("Player 2 Wins");
             	turnMessage.setText("");
@@ -309,27 +330,24 @@ public class ArcadeMultiPlayer implements Initializable  {
         }
     }
 
-
     //assets
-
     @FXML
     Label SpecialStoneMessage;
     Label PowerUpsMessage;
 
-
     /**
-     *Checks if a given move is valid on a given turn, with some special stone trigger.
-     * If it is it will execute the move starting from a particular pit. If not a relevant
-     * error message is displayed.
+     * Method checks if a given move is valid on a given turn, with a special stone trigger.
+     * If yes will execute the move starting from a particular pit.
+     * If false error message is returned to user.
      * @param gameBoard The current state of the board.
-     * @param player1Side Boolean to check which side the pit was on.
-     * @param pitPressed The starting pit.
+     * @param player1Side Boolean detects which side of board the pit is.
+     * @param pitPressed Initial pit to continue play from
      */
     public void validMove(Board gameBoard, boolean player1Side, int pitPressed) {
 
         if (player1.isCurrentTurn) {
             if (player1Side && pitPressed <= 5 && Math.random() > 0.1) {
-                if(gameBoard.getPitValue(true,pitPressed) == 0) {
+                if (gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
@@ -339,7 +357,7 @@ public class ArcadeMultiPlayer implements Initializable  {
             }
 
             else if (player1Side && pitPressed <= 5 && Math.random() <= 0.033) {
-                if(gameBoard.getPitValue(true,pitPressed) == 0) {
+                if (gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
                 else{
@@ -370,7 +388,6 @@ public class ArcadeMultiPlayer implements Initializable  {
                 System.out.println("Pit is invalid. Please choose a pit on your side.");
                 invalidTurnMessage.setText("Pit is invalid. Please choose a pit on your side.");
             }
-
         }
         else {
             if (!player1Side && pitPressed <= 5 && Math.random() >= 0.1) {
@@ -395,7 +412,7 @@ public class ArcadeMultiPlayer implements Initializable  {
                 if (gameBoard.getPitValue(false, pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
-                else {
+                else{
                     reverseTurn(gameBoard, false, pitPressed);
                     invalidTurnMessage.setText("A reverse turn special stone has been triggered.");
                 }
@@ -403,22 +420,23 @@ public class ArcadeMultiPlayer implements Initializable  {
             else if (!player1Side && pitPressed <= 5 && Math.random() >0.066 && Math.random() <= 0.099) {
                 if (gameBoard.getPitValue(false, pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
-                } else {
+                }
+                else{
                     switchSides(gameBoard, false, pitPressed);
                     invalidTurnMessage.setText("A switch sides special stone has been triggered.");
                 }
             }
-            else {
+            else{
                 System.out.println("Pit is invalid. Please choose a pit on your side.");
                 invalidTurnMessage.setText("Pit is invalid. Please choose a pit on your side.");
             }
-
         }
     }
 
     /**
-     * Selects a player to start the game. 50% chance.
-     * Updates GUI to display whose turn.
+     * Method to select the starting player.
+     * Chooses a starting player with a 50% chance.
+     * Updates GUI to display result of starting player.
      */
     public void firstPlayer(){
         if(Math.random()>0.5){
@@ -456,10 +474,7 @@ public class ArcadeMultiPlayer implements Initializable  {
             buttonpit11.setStyle("-fx-border-color: green");
             buttonpit12.setStyle("-fx-border-color: green");
             labelpit13.setStyle("-fx-border-color: green");
-
-            //MAKE MOVE TODO
         }
-
     }
 
     /**
@@ -475,7 +490,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         firstRound = true;
         stones = gameBoard.getPitValue(player1Side, pitPressed);
         gameBoard.setPitValue(player1Side, pitPressed, 0);
-
 
         while(stones>0) {
 
@@ -616,8 +630,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         System.out.println("Flag K");
         player1.isCurrentTurn = !player1.isCurrentTurn;
 
-
-
         if(player1.isCurrentTurn){
             turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
             buttonpit0.setStyle("-fx-border-color: green");
@@ -655,8 +667,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         return;
     }
 
-
-
     /**
      * Executes the algorithm for a players turn. After a players turn
      * it will change to other players turn.
@@ -669,7 +679,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         firstRound = true;
         stones = gameBoard.getPitValue(player1Side, pitPressed) / 2;
         gameBoard.setPitValue(player1Side, pitPressed, 0);
-
 
         while(stones>0) {
 
@@ -779,7 +788,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         System.out.println(player1Side);
         displayBoard();
 
-
         if(player1.isCurrentTurn){
             turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
             buttonpit0.setStyle("-fx-border-color: green");
@@ -817,11 +825,9 @@ public class ArcadeMultiPlayer implements Initializable  {
         return;
     }
 
-
-
     /**
-     * Executes the algorithm for a players turn when reverse turn special stone
-     * has been triggered. After a players turn, it will change to the other players turn.
+     * Executes the algorithm for a player's turn when reverse turn special stone
+     * has been triggered. Following the player's turn, the game is switched to the opposite player's turn.
      * @param gameBoard The current state of the board.
      * @param player1Side Boolean to check which side the pit was on.
      * @param pitPressed The starting pit.
@@ -831,7 +837,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         firstRound = true;
         stones = gameBoard.getPitValue(player1Side, pitPressed);
         gameBoard.setPitValue(player1Side, pitPressed, 0);
-
 
         while(stones>0) {
 
@@ -941,7 +946,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         System.out.println(player1Side);
         displayBoard();
 
-
         if(player1.isCurrentTurn){
             turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
             buttonpit0.setStyle("-fx-border-color: green");
@@ -980,8 +984,8 @@ public class ArcadeMultiPlayer implements Initializable  {
     }
 
     /**
-     * Executes the algorithm for a players turn after switch sides special
-     * has been triggered. After a players turn it will change to the other players turn.
+     * Executes the algorithm for a player's turn after switch sides special stone is triggered.
+     * Following completion of a player's turn it will switch to the other players turn.
      * @param gameBoard The current state of the board.
      * @param player1Side Boolean to check which side the pit was on.
      * @param pitPressed The starting pit.
@@ -991,7 +995,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         firstRound = true;
         stones = gameBoard.getPitValue(player1Side, pitPressed);
         gameBoard.setPitValue(player1Side, pitPressed, 0);
-
 
         while(stones>0) {
 
@@ -1101,7 +1104,6 @@ public class ArcadeMultiPlayer implements Initializable  {
         System.out.println(player1Side);
         displayBoard();
 
-
         if(player1.isCurrentTurn){
             turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
             buttonpit0.setStyle("-fx-border-color: green");
@@ -1119,7 +1121,7 @@ public class ArcadeMultiPlayer implements Initializable  {
             buttonpit12.setStyle("-fx-border-color: red");
             labelpit13.setStyle("-fx-border-color: red");
         }
-        else {
+        else{
             turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
             buttonpit0.setStyle("-fx-border-color: red");
             buttonpit1.setStyle("-fx-border-color: red");
@@ -1139,15 +1141,15 @@ public class ArcadeMultiPlayer implements Initializable  {
         return;
     }
 
-
-    //method return frequency of power-ups and special stones used in arcade
+    /**
+     * Method to return frequency of power-ups and special stones used in arcade
+     */
     public void incrementFrequencyValue(){
         this.frequencyOfPowerUpsAndSpecialStone += 1;
     }
 
-
     /**
-     * Initialises the Game, selects a first player,
+     * Initialises the Game, selects a first player
      * and then displays the updated GUI.
      */
     @Override
@@ -1186,7 +1188,8 @@ public class ArcadeMultiPlayer implements Initializable  {
     Button doublePointsOn2;
 
     /**
-     * Method to switch control of the GUI from GameSinglePlayer to Meny.
+     * Method to switch control of the GUI from the arcade multiplayer to the Meny.
+     * Returns message to the user if successful
      */
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
@@ -1201,32 +1204,44 @@ public class ArcadeMultiPlayer implements Initializable  {
     }
 
     /**
-     * Method to activate power-up buttons.
+     * Methods to activate power-up buttons.
+     * Initiates continue turn power up
      */
     @FXML
     public void continueTurnOn1(ActionEvent e) throws IOException {
         continueTurnButton1 = true;
         continueTurnOn1.setStyle("-fx-border-color: red");
-
     }
 
+    /**
+     * Initiates continue turn button
+     * Applies FXML
+     * @param e - ActionEvent to display FXML button resource
+     * @throws IOException
+     */
     public void continueTurnOn2(ActionEvent e) throws IOException {
         continueTurnButton2 = true;
         continueTurnOn2.setStyle("-fx-border-color: red");
-
     }
 
-
+    /**
+     * Double points for user's turn button
+     * @param e - ActionEvent to display FXML button resource
+     * @throws IOException
+     */
     public void doublePointsOn1(ActionEvent e) throws IOException{
         doublePointsButton1 = true;
         doublePointsOn1.setStyle("-fx-border-color: red");
-
     }
 
+    /**
+     * Button applies double points power up for user's turn
+     * @param e -ActionEvent to display FXML button resource
+     * @throws IOException
+     */
     public void doublePointsOn2(ActionEvent e) throws IOException{
         doublePointsButton2 = true;
         doublePointsOn2.setStyle("-fx-border-color: red");
-
     }
 
 
