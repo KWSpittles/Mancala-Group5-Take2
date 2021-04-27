@@ -19,6 +19,10 @@
             <ImageView fx:id="imageview2" fitHeight="178.0" fitWidth="217.0" layoutX="1669.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="username1" layoutX="272.0" layoutY="67.0" text="Label" />
             <Label fx:id="username2" layoutX="1634.0" layoutY="59.0" text="Label" />
+            <Button fx:id="continueTurnOn1" layoutX="42.0" layoutY="237.0" mnemonicParsing="false" onAction="#continueTurnOn1" prefHeight="87.0" prefWidth="96.0" text="Continue Turn" />
+            <Button fx:id="doublePointsOn1" layoutX="225.0" layoutY="213.0" mnemonicParsing="false" onAction="#doublePointsOn1" prefHeight="40.0" prefWidth="174.0" text="Double Points" />
+            <Button fx:id="continueTurnOn2" layoutX="1573.0" layoutY="200.0" mnemonicParsing="false" onAction="#continueTurnOn2" prefHeight="87.0" prefWidth="96.0" text="Continue Turn" />
+            <Button fx:id="doublePointsOn2" layoutX="1757.0" layoutY="225.0" mnemonicParsing="false" onAction="#doublePointsOn2" prefHeight="40.0" prefWidth="174.0" text="Double Points" />
          </children></AnchorPane>
     </top>
     <left>
@@ -32,8 +36,6 @@
             <children>
                 <Button layoutX="1645.0" layoutY="30.0" mnemonicParsing="false" onAction="#switchToMenu" prefHeight="40.0" prefWidth="100.0" text="Menu" />
                 <Button layoutX="533.0" layoutY="53.0" mnemonicParsing="false" onAction="#resetBoard" prefHeight="40.0" prefWidth="174.0" text="Reset Board" />
-            <Button fx:id="continueTurnOn" layoutX="939.0" layoutY="52.0" mnemonicParsing="false" onAction="#continueTurnOn" prefHeight="40.0" prefWidth="174.0" text="Continue Turn" />
-            <Button fx:id="doublePointsOn" layoutX="1138.0" layoutY="53.0" mnemonicParsing="false" onAction="#doublePointsOn" prefHeight="40.0" prefWidth="174.0" text="Double Points" />
             </children>
         </AnchorPane>
     </bottom>

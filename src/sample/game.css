@@ -71,6 +71,25 @@
     -fx-background-color: transparent;
 }
 
+.image-view{
+
+    -fx-background-radius: 200px;
+    -fx-border-radius: 200px;
+    -fx-shape: circle;
+    -fx-font: 14px "Arial";
+    -fx-text-fill: white;
+    -fx-alignment: bottom-left;
+    -fx-border-color: black;
+    -fx-border-width: 3px;
+
+    -fx-text-alignment: center;
+    -fx-font-family: "LM Mono 10";
+    -fx-font-size: 50px;
+
+}
+
+
+
 .split-pane{
     -fx-background-color: transparent;
 }
