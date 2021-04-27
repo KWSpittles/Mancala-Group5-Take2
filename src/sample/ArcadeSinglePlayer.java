@@ -1,5 +1,10 @@
 package sample;
 
+/**
+ * This class is used to Run arcade single player mode.
+ * @author KaKoi Pun;
+ * @author Kieren Spittles;
+ */
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,63 +27,65 @@ import java.util.concurrent.TimeUnit;
 
 public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializable  {
 
-    /**
-     *  Field
-     */
+
     private Stage stage;
     private Scene scene;
     private Parent root;
 
     private Board gameBoard;
-
-    public boolean firstRound;
-    public int stones;
-
-    //Declaration of player variables
     private static User player1;
     private static User player2;
     private static ArrayList<Integer> computersValidMoves;
-
-
-    public boolean halfHandTri;
-    public boolean reverseTurnTri;
-    public boolean switchSideTri;
-
     private int frequencyOfPowerUpsAndSpecialStone;
+    public boolean continueTurnButton1 = false;
+    public boolean doublePointsButton1= false;
+    public boolean continueTurnButton2 = false;
+    public boolean doublePointsButton2 = false;
+    public boolean firstRound;
+    public int stonesInHand;
 
     /**
-     * Create an constructors
+     * Default constructor, Constructs a ArcadeSinglePlayer which can be called with no arguments.
      */
     public ArcadeSinglePlayer() {
         this.frequencyOfPowerUpsAndSpecialStone = 0;
         gameBoard = new Board();
-//        playerNumber1 = 1;
-//        playerNumber2 = 2;
-
-        //Initializing Player Objects
         player1 = new User();
         player2 = new User();
     }
 
-    public ArcadeSinglePlayer(int stones) {
-        gameBoard = new Board(stones);
-//        playerNumber1 = 1;
-//        playerNumber2 = 2;
+    /**
+     * Constructor for gameSinglePlayer that allows you to specify the
+     * starting number of stonesPerPit in each pit.
+     * @param stonesPerPit Number of stones each player will start with in each pit.
+     */
 
-        //Initializing Player Objects
+    public ArcadeSinglePlayer(int stonesPerPit) {
+        gameBoard = new Board(stonesPerPit);
         player1 = new User();
         player2 = new User();
     }
 
-    public ArcadeSinglePlayer(int stones, User player1) {
-        gameBoard = new Board(stones);
+    /**
+     * Constructor for gameSinglePlayer. Allows you to specify the 2 players
+     * and the amount of starting stones per pit.
+     * @param stonesPerPit Number of stones each player will start with in each pit.
+     * @param player1 A User, player1
+     * @param player2 A User, player2
+     */
+    public ArcadeSinglePlayer(int stonesPerPit, User player1, User player2) {
+        gameBoard = new Board(stonesPerPit);
         this.player1 = player1;
+        this.player2 = player2;
         player2 = new User();
         computersValidMoves = new ArrayList<>();
     }
 
+    /**
+     * Resets the gameBoard. Puts 4 stones in each pit, and 0 in each
+     * players store. Then displays the Board on the GUI.
+     */
     public void resetBoard() {
-
         gameBoard.getPlayer1Side().getPit(0).setPitValue(4);
         gameBoard.getPlayer1Side().getPit(1).setPitValue(4);
         gameBoard.getPlayer1Side().getPit(2).setPitValue(4);
@@ -101,15 +108,17 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
 
     }
 
-    /**
-     *  Asset for return pit value and labeling pits
-     */
+
 
     @FXML
     public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13;
     @FXML
     ImageView imageview1;
 
+    /**
+     * Method to display the GUI. Displays the gameBoard on the GUI, displays a
+     * players profile picture and shows which players turn it is.
+     */
     public void displayBoard() {
         labelpit0.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(0).getPitValue()));
         labelpit1.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(1).getPitValue()));
@@ -175,49 +184,79 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
     /**
      *  Asset for pit buttons
      */
-
     @FXML
     public Button buttonpit0, buttonpit1,buttonpit2,buttonpit3,buttonpit4,buttonpit5,buttonpit7,buttonpit8,buttonpit9,buttonpit10,buttonpit11,buttonpit12;
     public Label store;
 
-
     /**
-     *  method for valid move method to check
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
      */
-
     public void buttonpit0() {
         validMove(gameBoard, true, 0);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit1() {
         validMove(gameBoard, true, 1);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit2() {
         validMove(gameBoard, true, 2);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit3() {
         validMove(gameBoard, true, 3);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit4() {
         validMove(gameBoard, true, 4);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit5() {
         validMove(gameBoard, true, 5);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit7() {
         validMove(gameBoard, false, 0);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit8() {
         validMove(gameBoard, false, 1 );
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit9() {
         validMove(gameBoard, false, 2);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit10() {
         validMove(gameBoard, false, 3);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit11() {
         validMove(gameBoard, false, 4);
     }
+    /**
+     * Method for player1's 1st pit button. Gets player input and starts a turn.
+     */
     public void buttonpit12() {
         validMove(gameBoard, false, 5);
     }
@@ -230,6 +269,10 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
     @FXML
     Label invalidTurnMessage;
 
+    /**
+     * Checks if the game is over. If it is it ends the game, Updates the GUI and updates WinLossDraw.
+     * @param gameBoard The current state of the board.
+     */
     public void checkGameOver(Board gameBoard){
 
         if (gameBoard.player1sideEmpty() | gameBoard.player2sideEmpty()){
@@ -269,11 +312,13 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         }
     }
 
-    //assets
-
-
     /**
-     *  method to check correct move and trigger special stones
+     * Checks if a given move is valid on a given turn, with some special stone trigger.
+     * If it is it will execute the move starting from a particular pit. If not a relevant
+     * error message is displayed.
+     * @param gameBoard The current state of the board.
+     * @param player1Side Boolean to check which side the pit was on.
+     * @param pitPressed The starting pit.
      */
     public void validMove(Board gameBoard, boolean player1Side, int pitPressed) {
 
@@ -367,7 +412,8 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
     }
 
     /**
-     *  method to find the first player
+     * Selects a player to start the game. 50% chance.
+     * Updates GUI to display whose turn.
      */
     public void firstPlayer(){
         if(Math.random()>=0){
@@ -410,6 +456,9 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         }
     }
 
+    /**
+     * Selects a random, non-empty pit for the computer AI
+     */
     public int getComputersMove(){
         for (int i = 0; i <= 5; i++) {
             if(gameBoard.getPitValue(false, i) != 0){
@@ -422,27 +471,34 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         return pitPressed;
     }
 
-
+    /**
+     * Executes the algorithm for a players turn and two power-ups
+     * boolean methods: Continue turn and double points. After a players turn
+     * it will make a move for the computer.
+     * @param gameBoard The current state of the board.
+     * @param player1Side Boolean to check which side the pit was on.
+     * @param pitPressed The starting pit.
+     */
     public void makeMove(Board gameBoard, Boolean player1Side, int pitPressed) {
 
         firstRound = true;
-        stones = gameBoard.getPitValue(player1Side, pitPressed);
+        stonesInHand = gameBoard.getPitValue(player1Side, pitPressed);
         gameBoard.setPitValue(player1Side, pitPressed, 0);
 
 
-        while(stones>0) {
+        while(stonesInHand>0) {
 
             if (!firstRound) {
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(true, i);
-                    stones--;
+                    stonesInHand--;
                     if (stones == 0) {
                         if (gameBoard.getPitValue(true, i)== 1) {
                             System.out.println("FLAG A");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(true, i);
+                            stonesInHand = gameBoard.getPitValue(true, i);
                             gameBoard.setPitValue(true, i, 0);
                             System.out.println("FLAG B");
                         }
@@ -455,16 +511,16 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     System.out.println(i);
                     gameBoard.incrementPitValue(true, i);
-                    stones--;
-                    System.out.println("Stones in hand = " + stones);
+                    stonesInHand--;
+                    System.out.println("Stones in hand = " + stonesInHand);
 
-                    if (stones == 0) {
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(true, i) == 1) {
                             System.out.println("FLAG C");
                             break;
                         } else {
                             System.out.println("FLAG D");
-                            stones = gameBoard.getPitValue(true, i);
+                            stonesInHand = gameBoard.getPitValue(true, i);
                             gameBoard.setPitValue(true, i, 0);
                         }
                     }
@@ -472,7 +528,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && player1.isCurrentTurn) {
+            if (stonesInHand > 0 && player1.isCurrentTurn) {
                 if(doublePointsButton1) {
                     gameBoard.getPlayer1Store().incrementPitValue();
                     gameBoard.getPlayer1Store().incrementPitValue();
@@ -482,8 +538,8 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 else{
                     gameBoard.getPlayer1Store().incrementPitValue();
                 }
-                    stones--;
-                if (stones == 0) {
+                stonesInHand--;
+                if (stonesInHand == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("Flag E");
@@ -491,17 +547,17 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            if (!firstRound && stones>0) {
+            if (!firstRound && stonesInHand>0) {
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
-                    stones--;
-                    if (stones == 0) {
+                    stonesInHand--;
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(false, i) == 1) {
                             System.out.println("Flag F");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(false, i);
+                            stonesInHand = gameBoard.getPitValue(false, i);
                             gameBoard.setPitValue(false, i, 0);
                             System.out.println("Flag G");
                         }
@@ -509,17 +565,17 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            else if (!player1.isCurrentTurn && firstRound && stones>0) {
+            else if (!player1.isCurrentTurn && firstRound && stonesInHand>0) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
-                    stones--;
-                    if (stones == 0) {
+                    stonesInHand--;
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(false, i) == 1) {
                             System.out.println("Flag H");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(false, i);
+                            stonesInHand = gameBoard.getPitValue(false, i);
                             gameBoard.setPitValue(false, i, 0);
                             System.out.println("Flag I");
                         }
@@ -528,10 +584,10 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && !player1.isCurrentTurn) {
+            if (stonesInHand > 0 && !player1.isCurrentTurn) {
                 gameBoard.getPlayer2Store().incrementPitValue();
-                stones--;
-                if (stones == 0) {
+                stonesInHand--;
+                if (stonesInHand == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("Flag J");
@@ -568,38 +624,33 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         return;
     }
 
-
-    // POWER-UPS
-
-//    //option for player to choose select power up
-
-
-
     /**
-     *  This method is for half hand special stone. This is base on makeMove
-     *  methods with stones divide by 2
-     * */
-    //reduce pick up point by half and round up if odd number
+     * Executes the algorithm for a players turn when reverse turn special stone
+     * has been triggered. After a players turn, it will make a move for the computer.
+     * @param gameBoard The current state of the board.
+     * @param player1Side Boolean to check which side the pit was on.
+     * @param pitPressed The starting pit.
+     */
     public void halfHand(Board gameBoard, boolean player1Side, int pitPressed) {
 
         firstRound = true;
-        stones = gameBoard.getPitValue(player1Side, pitPressed) / 2;
+        stonesInHand = gameBoard.getPitValue(player1Side, pitPressed) / 2;
         gameBoard.setPitValue(player1Side, pitPressed, 0);
 
 
-        while(stones>0) {
+        while(stonesInHand>0) {
 
             if (!firstRound) {
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(true, i);
-                    stones--;
-                    if (stones == 0) {
+                    stonesInHand--;
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(true, i)== 1) {
                             System.out.println("FLAG A");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(true, i);
+                            stonesInHand = gameBoard.getPitValue(true, i);
                             gameBoard.setPitValue(true, i, 0);
                             System.out.println("FLAG B");
                         }
@@ -612,16 +663,16 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     System.out.println(i);
                     gameBoard.incrementPitValue(true, i);
-                    stones--;
-                    System.out.println("Stones in hand = " + stones);
+                    stonesInHand--;
+                    System.out.println("Stones in hand = " + stonesInHand);
 
-                    if (stones == 0) {
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(true, i) == 1) {
                             System.out.println("FLAG C");
                             break;
                         } else {
                             System.out.println("FLAG D");
-                            stones = gameBoard.getPitValue(true, i);
+                            stonesInHand = gameBoard.getPitValue(true, i);
                             gameBoard.setPitValue(true, i, 0);
                         }
                     }
@@ -629,10 +680,10 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && player1.isCurrentTurn) {
+            if (stonesInHand > 0 && player1.isCurrentTurn) {
                 gameBoard.getPlayer1Store().incrementPitValue();
-                stones--;
-                if (stones == 0) {
+                stonesInHand--;
+                if (stonesInHand == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("Flag E");
@@ -640,17 +691,17 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            if (!firstRound && stones>0) {
+            if (!firstRound && stonesInHand>0) {
 
                 for (int i = 0; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
-                    stones--;
-                    if (stones == 0) {
+                    stonesInHand--;
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(false, i) == 1) {
                             System.out.println("Flag F");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(false, i);
+                            stonesInHand = gameBoard.getPitValue(false, i);
                             gameBoard.setPitValue(false, i, 0);
                             System.out.println("Flag G");
                         }
@@ -658,17 +709,17 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            else if (!player1.isCurrentTurn && firstRound && stones>0) {
+            else if (!player1.isCurrentTurn && firstRound && stonesInHand>0) {
 
                 for (int i = pitPressed + 1; i <= 5; i++) {
                     gameBoard.incrementPitValue(false, i);
-                    stones--;
-                    if (stones == 0) {
+                    stonesInHand--;
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(false, i) == 1) {
                             System.out.println("Flag H");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(false, i);
+                            stonesInHand = gameBoard.getPitValue(false, i);
                             gameBoard.setPitValue(false, i, 0);
                             System.out.println("Flag I");
                         }
@@ -677,10 +728,10 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && !player1.isCurrentTurn) {
+            if (stonesInHand > 0 && !player1.isCurrentTurn) {
                 gameBoard.getPlayer2Store().incrementPitValue();
-                stones--;
-                if (stones == 0) {
+                stonesInHand--;
+                if (stonesInHand == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("Flag J");
@@ -718,31 +769,33 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
     }
 
 
-
     /**
-     *  This method is for reverse turn special stone. This is base on makeMove
-     *  methods and by changing the
-     * */
+     * Executes the algorithm for a players turn when reverse turn special stone
+     * has been triggered. After a players turn, it will make a move for the computer.
+     * @param gameBoard The current state of the board.
+     * @param player1Side Boolean to check which side the pit was on.
+     * @param pitPressed The starting pit.
+     */
     public void reverseTurn(Board gameBoard, boolean player1Side, int pitPressed) {
 
         firstRound = true;
-        stones = gameBoard.getPitValue(player1Side, pitPressed);
+        stonesInHand = gameBoard.getPitValue(player1Side, pitPressed);
         gameBoard.setPitValue(player1Side, pitPressed, 0);
 
 
-        while(stones>0) {
+        while(stonesInHand>0) {
 
             if (!firstRound) {
 
                 for (int i = 5; i >=0; i--) {
                     gameBoard.incrementPitValue(true, i);
-                    stones--;
-                    if (stones == 0) {
+                    stonesInHand--;
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(true, i)== 1) {
                             System.out.println("FLAG A");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(true, i);
+                            stonesInHand = gameBoard.getPitValue(true, i);
                             gameBoard.setPitValue(true, i, 0);
                             System.out.println("FLAG B");
                         }
@@ -755,16 +808,16 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 for (int i = 5; i <= pitPressed + 1; i--) {
                     System.out.println(i);
                     gameBoard.incrementPitValue(true, i);
-                    stones--;
-                    System.out.println("Stones in hand = " + stones);
+                    stonesInHand--;
+                    System.out.println("Stones in hand = " + stonesInHand);
 
-                    if (stones == 0) {
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(true, i) == 1) {
                             System.out.println("FLAG C");
                             break;
                         } else {
                             System.out.println("FLAG D");
-                            stones = gameBoard.getPitValue(true, i);
+                            stonesInHand = gameBoard.getPitValue(true, i);
                             gameBoard.setPitValue(true, i, 0);
                         }
                     }
@@ -772,10 +825,10 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && player1.isCurrentTurn) {
+            if (stonesInHand > 0 && player1.isCurrentTurn) {
                 gameBoard.getPlayer1Store().incrementPitValue();
-                stones--;
-                if (stones == 0) {
+                stonesInHand--;
+                if (stonesInHand == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("Flag E");
@@ -783,17 +836,17 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            if (!firstRound && stones>0) {
+            if (!firstRound && stonesInHand>0) {
 
                 for (int i = 5; i >= 0 ; i--) {
                     gameBoard.incrementPitValue(false, i);
-                    stones--;
-                    if (stones == 0) {
+                    stonesInHand--;
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(false, i) == 1) {
                             System.out.println("Flag F");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(false, i);
+                            stonesInHand = gameBoard.getPitValue(false, i);
                             gameBoard.setPitValue(false, i, 0);
                             System.out.println("Flag G");
                         }
@@ -801,17 +854,17 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            else if (!player1.isCurrentTurn && firstRound && stones>0) {
+            else if (!player1.isCurrentTurn && firstRound && stonesInHand>0) {
 
                 for (int i = 5 ; i >= pitPressed + 1; i--) {
                     gameBoard.incrementPitValue(false, i);
-                    stones--;
-                    if (stones == 0) {
+                    stonesInHand--;
+                    if (stonesInHand == 0) {
                         if (gameBoard.getPitValue(false, i) == 1) {
                             System.out.println("Flag H");
                             break;
                         } else {
-                            stones = gameBoard.getPitValue(false, i);
+                            stonesInHand = gameBoard.getPitValue(false, i);
                             gameBoard.setPitValue(false, i, 0);
                             System.out.println("Flag I");
                         }
@@ -820,10 +873,10 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 firstRound = !firstRound;
             }
 
-            if (stones > 0 && !player1.isCurrentTurn) {
+            if (stonesInHand > 0 && !player1.isCurrentTurn) {
                 gameBoard.getPlayer2Store().incrementPitValue();
-                stones--;
-                if (stones == 0) {
+                stonesInHand--;
+                if (stonesInHand == 0) {
                     checkGameOver(gameBoard);
                     displayBoard();
                     System.out.println("Flag J");
@@ -858,7 +911,13 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
 
         return;
     }
-
+    /**
+     * Executes the algorithm for a players turn after switch sides special
+     * has been triggered. After a players turn it will make a move for the computer.
+     * @param gameBoard The current state of the board.
+     * @param player1Side Boolean to check which side the pit was on.
+     * @param pitPressed The starting pit.
+     */
     //player return all current stone to the pit and take the opposite pit/position
     public void switchSides(Board gameBoard, boolean player1Side, int pitPressed) {
 
@@ -997,19 +1056,24 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         return;
     }
 
-
+    /**
+     * method return frequency of power-ups and special stones used in arcade
+     */
     //method return frequency of power-ups and special stones used in arcade
     public void incrementFrequencyValue(){
         this.frequencyOfPowerUpsAndSpecialStone += 1;
     }
 
 
-
+    /**
+     * Initialises the Game, selects a first player,
+     * and then displays the updated GUI.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         User player1 = LoginControllerT2.getLoggedInPlayer(1);
         User player2 = LoginControllerT2.getComputer();
-        ArcadeSinglePlayer ArcadeMultiPlayer = new ArcadeSinglePlayer(4, player1);
+        GameSinglePlayer gameMultiPlayer = new GameSinglePlayer(4, player1, player2);
         resetBoard();
         displayBoard();
 
@@ -1021,7 +1085,6 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         invalidTurnMessage.setText("");
     }
 
-
     @FXML
     Button continueTurnOn1;
     @FXML
@@ -1031,6 +1094,9 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
     @FXML
     Button doublePointsOn2;
 
+    /**
+     * Method to switch control of the GUI from GameSinglePlayer to Meny.
+     */
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
@@ -1043,14 +1109,9 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         System.out.println("You are now viewing the Menu");
     }
 
-
-    //continue && double buttons
-    public boolean continueTurnButton1 = false;
-    public boolean doublePointsButton1= false;
-    public boolean continueTurnButton2 = false;
-    public boolean doublePointsButton2 = false;
-
-
+    /**
+     * Method to activate power-up buttons.
+     */
     @FXML
     public void continueTurnOn1(ActionEvent e) throws IOException {
         continueTurnButton1 = true;
