@@ -1,12 +1,9 @@
 package sample;
 
 /**
- * Class to control game board mechanics
- * like creating a new board, checking for the count in Sides,
- * for setting and getting the pit values
- * and also for incrementing and checking whether a player's Side is empty or not
+ * Class to control game board mechanics.
  *
- * @author
+ * @author Kieran
  */
 public class Board {
 
@@ -16,8 +13,8 @@ public class Board {
     private Side Player2Side;
 
     /**
-     * Constructor for creating a new board of holes
-     * and two player sides
+     * Constructor for creating a new board layout.
+     * Creates two player sides, holes and the stores.
      */
     public Board() {
         Player1Side = new Side(1, 4);
@@ -30,7 +27,7 @@ public class Board {
      * Constructor with a parameter for creating a new board of holes
      * and two player sides
      *
-     * @param stones - the number of stones inside a certain pit
+     * @param stones - Integer to show the number of stones inside a certain pit
      */
     public Board(int stones) {
         Player1Side = new Side(1, stones);
@@ -40,11 +37,11 @@ public class Board {
     }
 
     /**
-     * Method to get the pit value of player 1 side
+     * Method to return the pit value of each pit on player 1 side
      *
-     * @param Player1   - determines the boolean value for player 1
-     * @param pitNumber - the pit number on player 1 side
-     * @return - integer value of the pit
+     * @param Player1   - Boolean type for player 1 or 2.
+     * @param pitNumber - Integer for each pit.
+     * @return - returns an integer depicting the current pit value selected.
      */
     public int getPitValue(boolean Player1, int pitNumber) {
         if (Player1) {
@@ -59,10 +56,10 @@ public class Board {
     }
 
     /**
-     * Method to for setting the pit value of player 1
+     * Method sets the current pit value.
      *
      * @param Player1   - boolean parameter for player 1
-     * @param pitNumber - integer value of certain pit
+     * @param pitNumber - integer value of each pit
      * @param value     - value to be set to the given pit
      */
     public void setPitValue(boolean Player1, int pitNumber, int value) {
@@ -78,9 +75,9 @@ public class Board {
     }
 
     /**
-     * Method to increment to the pit value for player 1
+     * Method to allow for incrementing of the pit values through gameplay.
      *
-     * @param Player1   - boolean parameter for player 1
+     * @param Player1   - boolean parameter for player 1.
      * @param pitNumber - the pit number on player 1 side
      */
     public void incrementPitValue(boolean Player1, int pitNumber) {
@@ -96,7 +93,8 @@ public class Board {
     }
 
     /**
-     * Method to check if player1's Side is empty or not
+     * Method checks if player one's side is empty.
+     * Returns boolean value.
      *
      * @return - boolean value after checking player1's Side
      */
@@ -113,7 +111,7 @@ public class Board {
     }
 
     /**
-     * Method to check if player2's Side is empty or not
+     * Method checks if player2's side is empty.
      *
      * @return - boolean value after checking player2's Side
      */
