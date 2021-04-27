@@ -47,7 +47,7 @@
                             <Font name="Segoe UI" size="13.0" />
                         </font>
                     </Button>
-               <Button fx:id="btnBackToMenuLB1" layoutX="382.0" layoutY="422.0" mnemonicParsing="false" onAction="#test" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="test" textFill="WHITE">
+               <Button fx:id="btnBackToMenuLB1" layoutX="382.0" layoutY="422.0" mnemonicParsing="false" onAction="#test" prefHeight="40.0" prefWidth="100.0" styleClass="linear-grad" text="Load" textFill="WHITE">
                   <font>
                      <Font name="Segoe UI" size="13.0" />
                   </font>

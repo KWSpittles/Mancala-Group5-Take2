@@ -96,6 +96,9 @@ public class LeaderBoardController {
         String line = "";
         int o = 0;
         try {
+            if(userData.size()!=0){
+                userData.clear();
+            }
             reader = new BufferedReader(new FileReader(file));
             while((line=reader.readLine())!=null) {
                 String[] row = line.split(",");
@@ -153,6 +156,7 @@ public class LeaderBoardController {
 
     public static ObservableList getUserList() throws IOException {
         ObservableList<User> list = FXCollections.observableArrayList();
+
         ActionEvent e = new ActionEvent();
         loadInfo(e);
         for (int i=0; i<userData.size()-1;i++){
