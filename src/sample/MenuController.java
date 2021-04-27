@@ -18,18 +18,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Class to control game navigation from main menu
- * implements initialization of various game modes and access to sign-in pages
+ * Class to control game navigation from main menu.
+ * Implements initialization of various game modes and access to sign-in pages
  * applies set FXML resources
  *
  * @author Beth Pawlin
+ * @author Julian
  */
 public class MenuController implements Initializable {
 
+    /**
+     * Setting variables for FXML resources
+     */
     public Label subtitle;
     public TextField usernameField;
     public PasswordField passwordField;
-
     private Stage stage;
     private Scene scene;
     private Parent root;
