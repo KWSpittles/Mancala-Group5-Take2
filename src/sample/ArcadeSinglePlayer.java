@@ -340,7 +340,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
     public void validMove(Board gameBoard, boolean player1Side, int pitPressed) {
 
         if (player1.isCurrentTurn) {
-            if (player1Side && pitPressed <= 5 && Math.random() > 0.1) {
+            if (player1Side && pitPressed <= 5 && (Math.random() > 0.1)) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -350,7 +350,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            else if (player1Side && pitPressed <= 5 && Math.random() <= 0.033) {
+            else if (player1Side && pitPressed <= 5 && (Math.random() <= 0.033)) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -360,7 +360,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            else if (player1Side && pitPressed <= 5 &&  Math.random() > 0.033 && Math.random() <= 0.066) {
+            else if (player1Side && pitPressed <= 5 &&  (Math.random() > 0.033 && Math.random() <= 0.066)) {
                 if (gameBoard.getPitValue(true, pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -370,7 +370,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                 }
             }
 
-            else if (player1Side && pitPressed <= 5 && Math.random() >0.66 && Math.random() <= 0.1) {
+            else if (player1Side && pitPressed <= 5 && (Math.random() >0.66 && Math.random() <= 0.1)) {
                 if (gameBoard.getPitValue(true, pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 } else {
@@ -385,7 +385,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
 
         }
         else {
-            if ((!player1Side) && pitPressed <= 5 && Math.random() >= 0.1) {
+            if ((!player1Side) && pitPressed <= 5 && (Math.random() >= 0.1)) {
                 if(gameBoard.getPitValue(false,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -394,7 +394,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                     invalidTurnMessage.setText("processing");
                 }
             }
-            else if ((!player1Side) && pitPressed <= 5 && Math.random() <= 0.033) {
+            else if ((!player1Side) && pitPressed <= 5 && (Math.random() <= 0.033)) {
                 if(gameBoard.getPitValue(false,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -403,7 +403,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                     invalidTurnMessage.setText("A Half hand special stone has been triggered.");
                 }
             }
-            else if ((!player1Side) && pitPressed <= 5 && Math.random() > 0.033 && Math.random() <= 0.066) {
+            else if ((!player1Side) && pitPressed <= 5 && (Math.random() > 0.033 && Math.random() <= 0.066)) {
                 if (gameBoard.getPitValue(false, pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -412,7 +412,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
                     invalidTurnMessage.setText("A reverse turn special stone has been triggered.");
                 }
             }
-            else if ((!player1Side) && pitPressed <= 5 && Math.random() >0.066 && Math.random() <= 0.099) {
+            else if ((!player1Side) && pitPressed <= 5 && (Math.random() >0.066 && Math.random() <= 0.099)) {
                 if (gameBoard.getPitValue(false, pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 } else {
@@ -428,38 +428,9 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         }
     }
 
-    /**
-     * An arraylist which returns the computer's valid moves for single player
-     * @return - Computer's current valid moves
-     */
-    public ArrayList<Integer> getComputersValidMoves(){
-        return computersValidMoves;
-    }
 
-    /**
-     * Allows computer to make a move if valid.
-     */
-    public void computerMove() {
-        validMove(gameBoard, false, getComputersMove(getComputersValidMoves()));
-    }
 
-    /**
-     * Method makes the computer's move.
-     * @param computersValidMoves - Takes if valid moves can be made
-     * @return - Makes move if valid and returns to user and displays on GUI.
-     */
-    public int getComputersMove(ArrayList<Integer> computersValidMoves){
-        for (int i = 0; i <= 5; i++) {
-            if(gameBoard.getPitValue(false, i) != 0){
-                computersValidMoves.add(i);
-            }
-        }
-        int value = (int)Math.random()*(computersValidMoves.size());
-        int pitPressed = computersValidMoves.get(value);
-        System.out.println(pitPressed);
 
-        return pitPressed;
-    }
 
     /**
      * Method to select starting player of game with 50% chance of selection.
@@ -504,19 +475,41 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         }
     }
 
+
     /**
-     * Method selects a non-empty pit at random for the computer AI
+     * An arraylist which returns the computer's valid moves for single player
+     * @return - Computer's current valid moves
      */
-    public int getComputersMove(){
+    public ArrayList<Integer> getComputersValidMoves(){
+        return computersValidMoves;
+    }
+
+
+
+    /**
+     * Method makes the computer's move.
+     * @param computersValidMoves - Takes if valid moves can be made
+     * @return - Makes move if valid and returns to user and displays on GUI.
+     */
+    public int getComputersMove(ArrayList<Integer> computersValidMoves){
         for (int i = 0; i <= 5; i++) {
             if(gameBoard.getPitValue(false, i) != 0){
                 computersValidMoves.add(i);
             }
         }
-        int value = (int)Math.random()*computersValidMoves.size();
+        int value = (int)Math.random()*(computersValidMoves.size());
         int pitPressed = computersValidMoves.get(value);
+        System.out.println(pitPressed);
 
         return pitPressed;
+    }
+
+
+    /**
+     * Allows computer to make a move if valid.
+     */
+    public void computerMove() {
+        validMove(gameBoard, false, getComputersMove(getComputersValidMoves()));
     }
 
     /**
@@ -644,11 +637,48 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         }
 
         System.out.println("Flag K");
-
-        checkGameOver(gameBoard);
-
         player1.isCurrentTurn = !player1.isCurrentTurn;
         displayBoard();
+        checkGameOver(gameBoard);
+        System.out.println(player1Side);
+
+
+
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
+        }
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
+        checkGameOver(gameBoard);
         return;
     }
 
@@ -768,28 +798,48 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         }
 
         System.out.println("Flag K");
-
-        checkGameOver(gameBoard);
-
+        player1.isCurrentTurn = !player1.isCurrentTurn;
         displayBoard();
+        checkGameOver(gameBoard);
+        System.out.println(player1Side);
 
-        if(player1.isCurrentTurn == true) {
-            System.out.println("COMPUTERS TURN");
-            player1.isCurrentTurn = false;
-            displayBoard();
 
-            try {
-                TimeUnit.SECONDS.sleep(5);
-                makeMove(gameBoard, false, getComputersMove());
-                displayBoard();
-                player1.isCurrentTurn = true;
-                displayBoard();
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
         }
-
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
+        checkGameOver(gameBoard);
         return;
     }
 
@@ -909,25 +959,48 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         }
 
         System.out.println("Flag K");
-        checkGameOver(gameBoard);
+        player1.isCurrentTurn = !player1.isCurrentTurn;
         displayBoard();
+        checkGameOver(gameBoard);
+        System.out.println(player1Side);
 
-        if(player1.isCurrentTurn == true) {
-            System.out.println("COMPUTERS TURN");
-            player1.isCurrentTurn = false;
-            displayBoard();
 
-            try {
-                TimeUnit.SECONDS.sleep(5);
-                makeMove(gameBoard, false, getComputersMove());
-                displayBoard();
-                player1.isCurrentTurn = true;
-                displayBoard();
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
         }
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
+        checkGameOver(gameBoard);
         return;
     }
     /**
@@ -1048,25 +1121,48 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         }
 
         System.out.println("Flag K");
-        checkGameOver(gameBoard);
+        player1.isCurrentTurn = !player1.isCurrentTurn;
         displayBoard();
+        checkGameOver(gameBoard);
+        System.out.println(player1Side);
 
-        if(player1.isCurrentTurn == false) {
-            System.out.println("COMPUTERS TURN");
-            player1.isCurrentTurn = true;
-            displayBoard();
 
-            try {
-                TimeUnit.SECONDS.sleep(5);
-                makeMove(gameBoard, false, getComputersMove());
-                displayBoard();
-                player1.isCurrentTurn = false;
-                displayBoard();
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if(player1.isCurrentTurn){
+            turnMessage.setText("It is " + player1.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: green");
+            buttonpit1.setStyle("-fx-border-color: green");
+            buttonpit2.setStyle("-fx-border-color: green");
+            buttonpit3.setStyle("-fx-border-color: green");
+            buttonpit4.setStyle("-fx-border-color: green");
+            buttonpit5.setStyle("-fx-border-color: green");
+            labelpit6.setStyle("-fx-border-color: green");
+            buttonpit7.setStyle("-fx-border-color: red");
+            buttonpit8.setStyle("-fx-border-color: red");
+            buttonpit9.setStyle("-fx-border-color: red");
+            buttonpit10.setStyle("-fx-border-color: red");
+            buttonpit11.setStyle("-fx-border-color: red");
+            buttonpit12.setStyle("-fx-border-color: red");
+            labelpit13.setStyle("-fx-border-color: red");
         }
+        else {
+            turnMessage.setText("It is " + player2.getFirstName() + "'s turn");
+            buttonpit0.setStyle("-fx-border-color: red");
+            buttonpit1.setStyle("-fx-border-color: red");
+            buttonpit2.setStyle("-fx-border-color: red");
+            buttonpit3.setStyle("-fx-border-color: red");
+            buttonpit4.setStyle("-fx-border-color: red");
+            buttonpit5.setStyle("-fx-border-color: red");
+            labelpit6.setStyle("-fx-border-color: red");
+            buttonpit7.setStyle("-fx-border-color: green");
+            buttonpit8.setStyle("-fx-border-color: green");
+            buttonpit9.setStyle("-fx-border-color: green");
+            buttonpit10.setStyle("-fx-border-color: green");
+            buttonpit11.setStyle("-fx-border-color: green");
+            buttonpit12.setStyle("-fx-border-color: green");
+            labelpit13.setStyle("-fx-border-color: green");
+        }
+        checkGameOver(gameBoard);
         return;
     }
 
