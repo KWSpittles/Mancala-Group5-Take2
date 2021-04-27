@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -38,7 +40,7 @@ public class LoginControllerT2 {
 	private static final ArrayList<User> loggedInUsers = new ArrayList<>();
 	private static ArrayList<User> registeredUsers;
 
-	private static final User computer = new User("Computer","Computer","Computer");
+	private static final User computer = new User("Computer","Computer","Computer","src/Computer.jpg");
 
 
 
@@ -197,12 +199,14 @@ public class LoginControllerT2 {
 
 	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
+
 		root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.centerOnScreen();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+
 	}
 	
 	//Action event to switch to sign up page

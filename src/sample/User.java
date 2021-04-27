@@ -37,6 +37,16 @@ public class User {
 
         userCount++; //adds one to the user count each time the constructor is called
     }
+
+    public User (String userName, String first, String last, String url){
+        this.userName = userName;
+        firstName = first;
+        lastName = last;
+        this.setprofilePicture("url");
+
+        userCount++; //adds one to the user count each time the constructor is called
+    }
+
     //hei correct me if wrong shouldnt it be something like this?
 //    public User(int id, String userName, String password, String firstName, String lastName, boolean admin) {
 //        this.id = id;

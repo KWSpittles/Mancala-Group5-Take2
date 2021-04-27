@@ -88,7 +88,14 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
     }
 
     @FXML
-    public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13, labelpit15;
+    public Label labelpit0, labelpit1, labelpit2, labelpit3, labelpit4, labelpit5, labelpit6, labelpit7, labelpit8, labelpit9, labelpit10, labelpit11, labelpit12, labelpit13;
+    @FXML
+    ImageView imageview1;
+
+    @FXML
+    ImageView imageview2;
+
+
     public void displayBoard() {
         labelpit0.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(0).getPitValue()));
         labelpit1.setText(String.valueOf(gameBoard.getPlayer1Side().getPit(1).getPitValue()));
@@ -107,10 +114,11 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         
         //Displays profile picture on the board
         Image profilepic1 = new Image(getClass().getResourceAsStream("/" + player1.getUserName() + ".jpg"),150,150,false,false);
-        ImageView imageView1 = new ImageView();
-        imageView1.setImage(profilepic1);
-        labelpit15.setGraphic(imageView1);
-        
+        imageview1.setImage(profilepic1);
+
+        Image profilepic2 = new Image(getClass().getResourceAsStream("/Computer.jpg"),150,150,false,false);
+        imageview2.setImage(profilepic2);
+
 
         System.out.println("You have displayed a new Board");
 
@@ -426,13 +434,6 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         displayBoard();
 
 
-
-
-
-
-
-
-
         if(player1.isCurrentTurn == true) {
             System.out.println("COMPUTERS TURN");
             player1.isCurrentTurn = false;
@@ -464,6 +465,7 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         GameSinglePlayer gameMultiPlayer = new GameSinglePlayer(4, player1);
         resetBoard();
         displayBoard();
+
 
         this.player1 = player1;
         this.player2 = player2;

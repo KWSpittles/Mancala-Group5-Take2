@@ -11,7 +11,11 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GameSinglePlayer">
     <top>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@game.css" BorderPane.alignment="CENTER" />
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@game.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="imageview1" fitHeight="237.0" fitWidth="266.0" layoutX="46.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+            <AnchorPane fx:id="imageview2" layoutX="1595.0" layoutY="10.0" prefHeight="242.0" prefWidth="266.0" />
+         </children></AnchorPane>
     </top>
     <left>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />

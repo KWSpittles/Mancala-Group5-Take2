@@ -42,7 +42,7 @@
                         <Font name="Segoe UI" size="13.0" />
                     </font>
                 </Button>
-                <Button layoutX="190.0" layoutY="286.0" mnemonicParsing="false" onAction="#player2ArcadeSignInSubmit" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
+                <Button layoutX="190.0" layoutY="286.0" mnemonicParsing="false" onAction="#player2SignInSubmitArcade" prefHeight="40.0" prefWidth="124.0" styleClass="button1" text="Sign In" textFill="WHITE">
                     <font>
                         <Font name="Segoe UI" size="13.0" />
                     </font>
