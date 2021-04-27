@@ -256,7 +256,7 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("processing");
                 }
             }
-            else if (player1Side && pitPressed <= 5 && continueTurnButton) {
+            else if (player1Side && pitPressed <= 5 && continueTurnButton== true) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -265,7 +265,7 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("A continue turn power-ups has been used.");
                 }
             }
-            else if (player1Side && pitPressed <= 5 && doublePointsButton) {
+            else if (player1Side && pitPressed <= 5 && doublePointsButton== true) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -844,7 +844,7 @@ public class ArcadeMultiPlayer implements Initializable  {
             labelpit13.setStyle("-fx-border-color: green");
         }
 
-        continueTurnButton = !continueTurnButton;
+        continueTurnButton = false;
 
         return;
     }
@@ -1000,6 +1000,8 @@ public class ArcadeMultiPlayer implements Initializable  {
             buttonpit12.setStyle("-fx-border-color: green");
             labelpit13.setStyle("-fx-border-color: green");
         }
+
+        doublePointsOn = false;
         return;
     }
 
@@ -1524,41 +1526,25 @@ public class ArcadeMultiPlayer implements Initializable  {
 
 
     //continue && double buttons
+    public boolean continueTurnButton;
+    public boolean doublePointsButton;
 
     @FXML
-    public void continueTurnOn(ActionEvent e){
-        continueTurnButton = true;
-
+    public void continueTurnOn(ActionEvent e) throws IOException {
         System.out.println("111");
-
+        continueTurnButton = true;
     }
 
-    public void doublePointsOn(ActionEvent e){
-        continueTurnButton = false;
+    public void doublePointsOn(ActionEvent e) throws IOException{
+        doublePointsButton = true;
 
         System.out.println("222");
 
     }
 
-    private boolean continueTurnButton;
-    private boolean doublePointsButton;
 
 
-    @FXML protected void handleToggleYesAction(ActionEvent t) {
-        continueTurnButton = true;
-    }
 
-    @FXML protected void handleToggleNoAction(ActionEvent t) {
-        continueTurnButton = false;
-    }
-
-    @FXML protected void handleToggleYesAction2(ActionEvent t) {
-        doublePointsButton = true;
-    }
-
-    @FXML protected void handleToggleNoAction2(ActionEvent t) {
-        doublePointsButton = false;
-    }
 
 
 
