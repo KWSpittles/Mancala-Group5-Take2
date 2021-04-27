@@ -36,7 +36,8 @@ public class LeaderBoardController implements Initializable {
     TextArea leaderBoardText = new TextArea();
 
     /**
-     * direct back to menu page
+     * Method directs user back to menu page
+     * @param event Action Event to set resources for FXML
      */
     public void switchBackToMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Menu.fxml")));
@@ -48,8 +49,8 @@ public class LeaderBoardController implements Initializable {
     }
 
     /**
-     * It read userData from file & display in TextArea
-     *-done by set text at textarea also reutrn that text
+     * Method reads user data from the csv file to display.
+     * Text is returned to user.
      * @return table text.
      */
     public String test() throws IOException { //!! it has to be test i finding why
@@ -90,7 +91,8 @@ public class LeaderBoardController implements Initializable {
     }
 
     /**
-     * It load data form file & load to userData<>
+     * Method loads the user information from CSV file.
+     * Loads the relevant game data to the correct user data.
      */
     public static void loadInfo (ActionEvent e) throws IOException {
         BufferedReader reader = null;
@@ -119,8 +121,8 @@ public class LeaderBoardController implements Initializable {
     }
 
     /**
-     * It search via userName and return user
-     * @param string as userID.
+     * Method searches the array list via username to return the user.
+     * @param String type given as userID.
      * @return scanner as row of user data.
      */
     public static ArrayList searchUser(String uid){
@@ -135,7 +137,8 @@ public class LeaderBoardController implements Initializable {
     }
 
     /**
-     * It search via userID num and return user
+     * Method to search the array list for relevant user data.
+     * Returns user based on the userID.
      * @param string as userID.
      * @return scanner as row of user data.
      */
@@ -152,9 +155,9 @@ public class LeaderBoardController implements Initializable {
 
 
     /**
-     * It is method for set data to obj user
+     * Method to load the user and set appropriate data to the object user.
      * @param string as userID.
-     * @return obj user that fill with data
+     * @return obj user in which it can fill with the data
      */
     public static User loadUser (String uid){
         ArrayList tem = getUser(uid);
@@ -169,8 +172,8 @@ public class LeaderBoardController implements Initializable {
     }
 
     /**
-     * It fill all user in list<> from </>userData<>
-     * @return list that store all user
+     * Method fills all users in the array list from the userData
+     * @return list that stores all of said users
      */
     public static ObservableList getUserList() throws IOException {
         ObservableList<User> list = FXCollections.observableArrayList();
@@ -185,8 +188,8 @@ public class LeaderBoardController implements Initializable {
     }
 
     /**
-     * It is method for initialize action
-     * -it execute wheil leadeerBoard page loadedq  q
+     * Method initialises action including relevant JavaFXML resources.
+     * Method executes whilst leaderboard page is in loading process.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -196,7 +199,6 @@ public class LeaderBoardController implements Initializable {
             e.printStackTrace();
         }
     }
-
 }
 
 
