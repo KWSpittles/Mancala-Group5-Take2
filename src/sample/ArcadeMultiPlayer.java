@@ -43,8 +43,7 @@ public class ArcadeMultiPlayer implements Initializable  {
     public boolean reverseTurnTri;
     public boolean switchSideTri;
 
-    public boolean continueTurnOn;
-    public boolean doublePointsOn;
+
 
 
     private int frequencyOfPowerUpsAndSpecialStone;
@@ -249,7 +248,7 @@ public class ArcadeMultiPlayer implements Initializable  {
     public void validMove(Board gameBoard, boolean player1Side, int pitPressed) {
 
         if (player1.isCurrentTurn) {
-            if (player1Side && pitPressed <= 5 &&  Math.random() >=0.1) {
+            if (player1Side && pitPressed <= 5 && Math.random() >=0.1) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -258,7 +257,7 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("processing");
                 }
             }
-            else if (player1Side && pitPressed <= 5 && continueTurnButton == true) {
+            else if (player1Side && pitPressed <= 5 && continueTurnButton ) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -267,7 +266,7 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("A continue turn power-ups has been used.");
                 }
             }
-            else if (player1Side && pitPressed <= 5 && doublePointsButton == true) {
+            else if (player1Side && pitPressed <= 5 && doublePointsButton) {
                 if(gameBoard.getPitValue(true,pitPressed) == 0) {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 }
@@ -293,7 +292,6 @@ public class ArcadeMultiPlayer implements Initializable  {
                 }
                 else {
                     reverseTurn(gameBoard, true, pitPressed);
-                    reverseTurnTri = true;
                     invalidTurnMessage.setText("A reverse turn special stone has been triggered.");
                 }
             }
@@ -303,7 +301,6 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 } else {
                     switchSides(gameBoard, true, pitPressed);
-                    switchSideTri = true;
                     invalidTurnMessage.setText("A switch sides special stone has been triggered.");
                 }
             }
@@ -347,7 +344,6 @@ public class ArcadeMultiPlayer implements Initializable  {
                 }
                 else{
                     halfHand(gameBoard, false, pitPressed);
-                    halfHandTri = true;
                     invalidTurnMessage.setText("A Half hand special stone has been triggered.");
                 }
             }
@@ -368,7 +364,6 @@ public class ArcadeMultiPlayer implements Initializable  {
                     invalidTurnMessage.setText("Please pick a pit with stones in!");
                 } else {
                     switchSides(gameBoard, false, pitPressed);
-                    switchSideTri = true;
                     invalidTurnMessage.setText("A switch sides special stone has been triggered.");
                 }
             }
@@ -1002,8 +997,8 @@ public class ArcadeMultiPlayer implements Initializable  {
             labelpit13.setStyle("-fx-border-color: green");
         }
 
-        doublePointsOn = false;
-        return;
+//        doublePointsOn = false;
+
     }
 
 
@@ -1534,6 +1529,11 @@ public class ArcadeMultiPlayer implements Initializable  {
 
         invalidTurnMessage.setText("");
     }
+    @FXML
+    Button continueTurnOn;
+
+    @FXML
+    Button doublePointsOn;
 
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
@@ -1556,6 +1556,16 @@ public class ArcadeMultiPlayer implements Initializable  {
     public void continueTurnOn(ActionEvent e) throws IOException {
         continueTurnButton = true;
         System.out.println("111");
+        continueTurnOn.setStyle("-fx-border-color: red");
+        invalidTurnMessage.setText("You have click the continue turn power up!");
+
+
+        if (continueTurnButton = false){
+            continueTurnOn.setStyle("-fx-border-color: black");
+
+        }
+
+
     }
 
     public void doublePointsOn(ActionEvent e) throws IOException{
