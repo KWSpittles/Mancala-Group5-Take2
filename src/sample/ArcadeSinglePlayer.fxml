@@ -165,9 +165,10 @@
             <center>
                 <AnchorPane prefHeight="436.0" prefWidth="1357.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Label fx:id="turnMessage" layoutX="65.0" layoutY="118.0" prefHeight="94.0" prefWidth="1095.0" text="Label" />
-                        <Label fx:id="invalidTurnMessage" layoutX="11.0" layoutY="249.0" prefHeight="84.0" prefWidth="1202.0" text="Label" />
+                        <Label fx:id="turnMessage" layoutX="65.0" layoutY="76.0" prefHeight="94.0" prefWidth="1095.0" text="Label" />
+                        <Label fx:id="invalidTurnMessage" layoutX="11.0" layoutY="181.0" prefHeight="84.0" prefWidth="1202.0" text="Label" />
                         <Label fx:id="gameover" layoutX="212.0" layoutY="23.0" prefHeight="59.0" prefWidth="234.0" text="Label" />
+                  <Button layoutX="537.0" layoutY="265.0" mnemonicParsing="false" onAction="#computerMove" text="Take Compter Turn" />
                     </children>
                 </AnchorPane>
             </center>

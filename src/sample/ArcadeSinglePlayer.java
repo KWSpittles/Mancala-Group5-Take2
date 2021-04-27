@@ -410,6 +410,27 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
 
         }
     }
+    public ArrayList<Integer> getComputersValidMoves(){
+        return computersValidMoves;
+    }
+
+
+    public void computerMove() {
+        validMove(gameBoard, false, getComputersMove(getComputersValidMoves()));
+    }
+
+    public int getComputersMove(ArrayList<Integer> computersValidMoves){
+        for (int i = 0; i <= 5; i++) {
+            if(gameBoard.getPitValue(false, i) != 0){
+                computersValidMoves.add(i);
+            }
+        }
+        int value = (int)Math.random()*(computersValidMoves.size());
+        int pitPressed = computersValidMoves.get(value);
+        System.out.println(pitPressed);
+
+        return pitPressed;
+    }
 
     /**
      * Selects a player to start the game. 50% chance.
@@ -601,26 +622,10 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
         checkGameOver(gameBoard);
 
 
+
+
+        player1.isCurrentTurn = !player1.isCurrentTurn;
         displayBoard();
-
-
-        if(player1.isCurrentTurn == true) {
-            System.out.println("COMPUTERS TURN");
-            player1.isCurrentTurn = false;
-            displayBoard();
-
-            try {
-                TimeUnit.SECONDS.sleep(5);
-                makeMove(gameBoard, false, getComputersMove());
-                displayBoard();
-                player1.isCurrentTurn = true;
-                displayBoard();
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
         return;
     }
 
@@ -1082,7 +1087,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
 
         this.player1 = player1;
         this.player2 = player2;
-
+        this.computersValidMoves = new ArrayList<>();
         firstPlayer();
 
         invalidTurnMessage.setText("");
