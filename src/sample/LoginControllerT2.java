@@ -23,25 +23,64 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+/**
+ * Class to apply log in methods for all gamemodes
+ *
+ * @author Beth Pawlin
+ * @author Julian
+ */
 public class LoginControllerT2 {
 
+	/**
+	 * String variable to hold the user password
+	 */
 	public String inputPassword;
+	/**
+	 * String variable stores user Id
+	 */
 	public String inputId;
+	/**
+	 * Image variable to store the user's profile picture
+	 */
 	private BufferedImage profilePic;
+	/**
+	 * Variable to store url of user profile image
+	 */
 	private URL imageURL;
+	/**
+	 * String variable to store output of image URL
+	 */
 	private String outputURL;
 
+	/**
+	 * Storing the user info to a CSV file
+	 */
 	public static final String USERS_CSV_FILE = "src" + File.separator + "UserInfo.csv";
 
-
+	/**
+	 * Storing the user info as a hashmap
+	 */
 	public static HashMap<String, String> userLoginInfo = new HashMap<String, String>();
-	public static String userInfo = ""; // TODO what is this for?
+	/**
+	 * String to store the user details
+	 */
+	public static String userInfo = "";
 
+	/**
+	 * Users loggeed in are stored as an array list
+	 * New array is initiated to create list
+	 */
 	private static final ArrayList<User> loggedInUsers = new ArrayList<>();
+	/**
+	 * All registered users are stored as an array list
+	 */
 	private static ArrayList<User> registeredUsers;
 
+	/**
+	 * Computer type user is stored
+	 * Hardcoded user details for single player mode
+	 */
 	private static final User computer = new User("Computer","Computer","Computer","src/Computer.jpg");
-
 
 	@FXML
 	PasswordField pwField = new PasswordField();
@@ -58,10 +97,19 @@ public class LoginControllerT2 {
 	@FXML
 	Label subtitle = new Label();
 
+	/**
+	 * FXML
+	 */
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	
+
+	/**
+	 * Takes new username and password as String types
+	 * Uses getters to take and store text fields
+	 * @param e - Action event test if login successful
+	 * @return loginAttempt
+	 */
 	public boolean readIdPassWord (ActionEvent e) {
 		String username = String.valueOf(idField.getText());
 		String password = String.valueOf(pwField.getText());
@@ -69,9 +117,25 @@ public class LoginControllerT2 {
 		return loginAttempt(username, password, subtitle);
 	}
 
-
-
-
+	/**
+	 * Method to test auth of user when logging in
+	 * Takes username and tests if previous user
+	 * 		If username is not found in csv then error is returned
+	 *
+	 * If password field is left blank an error is returned
+	 *
+	 * Tests if password field matches user password in csv
+	 * 		If password matches - login is successful - Else an error is returned
+	 *
+	 * Checks login status of user logging in - Error is returned if user is already logged into game
+	 *
+	 * If all checks pass then log in is successful and the username is added to the loggedInUsers array
+	 * @param username - String type username field
+	 * @param password - String type from password field
+	 * @param errorLabel - Label - Presents error message to the user
+	 * @return - Return false if login attempts fail above method - Presents error to the user.
+	 * @return - Returns true if all checks pass - User added to logged in array
+	 */
 	public static boolean loginAttempt(String username, String password, Label errorLabel) {
 		User userAccount = getUserByUsername(username);
 
@@ -107,13 +171,24 @@ public class LoginControllerT2 {
 
 		// Otherwise, login successful
 		System.out.println("User " + username + " logged in");
-		userInfo = username; // TODO what is this for?
+		userInfo = username;
 
 		// Add user to logged in users ArrayList
 		addToLoggedInUsersList(userAccount);
 		return true;
 	}
 
+	/**
+	 * Method to create a new user account
+	 * Takes in string getter variables from user input
+	 * Method checks user data is not already stored in csv file
+	 * Method doesn't allow for blank fields
+	 * All user info is written to file and presented as successful to the user
+	 * User is then redirected to the game
+	 * @param e - ActionEvent - Storing user profile image to file
+	 * @throws IOException
+	 * @return - Error returned if checks not met
+	 */
 	public void createAccount(ActionEvent e) throws IOException {
 		
 //		String epw = String.valueOf(pwFieldc.getText());
@@ -125,7 +200,7 @@ public class LoginControllerT2 {
 		String username  = userNameField.getText();
 		String password  = passwordField.getText();
 		uploadImage(e, username);
-		String profilePic = outputURL;;
+		String profilePic = outputURL;
 
 		// Check that data was entered
 		if(username.isBlank() || password.isBlank()) {
@@ -149,7 +224,6 @@ public class LoginControllerT2 {
 		System.out.println("Username: " + username);
 		System.out.println("Password: " + password);
 		System.out.println();
-
 
 		try {
 			System.out.print("Appending new user to CSV file... ");
@@ -185,17 +259,26 @@ public class LoginControllerT2 {
 		}
 	}
 
+	/**
+	 * Processing player login information
+	 * Reads username and password and redirects to the main menu if matches data in CSV
+	 * @param event - Checks String variables set for username and password
+	 * @throws IOException
+	 */
 	//Action event for login form submit
 	public void processPlayerLogin(ActionEvent event) throws IOException {
 		if(readIdPassWord(event)) {
 			switchToPlayerMenu(event);
 		}
 	}
-	
 
+	/**
+	 * Switches to main menu after processPlayerLogin is successful
+	 * @param event - Initialises FXML resources for main menu
+	 * @throws IOException
+	 */
 	//Action event to switch to player menu
 	public void switchToPlayerMenu(ActionEvent event) throws IOException {
-
 		root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.centerOnScreen();
@@ -204,7 +287,12 @@ public class LoginControllerT2 {
 		stage.show();
 
 	}
-	
+
+	/**
+	 * Method to switch to sign up page
+	 * @param event - Initiates FXML resources for the sign up pages
+	 * @throws IOException
+	 */
 	//Action event to switch to sign up page
 	public void switchToSignUpPage(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("signUpPage.fxml"));
@@ -215,7 +303,13 @@ public class LoginControllerT2 {
 		stage.show();
 		System.out.println("Showing create account page");
 	}
-	
+
+	/**
+	 * Method to switch to login page at game start
+	 * Also initiated after player 1 logout
+	 * @param event - Initiates FXML resources
+	 * @throws IOException
+	 */
 	//Action event to switch to login page
 	public void switchToLoginPage(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
@@ -227,6 +321,12 @@ public class LoginControllerT2 {
 		System.out.println("Showing login page");
 	}
 
+	/**
+	 * This method loads the stored user information from the CSV file
+	 * All users in CSV are stored in the array list registeredUsers
+	 * The method returns all fields from the array list
+	 * An error is returned if data cannot be accessed.
+	 */
 	public static void loadUserInfoFromCsv() {
 		System.out.print("Loading user data from CSV file...");
 		registeredUsers = new ArrayList<>();
@@ -252,6 +352,11 @@ public class LoginControllerT2 {
 		}
 	}
 
+	/**
+	 * This method adds the user to the logged in users array after sign in
+	 * Checks if user is already logged in and doesn't duplicate in array if they are
+	 * @param user -Takes the String parameter user
+	 */
 	public static void addToLoggedInUsersList(User user) {
 		// If already in logged in users list, do nothing
 		for(User x : loggedInUsers) {
@@ -259,15 +364,22 @@ public class LoginControllerT2 {
 				return;
 			}
 		}
-
 		// Add to logged in users list
 		loggedInUsers.add(user);
 	}
 
+	/**
+	 * This method clears all users from loggedInUsers array list after signing out of game
+	 */
 	public static void signOutAllUsers() {
 		loggedInUsers.clear();
 	}
 
+	/**
+	 * This method takes a String 'username' and checks if it is a registered user in the CSV file
+	 * @param username - String type variable
+	 * @return
+	 */
 	public static User getUserByUsername(String username) {
 		loadUserInfoFromCsv();
 
@@ -276,10 +388,16 @@ public class LoginControllerT2 {
 				return user;
 			}
 		}
-
 		return null;
 	}
 
+	/**
+	 * Method to get player ID number from position in array list
+	 * Checks array index from the current logged in users
+	 * @param playerNumber - Integer type to apply if player 1 or 2
+	 * @return integer based on position in array index
+	 * 			Player1 or player2
+	 */
 	public static User getLoggedInPlayer(int playerNumber) {
 		if(loggedInUsers.size() >= playerNumber) {
 			int arrayIndex = playerNumber - 1;
@@ -288,14 +406,25 @@ public class LoginControllerT2 {
 		return null;
 	}
 
+	/**
+	 * Method to get computer user for single player mode
+	 * @return - the computer user with hardcoded player data
+	 */
 	public static User getComputer(){
 		return computer;
 	}
+
+	/**
+	 * Method to upload a profile image when creating a new account
+	 * This accesses player's user files and allows for a PNG or JPG file input
+	 * Stored with the user information in the CSV file
+	 * @param event - ActionEvent - Choose image from file
+	 * @param userName - Takes string type 'username' to store profile image with in CSV
+	 */
 	//Method upload profile picture from directory, and stores images in a chosen directory
     public void uploadImage(ActionEvent event, String userName) {
 
         FileChooser fileChooser = new FileChooser();
-
         //Extension of image filters
         FileChooser.ExtensionFilter extFilterJPG
                 = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
@@ -307,11 +436,9 @@ public class LoginControllerT2 {
                 = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
         fileChooser.getExtensionFilters()
                 .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
-        
         //Show open file dialog to choose picture
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
-
 			try {
 				profilePic = ImageIO.read(file.toURI().toURL());
 				imageURL = file.toURI().toURL();
@@ -320,17 +447,12 @@ public class LoginControllerT2 {
 				//outputURL = new File("src\\" + userName + ".jpg").toURI().toURL();
 				outputURL = "src\\" + userName + ".jpg";
 				ImageIO.write(profilePic, "jpg", outputfile);
-
 			} catch (MalformedURLException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 		}
-        
     }
-
-	
-		
 }
 	
