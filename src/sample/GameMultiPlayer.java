@@ -551,6 +551,8 @@ public class GameMultiPlayer implements Initializable {
         return;
     }
 
+    @FXML
+    Label firstName1, firstName2;
 
     /**
      * Initialises the Game, selects a first player,
@@ -569,8 +571,12 @@ public class GameMultiPlayer implements Initializable {
         Image profilepic2 = new Image(getClass().getResourceAsStream("/" + player2.getUserName() + ".jpg"),150,150,false,false);
         imageview2.setImage(profilepic2);
 
-        username1.setText(player1.getFirstName());
-        username2.setText(player2.getFirstName());
+        firstName1.setText(player1.getFirstName());
+        firstName2.setText(player2.getFirstName());
+        username1.setText(player1.getUserName());
+        username2.setText(player2.getUserName());
+
+
         gameover.setText("");
 
         this.player1 = player1;
@@ -587,8 +593,8 @@ public class GameMultiPlayer implements Initializable {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setWidth(720);
-        stage.setHeight(720);
+        stage.setWidth(900);
+        stage.setHeight(500);
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
