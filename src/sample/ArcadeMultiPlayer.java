@@ -327,7 +327,6 @@ public class ArcadeMultiPlayer implements Initializable  {
                 }
                 else{
                     continueTurn(gameBoard, false, pitPressed);
-                    halfHandTri = true;
                     invalidTurnMessage.setText("A continue turn power-ups has been used.");
                 }
             }
@@ -1526,7 +1525,7 @@ public class ArcadeMultiPlayer implements Initializable  {
 
 
     //continue && double buttons
-    public boolean continueTurnButton;
+    public boolean continueTurnButton = true;
     public boolean doublePointsButton;
 
     @FXML
