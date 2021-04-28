@@ -1,10 +1,5 @@
 package sample;
 
-/**
- * This class is used to Run the program. Launches the GUI.
- * @author Kieren Spittles
- */
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +9,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+/**
+ * This class is used to Run the program.
+ * Launches the GUI.
+ * @author Kieren Spittles
+ *
+ */
 public class Main extends Application {
 
     /**
@@ -43,9 +44,7 @@ public class Main extends Application {
             //      stage.setFullScreen(true);
             //      stage.setFullScreenExitHint("Press 1 to escape :)");
             //      stage.setFullScreenExitKeyCombination(KeyCombination.valueOf("1"));
-
             stage.setScene(scene);
-
             stage.show();
 
             System.out.println("Mancala is running");
@@ -64,8 +63,6 @@ public class Main extends Application {
      * Allows you to log out after displaying a confirmation box.
      * @param stage The GUI.
      */
-
-
     public void logout(Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Exit");

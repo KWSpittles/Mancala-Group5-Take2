@@ -1,11 +1,5 @@
 package sample;
 
-/**
- * This class is used to run arcade in the single player mode.
- * @author KaKoi Pun;
- * @author Kieren Spittles;
- */
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +19,11 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class is used to run arcade in the single player mode.
+ * @author KaKoi Pun;
+ * @author Kieren Spittles;
+ */
 public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializable  {
 
     /**
