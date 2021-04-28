@@ -603,6 +603,10 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
         this.player1 = player1;
         this.player2 = player2;
         this.computersValidMoves = new ArrayList<>();
+        firstName1.setText(player1.getFirstName());
+        firstName2.setText(player2.getFirstName());
+        username1.setText(player1.getUserName());
+        username2.setText(player2.getUserName());
 
         firstPlayer();
 

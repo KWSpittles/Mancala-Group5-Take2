@@ -350,15 +350,17 @@ public class MenuController implements Initializable {
         new LoginControllerT2().switchToPlayerMenu(event);
     }
 
-    @FXML
-    ImageView menuProfileImg;
+
 
     /**
      * Initialising menu controls and initial GUI at startup.
      * @param url
      * @param resourceBundle - Extending FXML resources
      */
+    @FXML
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

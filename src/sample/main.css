@@ -1,47 +1,21 @@
+.root{
+    -fx-background-image: url("../resources/sample/wooden-background.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+
+}
 text-input
 {
     -fx-text-fill : #ffffff;
     -fx-prompt-text-fill:#D4CEE3;
 }
 
-.button1
-{
--fx-background-color : #ED4816;
--fx-background-radius :  5;
-}
-.button1:hover
-{
--fx-background-color : #E24718;
-}
-.button1:pressed
-{
--fx-background-color : #ED4816;
-}
 
-.button2
-{
--fx-background-color : #E58466;
--fx-background-radius :  5;
-}
-.button2:hover
-{
--fx-background-color : #E24718;
-}
-.button2:pressed
-{
--fx-background-color : #ED4816;
-}
-
-.button3
-{
--fx-background-color: #AAAAAA;
--fx-background-radius:  5;
-}
-.button3:hover
+.button:hover
 {
 -fx-background-color: #CCCCCC;
 }
-.button3:pressed
+.button:pressed
 {
 -fx-background-color: #202020;
 }
@@ -52,4 +26,39 @@ text-input
 }
 .tutorialBackground{
     -fx-background-color: #ffffff;
+}
+
+.button{
+    -fx-background-color:
+            #3c7fb1,
+            linear-gradient(#fafdfe, #e8f5fc),
+            linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-padding: 3 30 3 30;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+#MenuButton{
+    -fx-background-color:
+            #3c7fb1,
+            linear-gradient(#fafdfe, #e8f5fc),
+            linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    -fx-background-insets: 0,1,2;
+    -fx-padding: 3 30 3 30;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 100px;
+}
+#MenuLabel{
+    -fx-text-fill: black;
+    -fx-font-size: 50px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-pref-width: 500px;
+    -fx-pref-height: 100px;
 }
