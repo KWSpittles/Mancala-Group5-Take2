@@ -24,6 +24,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 /***
+ * This class controls the leaderboard functions
  * @author Hei
  * @version 1.0LeaderBoardController for read userInfo fom file & display it
  */
@@ -122,7 +123,7 @@ public class LeaderBoardController implements Initializable {
 
     /**
      * Method searches the array list via username to return the user.
-     * @param String type given as userID.
+     * @param uid - String type type given as userID.
      * @return scanner as row of user data.
      */
     public static ArrayList searchUser(String uid){
@@ -139,7 +140,7 @@ public class LeaderBoardController implements Initializable {
     /**
      * Method to search the array list for relevant user data.
      * Returns user based on the userID.
-     * @param string as userID.
+     * @param uid - String as userID.
      * @return scanner as row of user data.
      */
     public static ArrayList getUser(String uid){
@@ -156,7 +157,7 @@ public class LeaderBoardController implements Initializable {
 
     /**
      * Method to load the user and set appropriate data to the object user.
-     * @param string as userID.
+     * @param uid - String as userID.
      * @return obj user in which it can fill with the data
      */
     public static User loadUser (String uid){
