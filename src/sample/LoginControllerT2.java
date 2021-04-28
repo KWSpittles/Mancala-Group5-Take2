@@ -27,7 +27,8 @@ import java.util.HashMap;
  * Class to apply log in methods for all gamemodes
  *
  * @author Beth Pawlin
- * @author Julian
+ * @author Julian Chan
+ * @author Hei
  */
 public class LoginControllerT2 {
 
