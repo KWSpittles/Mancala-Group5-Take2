@@ -5,7 +5,7 @@ package sample;
  * implements initialization of various game modes and access to sign-in pages
  * applies set FXML resources
  *
- * @author
+ * @author Kieran Spittles
  */
 public class Side {
 

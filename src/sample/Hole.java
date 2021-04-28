@@ -4,7 +4,7 @@ package sample;
  * Class to control the pit values
  * Includes getting, setting and incrementing values.
  *
- * @author Kieran
+ * @author Kieran Spittles
  */
 public class Hole {
 

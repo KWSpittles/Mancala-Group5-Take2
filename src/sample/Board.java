@@ -3,7 +3,7 @@ package sample;
 /**
  * Class to control game board mechanics.
  *
- * @author Kieran
+ * @author Kieran Spittles
  */
 public class Board {
 
