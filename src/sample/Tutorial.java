@@ -18,6 +18,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class to implement additional feature of tutorial images
+ * @author Kieran Spittles
+ * @author Beth Pawlin - Digital drawings
+ */
 public class Tutorial{
 
     int currentImage = 1;
@@ -27,6 +32,11 @@ public class Tutorial{
     Button myButton;
     Button myButton1;
 
+    /**
+     * Method switches to next image in tutorial.
+     * Switches to first image if the final image is reached and
+     * prints the current image for the user to view.
+     */
     public void nextImage(){
         currentImage++;
 
@@ -38,6 +48,11 @@ public class Tutorial{
         System.out.println("current = " + currentImage);
     }
 
+    /**
+     * Method to switch to the previous image in the tutorial.
+     * Displays current image to the user, returns to last image if
+     * selected from the first.
+     */
     public void prevImage() {
         currentImage--;
 
@@ -49,10 +64,20 @@ public class Tutorial{
         System.out.println("current = " + currentImage);
     }
 
+    /**
+     * Variables to hold JavaFXML resources
+     */
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+    /**
+     * Method switches user back to main menu from tutorial page.
+     * Triggers after button press and initiates appropriate JavaFXML resources.
+     * Alerts user to location in game at the end of the method.
+     * @param event - Action Event - Initialises JavaFXML resources
+     * @throws IOException
+     */
     public void switchToMenu(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         stage = (Stage)((Node) event.getSource()).getScene().getWindow();
