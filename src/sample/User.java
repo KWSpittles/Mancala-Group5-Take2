@@ -47,10 +47,10 @@ public class User {
         
     /**
      * Create a User object with specified arguments
-     * @param username
-     * @param first name
-     * @param last name
-     * @param URL of profile picture
+     * @param userName String variable
+     * @param first String for user first name
+     * @param last String for user last name
+     * @param url A String to show the URL of the profile image
      */
     public User (String userName, String first, String last, String url){
         this.userName = userName;
@@ -62,32 +62,32 @@ public class User {
     }
 
     /**
-     * Method to add favourite players
-     * @param User
+     * Method allows adding user to favourites.
+     * @param user Takes a user type
      */
     public void addfavUser(User user) {
         favUsers.add(user);
     }
 
     /**
-     * Method to remove favourite players
-     * @param User
+     * Method allows to remove favourite players
+     * @param user Takes a user type
      */
     public void removefavUser(User user) {
         favUsers.remove(user);
     }
 
     /**
-     * Set the username
-     * @param username
+     * Sets the username of the player from user data
+     * @param UserName - String to store variable username
      */
     public void setUserName(String UserName) {
         this.userName = UserName;
     }
     
     /**
-     * Set the first name
-     * @param first name
+     * Sets the first name of the player from user data
+     * @param firstName String type
      */
     public void setfirstName(String firstName) {
         this.firstName = firstName;
@@ -95,42 +95,44 @@ public class User {
     
     
     /**
-     * Set the last name
-     * @param first name
+     * Sets the last name of the player from the user data
+     * @param lastName String type
      */
     public void setlastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     * Set the last name
-     * @param first name
+     * Sets the password for the user from the user data
+     * @param password String type
      */
     public void setPassword(String password) {
         this.password = password;
     }
     
     /**
-     * Set the unique player ID
-     * @param player ID
+     * Sets a unique player ID to the user data to determine when player one or player 2
+     * and aacts as user primary key
+     * @param playerID is a string type
      */
     public void setPlayerID(String playerID) {
         this.playerID = playerID;
     }
     
     /**
-     * Set the URL String of the profile picture
-     * @param URL String of the profile picture
+     * Method to set the profile picture of a user to connect with the user data.
+     * Stores as a url to the image in the CSV file.
+     * @param profilePicture string type stores from the URL
      */
     public void setprofilePicture(String profilePicture) {
         this.profilePicture = profilePicture ;
     }
 
     /**
-     * Set the wins,losses and draws for a user
-     * @param wins
-     * @param losses
-     * @param draws
+     * Set the wins,losses and draws for a user based on game outcome
+     * @param w - 'Wins' String type
+     * @param l - 'Loss' String type
+     * @param d - 'draws' String type
      */
     public void setWinLossDraw(String w, String l, String d) {
         int tw =  Integer.parseInt(w);
@@ -143,8 +145,8 @@ public class User {
     
     /**
      * Method to add and update the wins, losses and
-     * draws for users
-     * @param integer representing wins,losses or draws
+     * draws for users based on gameplay results.
+     * @param i Integer type stores wins, losses and draws with user data.
      */
     public void addWinLossDraw(int i) {
     	int[] temp = getWinLossDraw();
@@ -163,48 +165,48 @@ public class User {
     
     /**
      * Get the wins/losses/draws
-     * @param integer representing wins/losses/draws
-     * @return wins/losses/draws of a user
+     * @param i - Integer representing wins/losses/draws
+     * @return integer for wins/losses/draws of a user
      */
     public int getsWinLossDraw(int i) {
         return winLossDraw[i];
     }
 
     /**
-     * Get the username
-     * @return username
+     * Gets the username for current user
+     * @return String - username
      */
     public String getUserName() {
         return userName;
     }
 
     /**
-     * Get the first name
-     * @return first name
+     * Get the first name for the user
+     * @return String - first name
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * Get the last name
-     * @return last name
+     * Get the last name for the user
+     * @return String - last name
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     * Get the password
-     * @return password
+     * Get the password for the user
+     * @return password as String
      */
     public String getPassword() {
         return password;
     }
     
     /**
-     * Get the unique player ID
-     * @return player ID
+     * Get the unique player ID for the user
+     * @return String value player ID
      */
     public String getplayerID() {
         return playerID;
@@ -216,14 +218,17 @@ public class User {
     }
     
     /**
-     * Get the number of users in the system
-     * @return number of users
+     * Get the amount of current users
+     * @return number of users as an integer
      */
     public static int getUserCount() {
         return userCount;
     }
 
-    //toString method
+    /**
+     * Method to write strings ot array
+     * @return String of all player data as array
+     */
     public String toString() {
         return ("Username :" + userName + "\nFirst name :" + firstName + "\nLast name :" + lastName + "\nWins/Losses/Draws :"
                 + Arrays.toString(winLossDraw));
