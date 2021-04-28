@@ -477,28 +477,24 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
 
 
     /**
-     * An arraylist which returns the computer's valid moves for single player
-     * @return - Computer's current valid moves
-     */
-    public ArrayList<Integer> getComputersValidMoves(){
-        return computersValidMoves;
-    }
-
-
-
-    /**
      * Method makes the computer's move.
-     * @param computersValidMoves - Takes if valid moves can be made
      * @return - Makes move if valid and returns to user and displays on GUI.
      */
-    public int getComputersMove(ArrayList<Integer> computersValidMoves){
+    public int getComputersMove(){
+
+        computersValidMoves = new ArrayList<>();
+
         for (int i = 0; i <= 5; i++) {
             if(gameBoard.getPitValue(false, i) != 0){
                 computersValidMoves.add(i);
             }
         }
-        int value = (int)Math.random()*(computersValidMoves.size());
+        int value = (int)(Math.random()*(computersValidMoves.size()));
         int pitPressed = computersValidMoves.get(value);
+        System.out.println(value);
+
+        System.out.println(computersValidMoves);
+
         System.out.println(pitPressed);
 
         return pitPressed;
@@ -509,7 +505,7 @@ public class ArcadeSinglePlayer extends ArcadeMultiPlayer implements Initializab
      * Allows computer to make a move if valid.
      */
     public void computerMove() {
-        validMove(gameBoard, false, getComputersMove(getComputersValidMoves()));
+        validMove(gameBoard, false, getComputersMove());
     }
 
     /**

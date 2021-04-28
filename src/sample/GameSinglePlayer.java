@@ -392,31 +392,32 @@ public class GameSinglePlayer extends GameMultiPlayer implements Initializable {
 
 
 
-    public int getComputersMove(ArrayList<Integer> computersValidMoves){
+    public int getComputersMove(){
+
+        computersValidMoves = new ArrayList<>();
+
         for (int i = 0; i <= 5; i++) {
             if(gameBoard.getPitValue(false, i) != 0){
                 computersValidMoves.add(i);
             }
         }
-        int value = (int)Math.random()*(computersValidMoves.size());
+        int value = (int)(Math.random()*(computersValidMoves.size()));
         int pitPressed = computersValidMoves.get(value);
+        System.out.println(value);
+
+        System.out.println(computersValidMoves);
+
         System.out.println(pitPressed);
 
         return pitPressed;
     }
 
 
-    public ArrayList<Integer> getComputersValidMoves(){
-        return computersValidMoves;
-    }
-
-
-
     /**
      * Selects a random, non-empty pit for the computer AI
      */
     public void computerMove() {
-        validMove(gameBoard, false, getComputersMove(getComputersValidMoves()));
+        validMove(gameBoard, false, getComputersMove());
     }
 
 
