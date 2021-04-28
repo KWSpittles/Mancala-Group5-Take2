@@ -52,7 +52,7 @@ text-input
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-pref-width: 200px;
-    -fx-pref-height: 100px;
+    -fx-pref-height: 70px;
 }
 #MenuLabel{
     -fx-text-fill: black;
